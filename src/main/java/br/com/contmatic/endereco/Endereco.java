@@ -12,7 +12,7 @@ public class Endereco {
 	}
 
 	public boolean setRua(String eRua) {
-		if(eRua == null || eRua == "" || eRua == " " || eRua.) {
+		if(eRua == null || eRua == "" || eRua == " ") {
 			
 		}
 		rua = eRua;
