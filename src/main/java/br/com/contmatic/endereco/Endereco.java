@@ -1,5 +1,7 @@
 package br.com.contmatic.endereco;
 
+import br.com.contmatic.validacoes.Validacoes;
+
 public class Endereco {
 	String rua;
 
@@ -12,7 +14,7 @@ public class Endereco {
 	}
 
 	public boolean setRua(String eRua) {
-		if(eRua == null || eRua == "" || eRua == " ") {
+		if(eRua == null || eRua == "" || eRua == " " || !Validacoes.isNumeric(eRua)) {
 			
 		}
 		rua = eRua;

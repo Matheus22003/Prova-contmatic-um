@@ -1,7 +1,5 @@
 package br.com.contmatic.empresa;
 
-public class Empresa {
-
 import java.util.ArrayList;
 
 import br.com.contmatic.funcionario.*;
@@ -41,8 +39,7 @@ public class Empresa {
 		if (eAreaDeAtuacao == null || eAreaDeAtuacao == "" || eAreaDeAtuacao == " ") {
 			areaDeAtuacao = eAreaDeAtuacao;
 			return true;
-		}
-		else {
+		} else {
 			return false;
 		}
 
@@ -111,7 +108,5 @@ public class Empresa {
 
 		}
 	}
-
-}
 
 }
