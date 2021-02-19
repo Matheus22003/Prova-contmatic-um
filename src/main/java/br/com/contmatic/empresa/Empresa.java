@@ -1,5 +1,7 @@
 package br.com.contmatic.empresa;
 
+public class Empresa {
+
 import java.util.ArrayList;
 
 import br.com.contmatic.funcionario.*;
@@ -101,13 +103,15 @@ public class Empresa {
 
 		if (funcionarios.isEmpty()) {
 
-			return "CNPJ: " + this.cnpj + "\n" + "Endereço: " + this.endereco + "\n" + "Area de Atuação: "
-					+ areaDeAtuacao + "\n" + "Ainda não possui nenhum funcionário!";
+			return "CNPJ: " + this.cnpj + "\n" + "Endereï¿½o: " + this.endereco + "\n" + "Area de Atuaï¿½ï¿½o: "
+					+ areaDeAtuacao + "\n" + "Ainda nï¿½o possui nenhum funcionï¿½rio!";
 		} else {
-			return "CNPJ: " + this.cnpj + "\n" + "Endereço: " + this.endereco + "\n" + "Quantidade de Funcionarios: "
-					+ funcionarios.size() + "\n" + "Area de Atuação: " + areaDeAtuacao;
+			return "CNPJ: " + this.cnpj + "\n" + "Endereï¿½o: " + this.endereco + "\n" + "Quantidade de Funcionarios: "
+					+ funcionarios.size() + "\n" + "Area de Atuaï¿½ï¿½o: " + areaDeAtuacao;
 
 		}
 	}
+
+}
 
 }

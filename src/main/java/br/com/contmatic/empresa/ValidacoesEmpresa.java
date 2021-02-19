@@ -1,17 +1,16 @@
 package br.com.contmatic.empresa;
 
-
 public class ValidacoesEmpresa {
-
 	private int div(int dividendo, int divisor) {
 		return (int) Math.round(dividendo - (Math.floor(dividendo / divisor) * divisor));
 	}
 
 	public boolean valdiaCnpj(String eCnpj) {
-		if (eCnpj == null|| eCnpj == "" || eCnpj == " " || eCnpj.equals("00000000000000") || eCnpj.equals("11111111111111")
-				|| eCnpj.equals("22222222222222") || eCnpj.equals("33333333333333") || eCnpj.equals("44444444444444")
-				|| eCnpj.equals("55555555555555") || eCnpj.equals("66666666666666") || eCnpj.equals("77777777777777")
-				|| eCnpj.equals("88888888888888") || eCnpj.equals("99999999999999") || (eCnpj.length() != 14)) {
+		if (eCnpj == null || eCnpj == "" || eCnpj == " " || eCnpj.equals("00000000000000")
+				|| eCnpj.equals("11111111111111") || eCnpj.equals("22222222222222") || eCnpj.equals("33333333333333")
+				|| eCnpj.equals("44444444444444") || eCnpj.equals("55555555555555") || eCnpj.equals("66666666666666")
+				|| eCnpj.equals("77777777777777") || eCnpj.equals("88888888888888") || eCnpj.equals("99999999999999")
+				|| (eCnpj.length() != 14)) {
 			return false;
 		}
 
@@ -26,7 +25,6 @@ public class ValidacoesEmpresa {
 
 		digitoUm = 11 - (div(digitoUm, 11));
 
-
 		if (digitoUm >= 10) {
 			digitoUm = 0;
 		}
@@ -40,8 +38,7 @@ public class ValidacoesEmpresa {
 		if (digitos[12] == digitoUm && digitos[13] == digitoDois) {
 			return true;
 
-		}
-		else {
+		} else {
 			return false;
 		}
 	}
