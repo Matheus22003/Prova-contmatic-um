@@ -36,11 +36,12 @@ public class Empresa {
 	}
 
 	public boolean setAreaDeAtuacao(String eAreaDeAtuacao) {
-		if (eAreaDeAtuacao == null || eAreaDeAtuacao == "" || eAreaDeAtuacao == " ") {
+		if (eAreaDeAtuacao == null || eAreaDeAtuacao.equals("") || eAreaDeAtuacao.equals(" ")) {
+			return false;
+			
+		} else {
 			areaDeAtuacao = eAreaDeAtuacao;
 			return true;
-		} else {
-			return false;
 		}
 
 	}
