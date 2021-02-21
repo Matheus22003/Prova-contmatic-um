@@ -5,7 +5,7 @@ import br.com.contmatic.validacoes.Validacoes;
 public class Endereco {
 	private String rua;
 
-	private int numero;
+	private Integer numero;
 
 	private String complemento;
 
@@ -16,7 +16,7 @@ public class Endereco {
 	}
 
 	public boolean setRua(String eRua) {
-		if (eRua == null || eRua.equals("") || eRua.equals(" ") || !Validacoes.isNumeric(eRua)) {
+		if (eRua == null || eRua.equals("") || eRua.equals(" ") || Validacoes.isNumeric(eRua)) {
 			return false;
 		} else {
 			rua = eRua;
@@ -38,8 +38,12 @@ public class Endereco {
 		return this.rua;
 	}
 
-	public int getNumero() {
+	public Integer getNumero() {
 		return this.numero;
+	}
+	
+	public String getComplemento() {
+		return this.complemento;
 	}
 
 	@Override
@@ -76,7 +80,6 @@ public class Endereco {
 		return true;
 	}
 
-	
 	@Override
 	public String toString() {
 		return "Endereco [rua=" + rua + ", numero=" + numero + ", complemento=" + complemento + "]";
