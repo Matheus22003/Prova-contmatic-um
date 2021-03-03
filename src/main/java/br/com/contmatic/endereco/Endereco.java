@@ -3,6 +3,7 @@ package br.com.contmatic.endereco;
 import br.com.contmatic.validacoes.Validacoes;
 
 public class Endereco {
+	
 	private String rua;
 
 	private Integer numero;

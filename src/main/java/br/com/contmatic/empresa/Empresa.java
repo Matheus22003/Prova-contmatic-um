@@ -2,21 +2,21 @@ package br.com.contmatic.empresa;
 
 import java.util.ArrayList;
 
+import br.com.contmatic.endereco.Endereco;
 import br.com.contmatic.funcionario.*;
 
 public class Empresa {
 
 	private String cnpj;
 
-	private String endereco;
+	private Endereco endereco;
 
 	private ArrayList<Funcionario> funcionarios = new ArrayList<Funcionario>();
 
 	private String areaDeAtuacao;
 
-	public Empresa(String cCNPJ, String cEndereco, String tAreaDeAtuacao) {
+	public Empresa(String cCNPJ, String tAreaDeAtuacao) {
 		this.setCnpj(cCNPJ);
-		endereco = cEndereco;
 		this.setAreaDeAtuacao(tAreaDeAtuacao);
 	}
 
@@ -30,7 +30,7 @@ public class Empresa {
 		}
 	}
 
-	public boolean setEndereco(String eEndereco) {
+	public boolean setEndereco(Endereco eEndereco) {
 		endereco = eEndereco;
 		return true;
 	}
@@ -55,7 +55,7 @@ public class Empresa {
 		return this.cnpj;
 	}
 
-	public String getEndereco() {
+	public Endereco getEndereco() {
 		return this.endereco;
 	}
 
@@ -102,10 +102,10 @@ public class Empresa {
 		if (funcionarios.isEmpty()) {
 
 			return "CNPJ: " + this.cnpj + "\n" + "Endere�o: " + this.endereco + "\n" + "Area de Atua��o: "
-					+ areaDeAtuacao + "\n" + "Ainda n�o possui nenhum funcion�rio!";
+					+ areaDeAtuacao + "\n" + "Ainda n�o possui nenhum funcionario!";
 		} else {
 			return "CNPJ: " + this.cnpj + "\n" + "Endere�o: " + this.endereco + "\n" + "Quantidade de Funcionarios: "
-					+ funcionarios.size() + "\n" + "Area de Atua��o: " + areaDeAtuacao;
+					+ funcionarios.size() + "\n" + "Area de Atuação: " + areaDeAtuacao;
 
 		}
 	}

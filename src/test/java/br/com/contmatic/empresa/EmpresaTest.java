@@ -20,7 +20,7 @@ class EmpresaTest {
 
 	@BeforeEach
 	void setup() {
-		contmatic = new Empresa("60872504000123", "Rua Vergueiro, 819", "Contabilidade");
+		contmatic = new Empresa("60872504000123", "Contabilidade");
 		matheus = new Funcionario("Matheus", 17, "Estagiario", 2000);
 	}
 	
@@ -38,13 +38,6 @@ class EmpresaTest {
 	void getCnpj() {
 		String valorEsperado = "60872504000123";
 		assertThat("Valor do CNPJ incorreto", contmatic.getCnpj(), equalTo(valorEsperado));
-	}
-
-	@Test
-	@Timeout(1)
-	void getEndereco() {
-		String valorEsperado = "Rua Vergueiro, 819";
-		assertThat("Valor do endereço incorreto", contmatic.getEndereco(), equalTo(valorEsperado));
 	}
 
 	@Test

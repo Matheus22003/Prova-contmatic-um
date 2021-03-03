@@ -1,9 +1,13 @@
 package br.com.contmatic.funcionario;
 
 public class Funcionario {
+	
 	private String nome;
+	
 	private int idade;
+	
 	private String cargo;
+	
 	private double salario;
 
 	public Funcionario(String eNome, int eIdade, String eCargo, double eSalario) {
