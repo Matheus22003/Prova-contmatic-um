@@ -1,7 +1,7 @@
 package br.com.contmatic.validacoes;
 
 public class Validacoes {
-	public static boolean isNumeric(String strNum) {
+	public static boolean isNonNumeric(String strNum) {
 		if (strNum == null) {
 			return false;
 		}

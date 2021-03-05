@@ -3,21 +3,33 @@ package br.com.contmatic.endereco;
 import br.com.contmatic.validacoes.Validacoes;
 
 public class Endereco {
-	
+
 	private String rua;
 
 	private Integer numero;
 
 	private String complemento;
 
-	public Endereco(String eRua, int eNumero, String eComplemento) {
-		setRua(eRua);
-		setNumero(eNumero);
-		setComplemento(eComplemento);
+	private String bairro;
+
+	private String municipio;
+
+	private String cidade;
+
+	private String cep;
+
+	public Endereco(String eRua, int eNumero, String eComplemento, String eBairro, String eMunicipio, String eCidade, String eCep) {
+		this.setRua(eRua);
+		this.setNumero(eNumero);
+		this.setComplemento(eComplemento);
+		this.setBairro(eBairro);
+		this.setMunicipio(eMunicipio);
+		this.setCidade(eCidade);
+		this.setCep(eCep);
 	}
 
 	public boolean setRua(String eRua) {
-		if (eRua == null || eRua.equals("") || eRua.equals(" ") || Validacoes.isNumeric(eRua)) {
+		if (eRua == null || eRua.equals("") || eRua.equals(" ") || !Validacoes.isNonNumeric(eRua)) {
 			return false;
 		} else {
 			rua = eRua;
@@ -25,9 +37,17 @@ public class Endereco {
 		}
 	}
 
+	public String getRua() {
+		return this.rua;
+	}
+
 	public boolean setNumero(int eNumero) {
 		this.numero = eNumero;
 		return true;
+	}
+
+	public Integer getNumero() {
+		return this.numero;
 	}
 
 	public boolean setComplemento(String eComplemento) {
@@ -35,18 +55,63 @@ public class Endereco {
 		return true;
 	}
 
-	public String getRua() {
-		return this.rua;
-	}
-
-	public Integer getNumero() {
-		return this.numero;
-	}
-	
 	public String getComplemento() {
 		return this.complemento;
 	}
 
+	public boolean setBairro(String eBairro) {
+		if (!Validacoes.isNonNumeric(eBairro)) {
+			return false;
+		} else {
+			this.bairro = eBairro;
+			return true;
+		}
+	}
+
+	public String getBairro() {
+		return this.bairro;
+	}
+
+	public Boolean setMunicipio(String eMunicipio) {
+		if (!Validacoes.isNonNumeric(eMunicipio)) {
+			return false;
+		} else {
+			this.municipio = eMunicipio;
+			return true;
+		}
+	}
+
+	public String getMunicipio() {
+		return this.municipio;
+	}
+
+	public Boolean setCidade(String eCidade) {
+		if (!Validacoes.isNonNumeric(eCidade)) {
+			return false;
+		} else {
+			this.cidade = eCidade;
+			return true;
+		}
+	}
+
+	public String getCidade() {
+		return this.cidade;
+	}
+
+	public Boolean setCep(String eCep) {
+		if(Validacoes.isNonNumeric(eCep)) {
+			this.cep = eCep;
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	
+	public String getCep() {
+		return this.cep;
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

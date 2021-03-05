@@ -2,12 +2,10 @@ package br.com.contmatic.telefone;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import br.com.contmatic.endereco.Endereco;
 
 class TelefoneTest {
 

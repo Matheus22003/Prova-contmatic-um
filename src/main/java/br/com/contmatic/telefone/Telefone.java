@@ -17,7 +17,7 @@ public class Telefone {
 	}
 
 	public boolean setDigitoPais(String eDigitoPais) {
-		if (Validacoes.isNumeric(eDigitoPais) || !eDigitoPais.isEmpty() || !eDigitoPais.isBlank()) {
+		if (Validacoes.isNonNumeric(eDigitoPais) || !eDigitoPais.isEmpty() || !eDigitoPais.isBlank()) {
 			this.digitoPais = eDigitoPais;
 			return true;
 		}
@@ -25,7 +25,7 @@ public class Telefone {
 	}
 
 	public boolean setDDD(String eDDD) {
-		if (Validacoes.isNumeric(eDDD) || !eDDD.isEmpty() || !eDDD.isBlank() || eDDD.length() == 3) {
+		if (Validacoes.isNonNumeric(eDDD) || !eDDD.isEmpty() || !eDDD.isBlank() || eDDD.length() == 3) {
 			this.ddd = eDDD;
 			return true;
 		}
@@ -33,7 +33,7 @@ public class Telefone {
 	}
 	
 	public boolean setTelefone(String eTelefone) {
-		if (Validacoes.isNumeric(eTelefone) || !eTelefone.isEmpty() || !eTelefone.isBlank() || (eTelefone.length() == 9 || eTelefone.length() == 8)) {
+		if (Validacoes.isNonNumeric(eTelefone) || !eTelefone.isEmpty() || !eTelefone.isBlank() || (eTelefone.length() == 9 || eTelefone.length() == 8)) {
 			this.numeroTelefone = eTelefone;
 			return true;
 		}

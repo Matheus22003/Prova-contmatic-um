@@ -30,11 +30,19 @@ public class Empresa {
 		}
 	}
 
+	public String getCnpj() {
+		return this.cnpj;
+	}
+	
 	public boolean setEndereco(Endereco eEndereco) {
 		endereco = eEndereco;
 		return true;
 	}
 
+	public Endereco getEndereco() {
+		return this.endereco;
+	}
+	
 	public boolean setAreaDeAtuacao(String eAreaDeAtuacao) {
 		if (eAreaDeAtuacao == null || eAreaDeAtuacao.equals("") || eAreaDeAtuacao.equals(" ")) {
 			return false;
@@ -46,17 +54,13 @@ public class Empresa {
 
 	}
 
+	public String getAreaDeAtuacao() {
+		return this.areaDeAtuacao;
+	}
+
 	public boolean addFuncionario(Funcionario funcionario) {
 		funcionarios.add(funcionario);
 		return true;
-	}
-
-	public String getCnpj() {
-		return this.cnpj;
-	}
-
-	public Endereco getEndereco() {
-		return this.endereco;
 	}
 
 	public int getQuantidadeDeFuncionarios() {
@@ -65,10 +69,6 @@ public class Empresa {
 
 	public ArrayList<Funcionario> getFuncionarios() {
 		return funcionarios;
-	}
-
-	public String getAreaDeAtuacao() {
-		return this.areaDeAtuacao;
 	}
 
 	@Override
