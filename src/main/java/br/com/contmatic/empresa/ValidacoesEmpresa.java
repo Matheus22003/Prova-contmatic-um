@@ -6,7 +6,7 @@ public class ValidacoesEmpresa {
 	}
 
 	public boolean valdiaCnpj(String eCnpj) {
-		if (eCnpj == null || eCnpj == "" || eCnpj == " " || eCnpj.equals("00000000000000")
+		if (eCnpj == null || eCnpj.equals("") || eCnpj.equals(" ") || eCnpj.equals("00000000000000")
 				|| eCnpj.equals("11111111111111") || eCnpj.equals("22222222222222") || eCnpj.equals("33333333333333")
 				|| eCnpj.equals("44444444444444") || eCnpj.equals("55555555555555") || eCnpj.equals("66666666666666")
 				|| eCnpj.equals("77777777777777") || eCnpj.equals("88888888888888") || eCnpj.equals("99999999999999")
@@ -35,11 +35,10 @@ public class ValidacoesEmpresa {
 
 		digitoDois = 11 - (div(digitoDois, 11));
 
-		if (digitos[12] == digitoUm && digitos[13] == digitoDois) {
+		if (digitos[12] == digitoUm && digitos[13] == digitoDois)
 			return true;
-
-		} else {
+		else
 			return false;
-		}
+
 	}
 }

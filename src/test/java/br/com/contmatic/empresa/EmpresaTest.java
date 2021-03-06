@@ -21,7 +21,7 @@ class EmpresaTest {
 	@BeforeEach
 	void setup() {
 		contmatic = new Empresa("60872504000123", "Contabilidade");
-		matheus = new Funcionario("Matheus", 17, "Estagiario", 2000);
+		matheus = new Funcionario("Matheus","22/03/2003","42793727806","Programador", 2000);
 	}
 	
 	@Test

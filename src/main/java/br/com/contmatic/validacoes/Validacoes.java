@@ -6,7 +6,7 @@ public class Validacoes {
 			return false;
 		}
 		try {
-			
+
 		} catch (NumberFormatException nfe) {
 			return false;
 		}

@@ -13,7 +13,7 @@ class FuncionarioTest {
 
 	@BeforeEach
 	void setup() {
-		matheus = new Funcionario("Matheus", 17, "Estagiario", 2000);
+		matheus = new Funcionario("Matheus","22/03/2003","42793727806","Estagiario", 2000);
 	}
 
 	@Test
@@ -21,16 +21,19 @@ class FuncionarioTest {
 	void getName() {
 		String nomeEsperado = "Matheus";
 		assertThat("Nome incorreto", matheus.getNome(), equalTo(nomeEsperado));
-
 	}
 
 	@Test
-	@Timeout(1)
-	void getIdade() {
-		int idadeEsperada = 17;
-		assertThat("Idade incorreta", matheus.getIdade(), equalTo(idadeEsperada));
+	void getDataNascimento() {
+		assertThat("Idade incorreta", matheus.getDataNascimento(), equalTo("22/03/2003"));
 	}
 
+	@Test
+	void getCpf() {
+		System.out.println(matheus.getCpf());
+		assertThat("CPF incorreto",matheus.getCpf(),equalTo("42793727806"));
+	}
+	
 	@Test
 	@Timeout(1)
 	void getCargo() {
