@@ -5,6 +5,7 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -30,7 +31,7 @@ class EmpresaTest {
 		valorEsperado.add(matheus);
 		contmatic.addFuncionario(matheus);
 		assertThat("Funcionarios estão sendo adicionados de maneira incorreta", contmatic.getFuncionarios(),
-				equalTo(valorEsperado));
+				equalTo(Collections.unmodifiableList(valorEsperado)));
 	}
 
 	@Test
@@ -52,7 +53,7 @@ class EmpresaTest {
 	void getFuncionarios() {
 		ArrayList<Funcionario> valorEsperado = new ArrayList<Funcionario>();
 		valorEsperado.clear();
-		assertThat("Valores de Funcionarios está incorreto", contmatic.getFuncionarios(), equalTo(valorEsperado));
+		assertThat("Valores de Funcionarios está incorreto", contmatic.getFuncionarios(), equalTo(Collections.unmodifiableList(valorEsperado)));
 	}
 
 	@Test

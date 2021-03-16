@@ -1,6 +1,8 @@
 package br.com.contmatic.empresa;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import br.com.contmatic.endereco.Endereco;
 import br.com.contmatic.funcionario.*;
@@ -11,7 +13,7 @@ public class Empresa {
 
 	private Endereco endereco;
 
-	private ArrayList<Funcionario> funcionarios = new ArrayList<Funcionario>();
+	private List<Funcionario> funcionarios = new ArrayList<Funcionario>();
 
 	private String areaDeAtuacao;
 
@@ -67,8 +69,8 @@ public class Empresa {
 		return this.funcionarios.size();
 	}
 
-	public ArrayList<Funcionario> getFuncionarios() {
-		return funcionarios;
+	public List<Funcionario> getFuncionarios() {
+		return Collections.unmodifiableList(funcionarios);
 	}
 
 	@Override
