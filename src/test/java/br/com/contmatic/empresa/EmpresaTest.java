@@ -11,8 +11,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Timeout;
 
-import br.com.contmatic.funcionario.Funcionario;
-
 class EmpresaTest {
 
 	Empresa contmatic;
@@ -21,7 +19,7 @@ class EmpresaTest {
 
 	@BeforeEach
 	void setup() {
-		contmatic = new Empresa("60872504000123", "Contabilidade");
+		contmatic = new Empresa("60872504000123");
 		matheus = new Funcionario("Matheus","22/03/2003","42793727806","Programador", 2000);
 	}
 	

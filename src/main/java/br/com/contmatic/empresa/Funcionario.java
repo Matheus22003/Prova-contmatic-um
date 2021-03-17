@@ -1,11 +1,12 @@
-package br.com.contmatic.funcionario;
+package br.com.contmatic.empresa;
 
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import br.com.contmatic.validacoes.Validacoes;
+import br.com.contmatic.validator.Validacoes;
+import br.com.contmatic.validator.ValidacoesFuncionario;
 
 public class Funcionario {
 	

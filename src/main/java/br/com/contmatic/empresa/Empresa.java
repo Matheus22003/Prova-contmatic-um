@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import br.com.contmatic.endereco.Endereco;
-import br.com.contmatic.funcionario.*;
+import br.com.contmatic.exception.CnpjInvalidoException;
+import br.com.contmatic.validator.*;
 
 public class Empresa {
 
@@ -17,25 +17,29 @@ public class Empresa {
 
 	private String areaDeAtuacao;
 
-	public Empresa(String cCNPJ, String tAreaDeAtuacao) {
+	public Empresa(String cCNPJ) {
 		this.setCnpj(cCNPJ);
-		this.setAreaDeAtuacao(tAreaDeAtuacao);
 	}
 
-	public boolean setCnpj(String eCnpj) {
-		ValidacoesEmpresa validacoes = new ValidacoesEmpresa();
-		if (validacoes.valdiaCnpj(eCnpj)) {
+	public Empresa(String cnpj,Endereco endereco,String areaDeAtuacao) {
+		this.setCnpj(cnpj);
+		this.setEndereco(endereco);
+		this.setAreaDeAtuacao(areaDeAtuacao);
+	}
+	
+	public void setCnpj(String eCnpj) {
+		try {
+			ValidatorEmpresa.validaCnpj(eCnpj);
 			cnpj = eCnpj;
-			return true;
-		} else {
-			return false;
+		} catch (CnpjInvalidoException e) {
+			e.printStackTrace();
 		}
 	}
 
 	public String getCnpj() {
 		return this.cnpj;
 	}
-	
+
 	public boolean setEndereco(Endereco eEndereco) {
 		endereco = eEndereco;
 		return true;
@@ -44,25 +48,18 @@ public class Empresa {
 	public Endereco getEndereco() {
 		return this.endereco;
 	}
-	
-	public boolean setAreaDeAtuacao(String eAreaDeAtuacao) {
-		if (eAreaDeAtuacao == null || eAreaDeAtuacao.equals("") || eAreaDeAtuacao.equals(" ")) {
-			return false;
-			
-		} else {
-			areaDeAtuacao = eAreaDeAtuacao;
-			return true;
-		}
 
+	public void setAreaDeAtuacao(String eAreaDeAtuacao) {
+		Validacoes.isStringNull(eAreaDeAtuacao);
+		this.areaDeAtuacao = eAreaDeAtuacao;
 	}
 
 	public String getAreaDeAtuacao() {
 		return this.areaDeAtuacao;
 	}
 
-	public boolean addFuncionario(Funcionario funcionario) {
+	public void addFuncionario(Funcionario funcionario) {
 		funcionarios.add(funcionario);
-		return true;
 	}
 
 	public int getQuantidadeDeFuncionarios() {

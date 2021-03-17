@@ -1,6 +1,6 @@
-package br.com.contmatic.endereco;
+package br.com.contmatic.empresa;
 
-import br.com.contmatic.validacoes.Validacoes;
+import br.com.contmatic.validator.Validacoes;
 
 public class Endereco {
 
@@ -18,7 +18,12 @@ public class Endereco {
 
 	private String cep;
 
-	public Endereco(String eRua, int eNumero, String eComplemento, String eBairro, String eMunicipio, String eCidade, String eCep) {
+	public Endereco() {
+		
+	}
+	
+	public Endereco(String eRua, int eNumero, String eComplemento, String eBairro, String eMunicipio, String eCidade,
+			String eCep) {
 		this.setRua(eRua);
 		this.setNumero(eNumero);
 		this.setComplemento(eComplemento);
@@ -28,90 +33,69 @@ public class Endereco {
 		this.setCep(eCep);
 	}
 
-	public boolean setRua(String eRua) {
-		if (eRua == null || eRua.equals("") || eRua.equals(" ") || !Validacoes.isNonNumeric(eRua)) {
-			return false;
-		} else {
-			rua = eRua;
-			return true;
-		}
+	public void setRua(String eRua) {
+		Validacoes.isNonNumeric(eRua);
+		rua = eRua;
 	}
 
 	public String getRua() {
 		return this.rua;
 	}
 
-	public boolean setNumero(int eNumero) {
+	public void setNumero(int eNumero) {
 		this.numero = eNumero;
-		return true;
 	}
 
 	public Integer getNumero() {
 		return this.numero;
 	}
 
-	public boolean setComplemento(String eComplemento) {
+	public void setComplemento(String eComplemento) {
 		this.complemento = eComplemento;
-		return true;
 	}
 
 	public String getComplemento() {
 		return this.complemento;
 	}
 
-	public boolean setBairro(String eBairro) {
-		if (!Validacoes.isNonNumeric(eBairro)) {
-			return false;
-		} else {
-			this.bairro = eBairro;
-			return true;
-		}
+	public void setBairro(String eBairro) {
+		Validacoes.isNonNumeric(eBairro);
+		this.bairro = eBairro;
 	}
 
 	public String getBairro() {
 		return this.bairro;
 	}
 
-	public Boolean setMunicipio(String eMunicipio) {
-		if (!Validacoes.isNonNumeric(eMunicipio)) {
-			return false;
-		} else {
-			this.municipio = eMunicipio;
-			return true;
-		}
+	public void setMunicipio(String eMunicipio) {
+		Validacoes.isNonNumeric(eMunicipio);
+		this.municipio = eMunicipio;
+
 	}
 
 	public String getMunicipio() {
 		return this.municipio;
 	}
 
-	public Boolean setCidade(String eCidade) {
-		if (!Validacoes.isNonNumeric(eCidade)) {
-			return false;
-		} else {
-			this.cidade = eCidade;
-			return true;
-		}
+	public void setCidade(String eCidade) {
+		Validacoes.isNonNumeric(eCidade);
+		this.cidade = eCidade;
 	}
 
 	public String getCidade() {
 		return this.cidade;
 	}
 
-	public Boolean setCep(String eCep) {
-		if(Validacoes.isNonNumeric(eCep)) {
-			this.cep = eCep;
-			return true;
-		}
-		else {
-			return false;
-		}
+	public void setCep(String eCep) {
+		Validacoes.isNumeric(eCep);
+		this.cep = eCep;
+
 	}
-	
+
 	public String getCep() {
 		return this.cep;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

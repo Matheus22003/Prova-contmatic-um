@@ -6,6 +6,8 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import br.com.contmatic.empresa.Telefone;
+
 
 class TelefoneTest {
 

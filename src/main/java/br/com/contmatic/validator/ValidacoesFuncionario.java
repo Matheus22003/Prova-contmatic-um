@@ -1,4 +1,4 @@
-package br.com.contmatic.funcionario;
+package br.com.contmatic.validator;
 
 
 public class ValidacoesFuncionario {

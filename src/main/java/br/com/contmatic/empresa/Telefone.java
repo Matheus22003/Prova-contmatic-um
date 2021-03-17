@@ -1,6 +1,6 @@
-package br.com.contmatic.telefone;
+package br.com.contmatic.empresa;
 
-import br.com.contmatic.validacoes.Validacoes;
+import br.com.contmatic.validator.Validacoes;
 
 public class Telefone {
 

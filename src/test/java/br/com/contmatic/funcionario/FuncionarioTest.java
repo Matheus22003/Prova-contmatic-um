@@ -7,6 +7,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Timeout;
 
+import br.com.contmatic.empresa.Funcionario;
+
 class FuncionarioTest {
 
 	Funcionario matheus;
