@@ -4,7 +4,10 @@ import br.com.contmatic.exception.CnpjInvalidoException;
 
 public class ValidatorEmpresa {
 	
-	public static Boolean validaCnpj(String eCnpj) throws CnpjInvalidoException {
+	private ValidatorEmpresa() {
+	}
+	
+	public static Boolean validaaCnpj(String eCnpj) throws CnpjInvalidoException {
 		Validacoes.isStringNull(eCnpj);
 		if (basicErrorCnpjVerifier(eCnpj)) {
 			throw new CnpjInvalidoException("O CNPJ está invalido");
