@@ -1,65 +1,38 @@
 package br.com.contmatic.empresa;
 
-
 import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.MatcherAssert.assertThat;
-
-import java.util.ArrayList;
-import java.util.Collections;
+import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.Timeout;
+
+import static org.hamcrest.MatcherAssert.assertThat;
 
 class EmpresaTest {
 
-	Empresa contmatic;
-
-	Funcionario matheus;
-
+	Empresa rivals;
+	
 	@BeforeEach
 	void setup() {
-		contmatic = new Empresa("60872504000123");
-		matheus = new Funcionario("Matheus","22/03/2003","42793727806","Programador", 2000);
+		rivals = new Empresa("11319526000155");
+	}
+
+	@Test
+	void criarEmpresaCompleta() {
+		
+		rivals.setAreaDeAtuacao("Desenvolvimento");
+		
+		rivals.setEndereco(new Endereco("01504001", 819, "apto29"));
+		
+		assertThat("Endereco retornando errado", rivals.getEndereco(), equalTo(new Endereco("01504001", 819, "apto29")));
+		
+		assertThat("teste",rivals.getAreaDeAtuacao(),equalTo("Desenvolvimento"));
+		
 	}
 	
 	@Test
-	void addFuncionario() {
-		ArrayList<Funcionario> valorEsperado = new ArrayList<Funcionario>();
-		valorEsperado.add(matheus);
-		contmatic.addFuncionario(matheus);
-		assertThat("Funcionarios estão sendo adicionados de maneira incorreta", contmatic.getFuncionarios(),
-				equalTo(Collections.unmodifiableList(valorEsperado)));
-	}
-
-	@Test
-	@Timeout(1)
-	void getCnpj() {
-		String valorEsperado = "60872504000123";
-		assertThat("Valor do CNPJ incorreto", contmatic.getCnpj(), equalTo(valorEsperado));
-	}
-
-	@Test
-	@Timeout(1)
-	void getQuantidadeDeFuncionarios() {
-		int valorEsperado = 0;
-		assertThat("Valor de funcionarios incorreto", contmatic.getQuantidadeDeFuncionarios(), equalTo(valorEsperado));
-	}
-
-	@Test
-	@Timeout(1)
-	void getFuncionarios() {
-		ArrayList<Funcionario> valorEsperado = new ArrayList<Funcionario>();
-		valorEsperado.clear();
-		assertThat("Valores de Funcionarios está incorreto", contmatic.getFuncionarios(), equalTo(Collections.unmodifiableList(valorEsperado)));
-	}
-
-	@Test
-	@Timeout(1)
-	void getAreaDeAtuacao() {
-		String valorEsperado = "Contabilidade";
-		assertThat("Valor da área de atuação incorreta", contmatic.getAreaDeAtuacao(), equalTo(valorEsperado));
+	void criarEmpresa() {
+		
 	}
 
 }
-

@@ -7,8 +7,9 @@ public class ValidatorEmpresa {
 	private ValidatorEmpresa() {
 	}
 	
-	public static Boolean validaaCnpj(String eCnpj) throws CnpjInvalidoException {
+	public static Boolean validaCnpj(String eCnpj) throws CnpjInvalidoException {
 		Validacoes.isStringNull(eCnpj);
+		Validacoes.isNumeric(eCnpj);
 		if (basicErrorCnpjVerifier(eCnpj)) {
 			throw new CnpjInvalidoException("O CNPJ está invalido");
 		}
