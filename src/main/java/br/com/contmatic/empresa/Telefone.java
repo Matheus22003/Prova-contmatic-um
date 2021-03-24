@@ -124,7 +124,7 @@ public class Telefone {
 
 	private void validacoesTelefone(String eTelefone) {
 		Validacoes.isNumeric(eTelefone);
-		if (eTelefone.length() != 9 || eTelefone.length() != 8) {
+		if (eTelefone.length() != 9 && eTelefone.length() != 8) {
 			throw new ExceptionInInitializerError("Quatidade de caracteres inseridas de maneira incorreta");
 		}
 	}
