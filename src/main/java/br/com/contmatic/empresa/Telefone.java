@@ -36,7 +36,7 @@ public class Telefone {
 	private void varifierDDD(String eDDD) throws ExceptionInInitializerError {
 		Validacoes.isNumeric(eDDD);
 		Set<String> listaDDD = listaDDD();
-		if (listaDDD.contains(eDDD)) {
+		if (!listaDDD.contains(eDDD)) {
 			throw new ExceptionInInitializerError("DDD inexistente");
 		}
 	}

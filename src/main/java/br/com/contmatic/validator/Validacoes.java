@@ -19,7 +19,4 @@ public class Validacoes {
 		if (valor == null || valor.isEmpty() || valor.isBlank())
 			throw new NullPointerException("Valor fornecido nulo");
 	}
-	public static void main(String[] args) {
-		Validacoes.isNumeric("d");
-	}
 }

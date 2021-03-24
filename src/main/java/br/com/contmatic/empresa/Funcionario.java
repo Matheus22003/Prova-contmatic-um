@@ -43,7 +43,6 @@ public class Funcionario {
 	}
 
 	public void setDataNascimento(String eDataNascimento) {
-		Validacoes.isNumeric(eDataNascimento);
 		try {
 			dataNascimento = new SimpleDateFormat("dd/mm/yyyy").parse(eDataNascimento);
 		} catch (ParseException e) {
@@ -62,6 +61,7 @@ public class Funcionario {
 			ValidacoesFuncionario.validaCpf(eCpf);
 		} catch (CpfInvalidoException e) {
 			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 		this.cpf = eCpf;
 	}

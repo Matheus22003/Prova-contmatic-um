@@ -1,5 +1,7 @@
 package br.com.contmatic.empresa;
 
+import javax.management.InvalidAttributeValueException;
+
 import br.com.contmatic.validator.Validacoes;
 
 public class Endereco {
@@ -90,6 +92,9 @@ public class Endereco {
 
 	public void setCep(String eCep) {
 		Validacoes.isNumeric(eCep);
+		if(eCep.length() != 8) {
+			throw new ExceptionInInitializerError("Numero de caracteres invalido");
+		}
 		this.cep = eCep;
 
 	}

@@ -22,7 +22,7 @@ public class ValidacoesFuncionario {
 		if (digitoUm == digitos[9] && digitoDois == digitos[10])
 			return true;
 		else
-			throw new CpfInvalidoException("O CNPJ está invalido");
+			throw new CpfInvalidoException("O CPF está invalido");
 
 	}
 

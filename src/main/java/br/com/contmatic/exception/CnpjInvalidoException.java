@@ -1,6 +1,6 @@
 package br.com.contmatic.exception;
 
-public class CnpjInvalidoException extends Exception {
+public class CnpjInvalidoException extends RuntimeException {
 	/**
 	 * 
 	 */

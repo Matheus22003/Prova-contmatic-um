@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import br.com.contmatic.exception.CnpjInvalidoException;
-import br.com.contmatic.validator.*;
+import br.com.contmatic.validator.Validacoes;
+import br.com.contmatic.validator.ValidatorEmpresa;
 
 public class Empresa {
 
@@ -13,7 +13,7 @@ public class Empresa {
 
 	private Endereco endereco;
 
-	private List<Funcionario> funcionarios = new ArrayList<Funcionario>();
+	private List<Funcionario> funcionarios = new ArrayList<>();
 
 	private String areaDeAtuacao;
 
@@ -21,19 +21,15 @@ public class Empresa {
 		this.setCnpj(cCNPJ);
 	}
 
-	public Empresa(String cnpj,Endereco endereco,String areaDeAtuacao) {
+	public Empresa(String cnpj, Endereco endereco, String areaDeAtuacao) {
 		this.setCnpj(cnpj);
 		this.setEndereco(endereco);
 		this.setAreaDeAtuacao(areaDeAtuacao);
 	}
-	
+
 	public void setCnpj(String eCnpj) {
-		try {
-			ValidatorEmpresa.validaCnpj(eCnpj);
-			cnpj = eCnpj;
-		} catch (CnpjInvalidoException e) {
-			e.printStackTrace();
-		}
+		ValidatorEmpresa.validaCnpj(eCnpj);
+		cnpj = eCnpj;
 	}
 
 	public String getCnpj() {
