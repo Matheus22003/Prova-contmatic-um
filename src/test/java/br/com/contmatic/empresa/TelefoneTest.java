@@ -9,24 +9,23 @@ import org.junit.jupiter.api.Test;
 
 class TelefoneTest {
 
-	Telefone telefone;
-	@BeforeEach
-	void setup() {
-		telefone = new Telefone("11", "987704670");
-		
-	}
-	
-	@Test
-	void testeCriacaoCompletaTelefone() {
-		assertThat("CPF inserido incorretamente", telefone.getDdd(), equalTo("11"));
-		assertThat("CPF inserido incorretamente", telefone.getTelefone(), equalTo("987704670"));
-	}
-	
-	@Test
-	void testeCriacaoComErroTelefone() {
-		assertThrows(LinkageError.class, () -> {
-			new Telefone("90","50806019");
-		});
-	}
+    Telefone telefone;
+
+    @BeforeEach
+    void setup() {
+        telefone = new Telefone("11", "987704670");
+
+    }
+
+    @Test
+    void testeCriacaoCompletaTelefone() {
+        assertThat("CPF inserido incorretamente", telefone.getDdd(), equalTo("11"));
+        assertThat("CPF inserido incorretamente", telefone.getTelefone(), equalTo("987704670"));
+    }
+
+    @Test
+    void testeCriacaoComErroTelefone() {
+        assertThrows(LinkageError.class, () -> new Telefone("90", "50806019"));
+    }
 
 }

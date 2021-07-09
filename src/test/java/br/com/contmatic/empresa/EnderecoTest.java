@@ -20,12 +20,12 @@ class EnderecoTest {
 	void testeCriacaoEnderecoCompleto() {
 		enderecoRivals.setBairro("Liberdade");
 		enderecoRivals.setCidade("São Paulo");
-		enderecoRivals.setMunicipio("São Paulo");
+		enderecoRivals.setEstado("São Paulo");
 		enderecoRivals.setRua("Rua Vergueiro");
 
 		assertThat("Erro ao adicionar Bairro", enderecoRivals.getBairro(), equalTo("Liberdade"));
 		assertThat("Erro ao adicionar Funcionario", enderecoRivals.getCidade(), equalTo("São Paulo"));
-		assertThat("Erro ao adicionar Funcionario", enderecoRivals.getMunicipio(), equalTo("São Paulo"));
+		assertThat("Erro ao adicionar Funcionario", enderecoRivals.getEstado(), equalTo("São Paulo"));
 		assertThat("Erro ao adicionar Funcionario", enderecoRivals.getRua(), equalTo("Rua Vergueiro"));
 	}
 

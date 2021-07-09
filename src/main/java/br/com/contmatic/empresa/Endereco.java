@@ -1,148 +1,119 @@
 package br.com.contmatic.empresa;
 
-import javax.management.InvalidAttributeValueException;
-
 import br.com.contmatic.validator.Validacoes;
+
+import java.util.Objects;
+
+import static br.com.contmatic.validator.Validacoes.isNonNumeric;
+import static br.com.contmatic.validator.Validacoes.isNumeric;
 
 public class Endereco {
 
-	private String rua;
+    private String rua;
+    private Integer numero;
+    private String complemento;
+    private String bairro;
+    private String estado;
+    private String cidade;
+    private String cep;
 
-	private Integer numero;
+    public Endereco(String cep, int numero) {
+        this.setCep(cep);
+        this.setNumero(numero);
+        this.setComplemento(complemento);
+    }
 
-	private String complemento;
+    public Endereco(String rua, int numero, String complemento, String bairro, String municipio, String cidade,
+                    String cep) {
+        this.setRua(rua);
+        this.setNumero(numero);
+        this.setComplemento(complemento);
+        this.setBairro(bairro);
+        this.setEstado(municipio);
+        this.setCidade(cidade);
+        this.setCep(cep);
+    }
 
-	private String bairro;
+    public void setRua(String rua) {
+        isNonNumeric(rua);
+        this.rua = rua;
+    }
 
-	private String municipio;
+    public String getRua() {
+        return this.rua;
+    }
 
-	private String cidade;
+    public void setNumero(int numero) {
+        this.numero = numero;
+    }
 
-	private String cep;
+    public Integer getNumero() {
+        return this.numero;
+    }
 
-	public Endereco(String cep, int numero, String complemento) {
-		this.setCep(cep);
-		this.setNumero(numero);
-		this.setComplemento(complemento);
-	}
+    public void setComplemento(String complemento) {
+        this.complemento = complemento;
+    }
 
-	public Endereco(String eRua, int eNumero, String eComplemento, String eBairro, String eMunicipio, String eCidade,
-			String eCep) {
-		this.setRua(eRua);
-		this.setNumero(eNumero);
-		this.setComplemento(eComplemento);
-		this.setBairro(eBairro);
-		this.setMunicipio(eMunicipio);
-		this.setCidade(eCidade);
-		this.setCep(eCep);
-	}
+    public String getComplemento() {
+        return this.complemento;
+    }
 
-	public void setRua(String eRua) {
-		Validacoes.isNonNumeric(eRua);
-		rua = eRua;
-	}
+    public void setBairro(String bairro) {
+        isNonNumeric(bairro);
+        this.bairro = bairro;
+    }
 
-	public String getRua() {
-		return this.rua;
-	}
+    public String getBairro() {
+        return this.bairro;
+    }
 
-	public void setNumero(int eNumero) {
-		this.numero = eNumero;
-	}
+    public void setEstado(String estado) {
+        isNonNumeric(estado);
+        this.estado = estado;
+    }
 
-	public Integer getNumero() {
-		return this.numero;
-	}
+    public String getEstado() {
+        return this.estado;
+    }
 
-	public void setComplemento(String eComplemento) {
-		this.complemento = eComplemento;
-	}
+    public void setCidade(String cidade) {
+        isNonNumeric(cidade);
+        this.cidade = cidade;
+    }
 
-	public String getComplemento() {
-		return this.complemento;
-	}
+    public String getCidade() {
+        return this.cidade;
+    }
 
-	public void setBairro(String eBairro) {
-		Validacoes.isNonNumeric(eBairro);
-		this.bairro = eBairro;
-	}
+    public void setCep(String cep) {
+        isNumeric(cep);
+        if (cep.length() != 8) {
+            throw new ExceptionInInitializerError("Numero de caracteres invalido");
+        }
+        this.cep = cep;
+    }
 
-	public String getBairro() {
-		return this.bairro;
-	}
+    public String getCep() {
+        return this.cep;
+    }
 
-	public void setMunicipio(String eMunicipio) {
-		Validacoes.isNonNumeric(eMunicipio);
-		this.municipio = eMunicipio;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Endereco endereco = (Endereco) o;
+        return Objects.equals(numero, endereco.numero) && Objects.equals(cep, endereco.cep);
+    }
 
-	}
+    @Override
+    public int hashCode() {
+        return Objects.hash(numero, cep);
+    }
 
-	public String getMunicipio() {
-		return this.municipio;
-	}
-
-	public void setCidade(String eCidade) {
-		Validacoes.isNonNumeric(eCidade);
-		this.cidade = eCidade;
-	}
-
-	public String getCidade() {
-		return this.cidade;
-	}
-
-	public void setCep(String eCep) {
-		Validacoes.isNumeric(eCep);
-		if(eCep.length() != 8) {
-			throw new ExceptionInInitializerError("Numero de caracteres invalido");
-		}
-		this.cep = eCep;
-
-	}
-
-	public String getCep() {
-		return this.cep;
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((cep == null) ? 0 : cep.hashCode());
-		result = prime * result + ((complemento == null) ? 0 : complemento.hashCode());
-		result = prime * result + ((numero == null) ? 0 : numero.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Endereco other = (Endereco) obj;
-		if (cep == null) {
-			if (other.cep != null)
-				return false;
-		} else if (!cep.equals(other.cep))
-			return false;
-		if (complemento == null) {
-			if (other.complemento != null)
-				return false;
-		} else if (!complemento.equals(other.complemento))
-			return false;
-		if (numero == null) {
-			if (other.numero != null)
-				return false;
-		} else if (!numero.equals(other.numero))
-			return false;
-		return true;
-	}
-
-	@Override
-	public String toString() {
-		return "Endereco [rua=" + rua + ", numero=" + numero + ", complemento=" + complemento + "]";
-	}
+    @Override
+    public String toString() {
+        return "Endereco [rua=" + rua + ", numero=" + numero + ", complemento=" + complemento + "]";
+    }
 
 }

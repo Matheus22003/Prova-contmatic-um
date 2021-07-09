@@ -1,108 +1,130 @@
 package br.com.contmatic.empresa;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
-import br.com.contmatic.validator.Validacoes;
-import br.com.contmatic.validator.ValidatorEmpresa;
+import static br.com.contmatic.validator.Validacoes.*;
+import static br.com.contmatic.validator.ValidatorEmpresa.validaCnpj;
 
 public class Empresa {
 
-	private String cnpj;
+    private String nome;
+    private String nomeFantasia;
+    private String cnpj;
+    private String razaoSocial;
+    private String areaDeAtuacao;
+    private Endereco endereco;
+    private List<Funcionario> funcionarios = new ArrayList<>();
 
-	private Endereco endereco;
 
-	private List<Funcionario> funcionarios = new ArrayList<>();
+    public Empresa(String cnpj) {
+        this.setCnpj(cnpj);
+    }
 
-	private String areaDeAtuacao;
+    public Empresa(String cnpj, Endereco endereco, String areaDeAtuacao) {
+        this.setCnpj(cnpj);
+        this.setEndereco(endereco);
+        this.setAreaDeAtuacao(areaDeAtuacao);
+    }
 
-	public Empresa(String cCNPJ) {
-		this.setCnpj(cCNPJ);
-	}
+    public String getNome() {
+        return nome;
+    }
 
-	public Empresa(String cnpj, Endereco endereco, String areaDeAtuacao) {
-		this.setCnpj(cnpj);
-		this.setEndereco(endereco);
-		this.setAreaDeAtuacao(areaDeAtuacao);
-	}
+    public void setNome(String nome) {
+        validarStringTamanhoMinimoEMaximo(nome, 2, 100);
+        this.nome = nome;
+    }
 
-	public void setCnpj(String eCnpj) {
-		ValidatorEmpresa.validaCnpj(eCnpj);
-		cnpj = eCnpj;
-	}
+    public String getNomeFantasia() {
+        return nomeFantasia;
+    }
 
-	public String getCnpj() {
-		return this.cnpj;
-	}
+    public void setNomeFantasia(String nomeFantasia) {
+        validarStringTamanhoMinimoEMaximo(nomeFantasia, 2, 70);
+        this.nomeFantasia = nomeFantasia;
+    }
 
-	public boolean setEndereco(Endereco eEndereco) {
-		endereco = eEndereco;
-		return true;
-	}
+    public String getCnpj() {
+        return cnpj;
+    }
 
-	public Endereco getEndereco() {
-		return this.endereco;
-	}
+    public void setCnpj(String cnpj) {
+        validaCnpj(cnpj);
+        this.cnpj = cnpj;
+    }
 
-	public void setAreaDeAtuacao(String eAreaDeAtuacao) {
-		Validacoes.isStringNull(eAreaDeAtuacao);
-		this.areaDeAtuacao = eAreaDeAtuacao;
-	}
+    public String getRazaoSocial() {
+        return razaoSocial;
+    }
 
-	public String getAreaDeAtuacao() {
-		return this.areaDeAtuacao;
-	}
+    public void setRazaoSocial(String razaoSocial) {
+        validarStringTamanhoMinimoEMaximo(razaoSocial, 5, 60);
+        this.razaoSocial = razaoSocial;
+    }
 
-	public void addFuncionario(Funcionario funcionario) {
-		funcionarios.add(funcionario);
-	}
+    public String getAreaDeAtuacao() {
+        return areaDeAtuacao;
+    }
 
-	public int getQuantidadeDeFuncionarios() {
-		return this.funcionarios.size();
-	}
+    public void setAreaDeAtuacao(String areaDeAtuacao) {
+        isStringNull(areaDeAtuacao);
+        this.areaDeAtuacao = areaDeAtuacao;
+    }
 
-	public List<Funcionario> getFuncionarios() {
-		return Collections.unmodifiableList(funcionarios);
-	}
+    public Endereco getEndereco() {
+        return endereco;
+    }
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((cnpj == null) ? 0 : cnpj.hashCode());
-		return result;
-	}
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
+    }
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Empresa other = (Empresa) obj;
-		if (cnpj == null) {
-			if (other.cnpj != null)
-				return false;
-		} else if (!cnpj.equals(other.cnpj))
-			return false;
-		return true;
-	}
+    public List<Funcionario> getFuncionarios() {
+        return funcionarios;
+    }
 
-	@Override
-	public String toString() {
+    public void setFuncionarios(List<Funcionario> funcionarios) {
+        verifierObjectIsNull(funcionarios);
+        this.funcionarios = funcionarios;
+    }
 
-		if (funcionarios.isEmpty()) {
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((cnpj == null) ? 0 : cnpj.hashCode());
+        return result;
+    }
 
-			return "CNPJ: " + this.cnpj + "\n" + "Endere�o: " + this.endereco + "\n" + "Area de Atua��o: "
-					+ areaDeAtuacao + "\n" + "Ainda n�o possui nenhum funcionario!";
-		} else {
-			return "CNPJ: " + this.cnpj + "\n" + "Endere�o: " + this.endereco + "\n" + "Quantidade de Funcionarios: "
-					+ funcionarios.size() + "\n" + "Area de Atuação: " + areaDeAtuacao;
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Empresa other = (Empresa) obj;
+        if (cnpj == null) {
+            if (other.cnpj != null)
+                return false;
+        } else if (!cnpj.equals(other.cnpj))
+            return false;
+        return true;
+    }
 
-		}
-	}
+    @Override
+    public String toString() {
+        if (funcionarios.isEmpty()) {
+
+            return "CNPJ: " + this.cnpj + "\n" + "Endere�o: " + this.endereco + "\n" + "Area de Atua��o: "
+                    + areaDeAtuacao + "\n" + "Ainda n�o possui nenhum funcionario!";
+        } else {
+            return "CNPJ: " + this.cnpj + "\n" + "Endere�o: " + this.endereco + "\n" + "Quantidade de Funcionarios: "
+                    + funcionarios.size() + "\n" + "Area de Atuação: " + areaDeAtuacao;
+
+        }
+    }
 
 }
