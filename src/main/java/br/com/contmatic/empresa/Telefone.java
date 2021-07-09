@@ -31,84 +31,20 @@ public class Telefone {
         this.ddd = ddd;
     }
 
-    private void varifierDDD(String ddd) throws ExceptionInInitializerError {
+    private void varifierDDD(String dddEnviado) throws ExceptionInInitializerError {
         isNumeric(ddd);
-        Set<String> listaDDD = listaDDD();
-        if (!listaDDD.contains(ddd)) {
-            throw new ExceptionInInitializerError("DDD inexistente");
+        Boolean existente = false;
+        for (DDD ddd : DDD.values()) {
+            if (ddd.getCodigoDDD() == Integer.parseInt(dddEnviado)) {
+                existente = true;
+                break;
+            }
         }
-    }
 
-    private Set<String> listaDDD() {
-        Set<String> listaDDD = new HashSet<>();
-        listaDDD.add("61");
-        listaDDD.add("62");
-        listaDDD.add("64");
-        listaDDD.add("65");
-        listaDDD.add("66");
-        listaDDD.add("67");
-        listaDDD.add("82");
-        listaDDD.add("71");
-        listaDDD.add("73");
-        listaDDD.add("74");
-        listaDDD.add("75");
-        listaDDD.add("77");
-        listaDDD.add("85");
-        listaDDD.add("88");
-        listaDDD.add("98");
-        listaDDD.add("99");
-        listaDDD.add("83");
-        listaDDD.add("81");
-        listaDDD.add("87");
-        listaDDD.add("86");
-        listaDDD.add("89");
-        listaDDD.add("84");
-        listaDDD.add("79");
-        listaDDD.add("68");
-        listaDDD.add("96");
-        listaDDD.add("92");
-        listaDDD.add("97");
-        listaDDD.add("91");
-        listaDDD.add("93");
-        listaDDD.add("94");
-        listaDDD.add("69");
-        listaDDD.add("95");
-        listaDDD.add("63");
-        listaDDD.add("27");
-        listaDDD.add("28");
-        listaDDD.add("31");
-        listaDDD.add("32");
-        listaDDD.add("33");
-        listaDDD.add("34");
-        listaDDD.add("35");
-        listaDDD.add("37");
-        listaDDD.add("38");
-        listaDDD.add("21");
-        listaDDD.add("22");
-        listaDDD.add("24");
-        listaDDD.add("11");
-        listaDDD.add("12");
-        listaDDD.add("13");
-        listaDDD.add("14");
-        listaDDD.add("15");
-        listaDDD.add("16");
-        listaDDD.add("17");
-        listaDDD.add("18");
-        listaDDD.add("19");
-        listaDDD.add("41");
-        listaDDD.add("42");
-        listaDDD.add("43");
-        listaDDD.add("44");
-        listaDDD.add("45");
-        listaDDD.add("46");
-        listaDDD.add("51");
-        listaDDD.add("53");
-        listaDDD.add("54");
-        listaDDD.add("55");
-        listaDDD.add("47");
-        listaDDD.add("48");
-        listaDDD.add("49");
-        return listaDDD;
+        if (!existente) {
+            throw new IllegalArgumentException("DDD enviado inexistente");
+        }
+
     }
 
     public String getDdd() {

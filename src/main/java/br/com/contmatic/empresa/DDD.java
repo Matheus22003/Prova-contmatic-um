@@ -6,47 +6,42 @@ package br.com.contmatic.empresa;
  * @author Matheus de Oliveira Simões
  */
 public enum DDD {
-    RO(11, "Rondônia"),
-    AC(12, "Acre"),
-    AM(13, "Amazonas"),
-    RR(14, "Roraima"),
-    PA(15, "Pará"),
-    AP(16, "Amapá"),
-    TO(17, "Tocantins"),
-    MA(21, "Maranhão"),
-    PI(22, "Piauí"),
-    CE(23, "Ceará"),
-    RN(24, "Rio Grande do Norte"),
-    PB(25, "Paraíba"),
-    PE(26, "Pernambuco"),
-    AL(27, "Alagoas"),
-    SE(28, "Sergipe"),
-    BA(29, "Bahia"),
-    MG(31, "Minas Gerais"),
-    ES(32, "Espírito Santo"),
-    RJ(33, "Rio de Janeiro"),
-    SP(35, "São Paulo"),
-    PR(41, "Paraná"),
-    SC(42, "Santa Catarina"),
-    RS(43, "Rio Grande do Sul"),
-    MS(50, "Mato Grosso do Sul"),
-    MT(51, "Mato Grosso"),
-    GO(52, "Goiás"),
-    DF(53, "Distrito Federal");
+    SAO_PAULO(11),
+    SAO_JOSE_DOS_CAMPOS(12),
+    SANTOS(13),
+    RR(14),
+    PA(15),
+    AP(16),
+    TO(17),
+    MA(21),
+    PI(22),
+    CE(23),
+    RN(24),
+    PB(25),
+    PE(26),
+    AL(27),
+    SE(28),
+    BA(29),
+    MG(31),
+    ES(32),
+    RJ(33),
+    SP(35),
+    PR(41),
+    SC(42),
+    RS(43),
+    MS(50),
+    MT(51),
+    GO(52),
+    DF(53);
 
     private final Integer codigoDDD;
-    private final String nome;
 
-    private DDD(int codigoDDD, String nome) {
+    private DDD(int codigoDDD) {
         this.codigoDDD = codigoDDD;
-        this.nome = nome;
     }
 
     public Integer getCodigoDDD() {
         return this.codigoDDD;
     }
 
-    public String getNome() {
-        return nome;
-    }
 }

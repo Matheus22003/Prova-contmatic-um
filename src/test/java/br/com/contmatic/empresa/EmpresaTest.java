@@ -48,15 +48,15 @@ class EmpresaTest {
 
     @Test
     void testeAdicionarEndereco() {
-        rivals.setEndereco(new Endereco("01504001", 819, "apto29"));
+        rivals.setEndereco(new Endereco("01504001", 819));
 
         assertThat("Endereco retornando errado", rivals.getEndereco(),
-                equalTo(new Endereco("01504001", 819, "apto29")));
+                equalTo(new Endereco("01504001", 819)));
     }
 
     @Test
     void testeAdicionarEnderecoComErro() {
-        assertThrows(ExceptionInInitializerError.class, () -> rivals.setEndereco(new Endereco("015040011", 819, "apto29")));
+        assertThrows(ExceptionInInitializerError.class, () -> rivals.setEndereco(new Endereco("015040011", 819)));
     }
 
     @Test
