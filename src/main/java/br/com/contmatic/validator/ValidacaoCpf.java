@@ -12,22 +12,19 @@ public final class ValidacaoCpf {
     public static void validaCpf(String cpf) {
         isStringNull(cpf);
         isNumeric(cpf);
+        basicErrosCpf(cpf);
+        int[] digitos = separetorDigitos(cpf);
+        int digitoUm = getDigitoUm(digitos);
+        int digitoDois = getDigitoDois(digitos, digitoUm);
+        if (!(digitoUm == digitos[9] && digitoDois == digitos[10])) {
+            throw new IllegalArgumentException("O CPF está invalido");
+        }
+    }
+
+    private static void basicErrosCpf(String cpf) {
         if (basicErrorCpfVerifier(cpf)) {
             throw new IllegalArgumentException("O CPF está invalido");
         }
-        int[] digitos = separetorDigitos(cpf);
-
-        int digitoUm = getDigitoUm(digitos);
-
-        int digitoDois = getDigitoDois(digitos, digitoUm);
-
-        if (!(digitoUm == digitos[9] && digitoDois == digitos[10])) {
-
-            throw new IllegalArgumentException("O CPF está invalido");
-
-        }
-
-
     }
 
     private static int[] separetorDigitos(String cpf) {

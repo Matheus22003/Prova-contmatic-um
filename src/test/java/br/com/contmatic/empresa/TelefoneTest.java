@@ -25,7 +25,7 @@ class TelefoneTest {
 
     @Test
     void testeCriacaoComErroTelefone() {
-        assertThrows(LinkageError.class, () -> new Telefone("90", "50806019"));
+        assertThrows(IllegalArgumentException.class, () -> new Telefone("900", "50806019"));
     }
 
 }

@@ -1,8 +1,11 @@
 package br.com.contmatic.empresa;
 
+import br.com.contmatic.validator.ValidacaoTelefone;
+
 import java.util.HashSet;
 import java.util.Set;
 
+import static br.com.contmatic.validator.ValidacaoTelefone.validarDDD;
 import static br.com.contmatic.validator.Validacoes.isNumeric;
 
 public class Telefone {
@@ -27,24 +30,8 @@ public class Telefone {
     }
 
     public void setDDD(String ddd) {
-        varifierDDD(ddd);
+        validarDDD(ddd);
         this.ddd = ddd;
-    }
-
-    private void varifierDDD(String dddEnviado) throws ExceptionInInitializerError {
-        isNumeric(ddd);
-        Boolean existente = false;
-        for (DDD ddd : DDD.values()) {
-            if (ddd.getCodigoDDD() == Integer.parseInt(dddEnviado)) {
-                existente = true;
-                break;
-            }
-        }
-
-        if (!existente) {
-            throw new IllegalArgumentException("DDD enviado inexistente");
-        }
-
     }
 
     public String getDdd() {

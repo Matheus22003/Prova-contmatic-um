@@ -35,6 +35,11 @@ public final class ValidatorEmpresa {
     }
 
     private static int getDigitoDois(int[] digitos, int digitoUm) {
+        int digitoDois = calcularDigitoDois(digitoUm, digitos);
+        return digitoDois;
+    }
+
+    private static int calcularDigitoDois(int digitoUm, int[] digitos) {
         int digitoDois = digitoUm * 2 + digitos[11] * 3 + digitos[10] * 4 + digitos[9] * 5 + digitos[8] * 6
                 + digitos[7] * 7 + digitos[6] * 8 + digitos[5] * 9 + digitos[4] * 2 + digitos[3] * 3 + digitos[2] * 4
                 + digitos[1] * 5 + digitos[0] * 6;
@@ -42,21 +47,31 @@ public final class ValidatorEmpresa {
         return digitoDois;
     }
 
-    private static int getDigitoUm(String eCnpj, int[] digitos) {
+    private static int getDigitoUm(String cnpj, int[] digitos) {
+        separarDigitosDoCnpj(cnpj, digitos);
+        int digitoUm = calclularDigitoUm(digitos);
+        digitoUm = verificarDigitoUmEmDuasOpcoesAposCalculo(digitoUm);
+        return digitoUm;
+    }
 
-        for (int i = 0; i < CARACTERES_CNPJ; i++) {
-            digitos[i] = Integer.parseInt(eCnpj.split("")[i]);
-        }
-
-        int digitoUm = digitos[11] * 2 + digitos[10] * 3 + digitos[9] * 4 + digitos[8] * 5 + digitos[7] * 6
-                + digitos[6] * 7 + digitos[5] * 8 + digitos[4] * 9 + digitos[3] * 2 + digitos[2] * 3 + digitos[1] * 4
-                + digitos[0] * 5;
-
-        digitoUm = 11 - (div(digitoUm, 11));
-
+    private static int verificarDigitoUmEmDuasOpcoesAposCalculo(int digitoUm) {
         if (digitoUm >= 10) {
             digitoUm = 0;
         }
+        return digitoUm;
+    }
+
+    private static void separarDigitosDoCnpj(String cnpj, int[] digitos) {
+        for (int i = 0; i < CARACTERES_CNPJ; i++) {
+            digitos[i] = Integer.parseInt(cnpj.split("")[i]);
+        }
+    }
+
+    private static int calclularDigitoUm(int[] digitos) {
+        int digitoUm = digitos[11] * 2 + digitos[10] * 3 + digitos[9] * 4 + digitos[8] * 5 + digitos[7] * 6
+                + digitos[6] * 7 + digitos[5] * 8 + digitos[4] * 9 + digitos[3] * 2 + digitos[2] * 3 + digitos[1] * 4
+                + digitos[0] * 5;
+        digitoUm = 11 - (div(digitoUm, 11));
         return digitoUm;
     }
 
@@ -64,7 +79,7 @@ public final class ValidatorEmpresa {
         return cnpj.equals("00000000000000") || cnpj.equals("11111111111111") || cnpj.equals("22222222222222")
                 || cnpj.equals("33333333333333") || cnpj.equals("44444444444444") || cnpj.equals("55555555555555")
                 || cnpj.equals("66666666666666") || cnpj.equals("77777777777777") || cnpj.equals("88888888888888")
-                || cnpj.equals("99999999999999") || (cnpj.length() != 14);
+                || cnpj.equals("99999999999999") || (cnpj.length() != CARACTERES_CNPJ);
     }
 
     private static int div(int dividendo, int divisor) {
