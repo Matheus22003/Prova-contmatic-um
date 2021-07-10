@@ -34,11 +34,46 @@ class EmpresaTest {
     }
 
     @Test
+    void testeNomeFantasia() {
+        rivals.setNomeFantasia("Rivals Tournament");
+        assertThat("Erro ao adicionar ou retornar Nome Fantasia", rivals.getNomeFantasia(),
+                equalTo("Rivals Tournament"));
+    }
+
+    @Test
+    void testeNomeFantasiaComErro() {
+        assertThrows(IllegalArgumentException.class, () -> rivals.setNomeFantasia("R"));
+    }
+
+    @Test
+    void testeSetDeCNPJ() {
+        rivals.setCnpj("73487481000185");
+        assertThat("Erro ao adiconar valor em CNPJ", rivals.getCnpj(), equalTo("73487481000185"));
+    }
+
+    @Test
+    void testeSetDeCNPJComErro() {
+        rivals.setCnpj("73487481000185");
+        assertThrows(CnpjInvalidoException.class, () -> rivals.setCnpj("7348748100018500"));
+    }
+
+    @Test
+    void testeRazaoSocial() {
+        rivals.setRazaoSocial("Campeonatos E-Sports");
+        assertThat("Erro ao adicionar ou retornar Razão Social", rivals.getRazaoSocial(),
+                equalTo("Campeonatos E-Sports"));
+    }
+
+    @Test
+    void testeRazaoSocialComErro() {
+        assertThrows(IllegalArgumentException.class, () -> rivals.setRazaoSocial("R"));
+    }
+
+    @Test
     void testeAdicionarAreaDeAtuacao() {
         rivals.setAreaDeAtuacao("Desenvolvimento");
         assertThat("Erro ao adicionar ou retornar area de atuação", rivals.getAreaDeAtuacao(),
                 equalTo("Desenvolvimento"));
-
     }
 
     @Test
@@ -60,11 +95,6 @@ class EmpresaTest {
     }
 
     @Test
-    void testeCriarEmpresaComErro() {
-        assertThrows(RuntimeException.class, () -> new Empresa("1111111100015"));
-    }
-
-    @Test
     void testeAdicionarListaDeFuncionarioNaEmpresa() {
         List<Funcionario> funcionarios = new ArrayList<>();
         funcionarios.add(new Funcionario("42793727806"));
@@ -80,20 +110,9 @@ class EmpresaTest {
     }
 
     @Test
-    void testeSetDeCNPJ() {
-        rivals.setCnpj("73487481000185");
-        assertThat("Erro ao adiconar valor em CNPJ", rivals.getCnpj(), equalTo("73487481000185"));
+    void testeCriarEmpresaComErro() {
+        assertThrows(RuntimeException.class, () -> new Empresa("1111111100015"));
     }
 
-    @Test
-    void testeSetDeCNPJComErro() {
-        rivals.setCnpj("73487481000185");
-        assertThrows(CnpjInvalidoException.class, () -> rivals.setCnpj("7348748100018500"));
-    }
-
-    @Test
-    void teste() {
-
-    }
 
 }

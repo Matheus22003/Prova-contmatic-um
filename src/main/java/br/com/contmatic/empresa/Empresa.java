@@ -2,6 +2,7 @@ package br.com.contmatic.empresa;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import static br.com.contmatic.validator.Validacoes.*;
 import static br.com.contmatic.validator.ValidatorEmpresa.validaCnpj;
@@ -19,12 +20,6 @@ public class Empresa {
 
     public Empresa(String cnpj) {
         this.setCnpj(cnpj);
-    }
-
-    public Empresa(String cnpj, Endereco endereco, String areaDeAtuacao) {
-        this.setCnpj(cnpj);
-        this.setEndereco(endereco);
-        this.setAreaDeAtuacao(areaDeAtuacao);
     }
 
     public String getNome() {
@@ -90,28 +85,16 @@ public class Empresa {
     }
 
     @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((cnpj == null) ? 0 : cnpj.hashCode());
-        return result;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Empresa empresa = (Empresa) o;
+        return Objects.equals(cnpj, empresa.cnpj);
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        Empresa other = (Empresa) obj;
-        if (cnpj == null) {
-            if (other.cnpj != null)
-                return false;
-        } else if (!cnpj.equals(other.cnpj))
-            return false;
-        return true;
+    public int hashCode() {
+        return Objects.hash(cnpj);
     }
 
     @Override
