@@ -16,7 +16,7 @@ public final class ValidatorEmpresa {
         isStringNull(eCnpj);
         isNumeric(eCnpj);
         verificaErrosBasicos(eCnpj);
-        int digitos[] = new int[14];
+        int digitos[] = new int[CARACTERES_CNPJ];
         int digitoUm = getDigitoUm(eCnpj, digitos);
         int digitoDois = getDigitoDois(digitos, digitoUm);
         verificaDigitosCnpj(digitos, digitoUm, digitoDois);
