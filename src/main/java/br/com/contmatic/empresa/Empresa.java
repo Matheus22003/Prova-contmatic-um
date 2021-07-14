@@ -101,10 +101,10 @@ public class Empresa {
     public String toString() {
         if (funcionarios.isEmpty()) {
 
-            return "CNPJ: " + this.cnpj + "\n" + "Endere�o: " + this.endereco + "\n" + "Area de Atua��o: "
-                    + areaDeAtuacao + "\n" + "Ainda n�o possui nenhum funcionario!";
+            return "CNPJ: " + this.cnpj + "\n" + "Endereço: " + this.endereco + "\n" + "Area de Atuação: "
+                    + areaDeAtuacao + "\n" + "Ainda não possui nenhum funcionario!";
         } else {
-            return "CNPJ: " + this.cnpj + "\n" + "Endere�o: " + this.endereco + "\n" + "Quantidade de Funcionarios: "
+            return "CNPJ: " + this.cnpj + "\n" + "Endereço: " + this.endereco + "\n" + "Quantidade de Funcionarios: "
                     + funcionarios.size() + "\n" + "Area de Atuação: " + areaDeAtuacao;
 
         }

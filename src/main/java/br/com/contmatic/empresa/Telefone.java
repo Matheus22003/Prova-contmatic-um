@@ -11,10 +11,10 @@ import static br.com.contmatic.validator.Validacoes.isNumeric;
 public class Telefone {
 
     String digitoPais;
-    String ddd;
+    DDD ddd;
     String numeroTelefone;
 
-    public Telefone(String ddd, String telefone) {
+    public Telefone(DDD ddd, String telefone) {
         this.setDigitoPais("55");
         this.setDDD(ddd);
         this.setTelefone(telefone);
@@ -29,12 +29,12 @@ public class Telefone {
         return this.digitoPais;
     }
 
-    public void setDDD(String ddd) {
-        validarDDD(ddd);
+    public void setDDD(DDD ddd) {
+//        validarDDD(ddd);
         this.ddd = ddd;
     }
 
-    public String getDdd() {
+    public DDD getDdd() {
         return this.ddd;
     }
 

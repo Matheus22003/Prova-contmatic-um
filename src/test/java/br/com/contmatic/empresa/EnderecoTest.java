@@ -17,30 +17,75 @@ class EnderecoTest {
     }
 
     @Test
-    void testeCriacaoEnderecoCompleto() {
-        enderecoRivals.setBairro("Liberdade");
-        enderecoRivals.setCidade("São Paulo");
-        enderecoRivals.setEstado("São Paulo");
+    void testeAdicionarRua() {
         enderecoRivals.setRua("Rua Vergueiro");
-
-        assertThat("Erro ao adicionar Bairro", enderecoRivals.getBairro(), equalTo("Liberdade"));
-        assertThat("Erro ao adicionar Funcionario", enderecoRivals.getCidade(), equalTo("São Paulo"));
-        assertThat("Erro ao adicionar Funcionario", enderecoRivals.getEstado(), equalTo("São Paulo"));
-        assertThat("Erro ao adicionar Funcionario", enderecoRivals.getRua(), equalTo("Rua Vergueiro"));
+        assertThat("falha ao adicionar Rua", enderecoRivals.getRua(), equalTo("Rua Vergueiro"));
     }
 
     @Test
-    void testeCriacaoEnderecoComErro() {
-        assertThrows(ExceptionInInitializerError.class, () -> {
-            new Endereco("0", 819);
-        });
+    void testeAdicionarRuaComErroDeUsoDeNumeral() {
+        assertThrows(IllegalArgumentException.class, () -> enderecoRivals.setRua("0000000"));
     }
 
     @Test
-    void testeCriacaoSemComplemento() {
-        Endereco contmatic = new Endereco("01504001", 819);
-
-        assertThat("Erro a criaçao de Endereco", contmatic.getComplemento(), equalTo(null));
+    void testeAdicionarRuaComErroDeCaracteresAMenos() {
+        assertThrows(IllegalArgumentException.class, () -> enderecoRivals.setRua("a"));
     }
+
+    @Test
+    void testeAdicionarRuaComErroDeCaracteresAMais() {
+        assertThrows(IllegalArgumentException.class, () -> enderecoRivals.setRua("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"));
+    }
+
+    @Test
+    void TesteAdicionarNumero() {
+        enderecoRivals.setNumero(819);
+        assertThat("falha ao adicionar Numero", enderecoRivals.getNumero(), equalTo(819));
+    }
+
+    @Test
+    void testeAdicionarComplemento() {
+        enderecoRivals.setComplemento("apto29");
+        assertThat("falha ao adicionar complemento", enderecoRivals.getComplemento(), equalTo("apto29"));
+    }
+
+    @Test
+    void testeAdicionarComplementoComCaracteresAcimaDoMaximo() {
+        assertThrows(IllegalArgumentException.class, () -> enderecoRivals.setComplemento("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"));
+    }
+
+    @Test
+    void testeAdicionarBairro() {
+        enderecoRivals.setBairro("Liberdade");
+        assertThat("falha ao adicionar bairro", enderecoRivals.getBairro(), equalTo("Liberdade"));
+    }
+
+    @Test
+    void testeAdicionarBairroComErroDeUsarNumeros() {
+        assertThrows(IllegalArgumentException.class, () -> enderecoRivals.setBairro("333333"));
+    }
+
+    @Test
+    void testeAdcionarEstado() {
+        enderecoRivals.setEstado(EstadosBrasil.SAOPAULO);
+        assertThat("falha ao adicionar Estado", enderecoRivals.getEstado(), equalTo(EstadosBrasil.SAOPAULO));
+    }
+
+    @Test
+    void testeAdcionarEstadoComErroDeEstarVazio() {
+        assertThrows(IllegalArgumentException.class, () -> enderecoRivals.setEstado(EstadosBrasil.valueOf("is")));
+    }
+
+    @Test
+    void testeAdicionarCidade() {
+        enderecoRivals.setCidade("São Paulo");
+        assertThat("falha ao adicionar Cidade", enderecoRivals.getCidade(), equalTo("São Paulo"));
+    }
+
+    @Test
+    void testeAdicionarCidadeComErroDeNumero() {
+        assertThrows(IllegalArgumentException.class, () -> enderecoRivals.setCidade("00000"));
+    }
+
 
 }

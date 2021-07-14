@@ -13,7 +13,7 @@ class TelefoneTest {
 
     @BeforeEach
     void setup() {
-        telefone = new Telefone("11", "987704670");
+        telefone = new Telefone(DDD.SAO_PAULO, "987704670");
 
     }
 
@@ -25,7 +25,7 @@ class TelefoneTest {
 
     @Test
     void testeCriacaoComErroTelefone() {
-        assertThrows(IllegalArgumentException.class, () -> new Telefone("900", "50806019"));
+        assertThrows(IllegalArgumentException.class, () -> new Telefone(DDD.valueOf("hsdjfhsd"), "50806019"));
     }
 
 }

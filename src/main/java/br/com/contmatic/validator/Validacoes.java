@@ -1,5 +1,7 @@
 package br.com.contmatic.validator;
 
+import org.apache.commons.lang3.StringUtils;
+
 public final class Validacoes {
 
     private Validacoes() {
@@ -20,8 +22,8 @@ public final class Validacoes {
     }
 
     public static void isStringNull(String srt) {
-        if (srt == null || srt.isEmpty())
-            throw new IllegalArgumentException("Valor fornecido nulo");
+        if (StringUtils.isEmpty(srt) || StringUtils.isAllBlank(srt))
+            throw new IllegalArgumentException("Valor fornecido nulo: " + srt);
     }
 
     public static void validarStringTamanhoMinimoEMaximo(String str, Integer minimo, Integer maximo) {

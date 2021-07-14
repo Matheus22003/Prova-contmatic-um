@@ -114,5 +114,36 @@ class EmpresaTest {
         assertThrows(RuntimeException.class, () -> new Empresa("1111111100015"));
     }
 
+    @Test
+    void testeEqualsEntreDuasEmpresasIguais() {
+        Empresa empresaCloneRivals = new Empresa("11319526000155");
+        assertThat("Equals comparando valores errados", rivals.equals(empresaCloneRivals), equalTo(true));
+    }
+
+    @Test
+    void testeHashCode() {
+        assertThat("Erro ao calcular HashCode", rivals.hashCode(), equalTo(-932838434));
+    }
+
+    @Test
+    void testeToStringSemFuncionario() {
+        assertThat("Erro ao fazer ToString Sem funcionario", rivals.toString(), equalTo("CNPJ: 11319526000155\n" +
+                "Endereço: null\n" +
+                "Area de Atuação: null\n" +
+                "Ainda não possui nenhum funcionario!"));
+
+    }
+
+    @Test
+    void testeToStringComFuncionario() {
+        List<Funcionario> funcionarios = new ArrayList<Funcionario>();
+        funcionarios.add(new Funcionario("42793727806"));
+        rivals.setFuncionarios(funcionarios);
+
+        assertThat("Erro ao fazer ToString com funcionario", rivals.toString(), equalTo("CNPJ: 11319526000155\n" +
+                "Endereço: null\n" +
+                "Quantidade de Funcionarios: 1\n" +
+                "Area de Atuação: null"));
+    }
 
 }

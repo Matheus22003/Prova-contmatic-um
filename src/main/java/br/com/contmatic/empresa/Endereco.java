@@ -1,11 +1,8 @@
 package br.com.contmatic.empresa;
 
-import br.com.contmatic.validator.Validacoes;
-
 import java.util.Objects;
 
-import static br.com.contmatic.validator.Validacoes.isNonNumeric;
-import static br.com.contmatic.validator.Validacoes.isNumeric;
+import static br.com.contmatic.validator.Validacoes.*;
 
 public class Endereco {
 
@@ -13,29 +10,29 @@ public class Endereco {
     private Integer numero;
     private String complemento;
     private String bairro;
-    private String estado;
+    private EstadosBrasil estado;
     private String cidade;
     private String cep;
 
     public Endereco(String cep, int numero) {
         this.setCep(cep);
         this.setNumero(numero);
-        this.setComplemento(complemento);
     }
 
-    public Endereco(String rua, int numero, String complemento, String bairro, String municipio, String cidade,
+    public Endereco(String rua, int numero, String complemento, String bairro, EstadosBrasil estado, String cidade,
                     String cep) {
         this.setRua(rua);
         this.setNumero(numero);
         this.setComplemento(complemento);
         this.setBairro(bairro);
-        this.setEstado(municipio);
+        this.setEstado(estado);
         this.setCidade(cidade);
         this.setCep(cep);
     }
 
     public void setRua(String rua) {
         isNonNumeric(rua);
+        validarStringTamanhoMinimoEMaximo(rua, 5, 90);
         this.rua = rua;
     }
 
@@ -52,6 +49,7 @@ public class Endereco {
     }
 
     public void setComplemento(String complemento) {
+        validarStringTamanhoMaximo(complemento, 50);
         this.complemento = complemento;
     }
 
@@ -61,6 +59,7 @@ public class Endereco {
 
     public void setBairro(String bairro) {
         isNonNumeric(bairro);
+        validarStringTamanhoMaximo(bairro, 50);
         this.bairro = bairro;
     }
 
@@ -68,13 +67,19 @@ public class Endereco {
         return this.bairro;
     }
 
-    public void setEstado(String estado) {
-        isNonNumeric(estado);
+    public void setEstado(EstadosBrasil estado) {
+        estadoIsEmpty(estado);
         this.estado = estado;
     }
 
-    public String getEstado() {
+    public EstadosBrasil getEstado() {
         return this.estado;
+    }
+
+    private void estadoIsEmpty(EstadosBrasil estado) {
+        if (estado == null) {
+            throw new NullPointerException("O estado esta vazio");
+        }
     }
 
     public void setCidade(String cidade) {
