@@ -73,7 +73,7 @@ class EnderecoTest {
 
     @Test
     void testeAdcionarEstadoComErroDeEstarVazio() {
-        assertThrows(IllegalArgumentException.class, () -> enderecoRivals.setEstado(EstadosBrasil.valueOf("is")));
+        assertThrows(NullPointerException.class, () -> enderecoRivals.setEstado(null));
     }
 
     @Test
@@ -87,5 +87,52 @@ class EnderecoTest {
         assertThrows(IllegalArgumentException.class, () -> enderecoRivals.setCidade("00000"));
     }
 
+    @Test
+    void testeAdicionarCidadeComErroDeQuantidadeMaximaDeCaracteres() {
+        assertThrows(IllegalArgumentException.class, () -> enderecoRivals.setCidade("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"));
+    }
+
+    @Test
+    void testeAdicionarCep() {
+        enderecoRivals.setCep("01504001");
+        assertThat("falha ao adicionar CEP", enderecoRivals.getCep(), equalTo("01504001"));
+    }
+
+    @Test
+    void testeAdicionarCepComErroDeQuantidadeCaracteresMais() {
+        assertThrows(IllegalArgumentException.class, () -> enderecoRivals.setCep("015040010"));
+    }
+
+    @Test
+    void testeAdicionarCepComErroDeQuantidadeCaracteresMenos() {
+        assertThrows(IllegalArgumentException.class, () -> enderecoRivals.setCep("01504"));
+    }
+
+    @Test
+    void testeAdicionarCepComErroDeUtilizacaoDeLetras() {
+        assertThrows(IllegalArgumentException.class, () -> enderecoRivals.setCep("aaaa00"));
+    }
+
+    @Test
+    void testeEqualsComDoisEndercosIguais() {
+        Endereco endereco = new Endereco("01504001", 819);
+        assertThat("falha ao calcular Equals", enderecoRivals.equals(endereco), equalTo(true));
+    }
+
+    @Test
+    void testeEqualsComDoisEndercosDiferentes() {
+        Endereco endereco = new Endereco("01504000", 819);
+        assertThat("falha ao calcular Equals", enderecoRivals.equals(endereco), equalTo(false));
+    }
+
+    @Test
+    void testeHashCode() {
+        assertThat("falha ao calcular HashCode", enderecoRivals.hashCode(), equalTo(-143145273));
+    }
+
+    @Test
+    void testeToString() {
+        assertThat("falha ao pegat toString", enderecoRivals.toString(), equalTo("Endereco{rua='null', numero=819, complemento='null', bairro='null', estado=null, cidade='null', cep='01504001'}"));
+    }
 
 }

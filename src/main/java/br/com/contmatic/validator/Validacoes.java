@@ -32,6 +32,12 @@ public final class Validacoes {
         validarStringTamanhoMinimo(str, minimo);
     }
 
+    public static void validarStringTamanhoExatoCaracteres(String str, Integer tamaho) {
+        if (str.length() != tamaho) {
+            throw new IllegalArgumentException("A string: " + str + ", não contem: " + tamaho + "caracteres.");
+        }
+    }
+
     public static void verifierObjectIsNull(Object obj) {
         if (obj == null) {
             throw new IllegalArgumentException("O Objeto está nulo");

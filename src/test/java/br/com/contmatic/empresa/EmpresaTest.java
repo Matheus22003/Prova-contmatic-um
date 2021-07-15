@@ -91,7 +91,7 @@ class EmpresaTest {
 
     @Test
     void testeAdicionarEnderecoComErro() {
-        assertThrows(ExceptionInInitializerError.class, () -> rivals.setEndereco(new Endereco("015040011", 819)));
+        assertThrows(IllegalArgumentException.class, () -> rivals.setEndereco(new Endereco("015040011", 819)));
     }
 
     @Test
@@ -118,6 +118,12 @@ class EmpresaTest {
     void testeEqualsEntreDuasEmpresasIguais() {
         Empresa empresaCloneRivals = new Empresa("11319526000155");
         assertThat("Equals comparando valores errados", rivals.equals(empresaCloneRivals), equalTo(true));
+    }
+
+    @Test
+    void testeEqualsEntreDuasEmpresasDiferentes() {
+        Empresa empresaCloneRivals = new Empresa("25905179000157");
+        assertThat("Equals comparando valores errados", rivals.equals(empresaCloneRivals), equalTo(false));
     }
 
     @Test

@@ -1,5 +1,8 @@
 package br.com.contmatic.empresa;
 
+import br.com.contmatic.validator.Validacoes;
+
+import javax.xml.validation.Validator;
 import java.util.Objects;
 
 import static br.com.contmatic.validator.Validacoes.*;
@@ -17,17 +20,6 @@ public class Endereco {
     public Endereco(String cep, int numero) {
         this.setCep(cep);
         this.setNumero(numero);
-    }
-
-    public Endereco(String rua, int numero, String complemento, String bairro, EstadosBrasil estado, String cidade,
-                    String cep) {
-        this.setRua(rua);
-        this.setNumero(numero);
-        this.setComplemento(complemento);
-        this.setBairro(bairro);
-        this.setEstado(estado);
-        this.setCidade(cidade);
-        this.setCep(cep);
     }
 
     public void setRua(String rua) {
@@ -84,6 +76,7 @@ public class Endereco {
 
     public void setCidade(String cidade) {
         isNonNumeric(cidade);
+        Validacoes.validarStringTamanhoMaximo(cidade, 50);
         this.cidade = cidade;
     }
 
@@ -93,9 +86,7 @@ public class Endereco {
 
     public void setCep(String cep) {
         isNumeric(cep);
-        if (cep.length() != 8) {
-            throw new ExceptionInInitializerError("Numero de caracteres invalido");
-        }
+        validarStringTamanhoExatoCaracteres(cep, 8);
         this.cep = cep;
     }
 
@@ -118,7 +109,14 @@ public class Endereco {
 
     @Override
     public String toString() {
-        return "Endereco [rua=" + rua + ", numero=" + numero + ", complemento=" + complemento + "]";
+        return "Endereco{" +
+                "rua='" + rua + '\'' +
+                ", numero=" + numero +
+                ", complemento='" + complemento + '\'' +
+                ", bairro='" + bairro + '\'' +
+                ", estado=" + estado +
+                ", cidade='" + cidade + '\'' +
+                ", cep='" + cep + '\'' +
+                '}';
     }
-
 }
