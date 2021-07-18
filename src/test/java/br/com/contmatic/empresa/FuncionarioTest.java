@@ -8,33 +8,33 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class FuncionarioTest {
-	Funcionario funcionario;
+    Funcionario funcionario;
 
-	@BeforeEach
-	void setup() {
-		funcionario = new Funcionario("42793727806");
-	}
+    @BeforeEach
+    void setup() {
+        funcionario = new Funcionario("42793727806");
+    }
 
-	@Test
-	void testeCriacaoCompletaFuncionario() {
-		funcionario.setCargo("Estagiario");
-		funcionario.setDataNascimento("22/03/2003");
-		funcionario.setNome("Matheus");
-		funcionario.setSalario(2000);
+    @Test
+    void testeAdicionarNome() {
+        funcionario.setNome("Matheus");
+        assertThat("Erro ao adicionar nome", funcionario.getNome(), equalTo("Matheus"));
+    }
 
-		assertThat("CPF inserido incorretamente", funcionario.getCpf().toString(), equalTo("42793727806"));
-		assertThat("Cargo inserido incorretamente", funcionario.getCargo(),equalTo("Estagiario"));
-		assertThat("DataNascimento inserido de maneira incorreta", funcionario.getDataNascimento(),equalTo("22/03/2003"));
-		assertThat("Nome inserido incorretamente",funcionario.getNome(),equalTo("Matheus"));
-		assertThat("Salario inserido incorretamente", funcionario.getSalario(),equalTo(2000.0));
-	}
-	
-	@Test
-	void testeCriacaoComErroFuncionario() {
-		assertThrows(Exception.class, () -> {
-			new Funcionario("427.937.278-06");
-		});
-	}
-	
+    @Test
+    void testeAdicionarNomeComErroDeUtilizacaoDeNumeros() {
+        assertThrows(IllegalArgumentException.class, () -> funcionario.setNome("123"));
+    }
+
+    @Test
+    void testeAdicionarNomeComErroDeQuantidadeMaximaCaracteres() {
+        assertThrows(IllegalArgumentException.class, () -> funcionario.setNome("asdasdgsghasjasdjhasjhasdjhasjhasdgjahdgjhasdgajhsdgjasdghjasdghasjdgajjsjssjsjs"));
+    }
+
+    @Test
+    void testeAdicionarDataDeNascimento() {
+        funcionario.setDataNascimento();
+        assertThat("Erro ao adicionar nome", funcionario.getNome(), equalTo("Matheus"));
+    }
 
 }

@@ -1,11 +1,14 @@
 package br.com.contmatic.empresa;
 
+import br.com.contmatic.validator.Validacoes;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import static br.com.contmatic.validator.Validacoes.isNonNumeric;
 import static br.com.contmatic.validator.ValidacaoCpf.validaCpf;
+import static br.com.contmatic.validator.Validacoes.validarStringTamanhoMaximo;
 
 public class Funcionario {
 
@@ -19,16 +22,9 @@ public class Funcionario {
         this.setCpf(cpf);
     }
 
-    public Funcionario(String nome, String dataNascimento, String cpf, String cargo, double salario) {
-        this.setNome(nome);
-        this.setDataNascimento(dataNascimento);
-        this.setCpf(cpf);
-        this.setCargo(cargo);
-        this.setSalario(salario);
-    }
-
     public void setNome(String nome) {
         isNonNumeric(nome);
+        validarStringTamanhoMaximo(nome, 80);
         this.nome = nome;
     }
 
@@ -36,12 +32,8 @@ public class Funcionario {
         return this.nome;
     }
 
-    public void setDataNascimento(String dataNascimento) {
-        try {
-            this.dataNascimento = new SimpleDateFormat("dd/mm/yyyy").parse(dataNascimento);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+    public void setDataNascimento(Date dataNascimento) {
+        this.dataNascimento = dataNascimento;
     }
 
     public Date getDataNascimento() {
