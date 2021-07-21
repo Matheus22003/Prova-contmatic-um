@@ -30,7 +30,6 @@ public class Telefone {
     }
 
     public void setDDD(DDD ddd) {
-//        validarDDD(ddd);
         this.ddd = ddd;
     }
 
@@ -46,7 +45,7 @@ public class Telefone {
     private void validacoesTelefone(String telefone) {
         isNumeric(telefone);
         if (telefone.length() != 9 && telefone.length() != 8) {
-            throw new ExceptionInInitializerError("Quatidade de caracteres inseridas de maneira incorreta");
+            throw new IllegalArgumentException("Quatidade de caracteres inseridas de maneira incorreta");
         }
     }
 

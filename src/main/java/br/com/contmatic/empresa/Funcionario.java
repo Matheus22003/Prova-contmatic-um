@@ -51,6 +51,7 @@ public class Funcionario {
 
     public void setCargo(String cargo) {
         isNonNumeric(cargo);
+        validarStringTamanhoMaximo(cargo,90);
         this.cargo = cargo;
     }
 
@@ -66,7 +67,7 @@ public class Funcionario {
         if (eSalario >= 1100.00) {
             this.salario = eSalario;
         } else
-            throw new ExceptionInInitializerError("Salário abaixo do mínimo");
+            throw new IllegalArgumentException("Salário abaixo do mínimo");
     }
 
     public double getSalario() {
@@ -83,20 +84,11 @@ public class Funcionario {
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        Funcionario other = (Funcionario) obj;
-        if (cpf == null) {
-            if (other.cpf != null)
-                return false;
-        } else if (!cpf.equals(other.cpf))
-            return false;
-        return true;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Funcionario that = (Funcionario) o;
+        return cpf.equals(that.cpf);
     }
 
     @Override
