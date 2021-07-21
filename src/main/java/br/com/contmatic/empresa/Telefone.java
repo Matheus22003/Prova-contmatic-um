@@ -3,6 +3,7 @@ package br.com.contmatic.empresa;
 import br.com.contmatic.validator.ValidacaoTelefone;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 import static br.com.contmatic.validator.ValidacaoTelefone.validarDDD;
@@ -64,30 +65,11 @@ public class Telefone {
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        Telefone other = (Telefone) obj;
-        if (ddd == null) {
-            if (other.ddd != null)
-                return false;
-        } else if (!ddd.equals(other.ddd))
-            return false;
-        if (digitoPais == null) {
-            if (other.digitoPais != null)
-                return false;
-        } else if (!digitoPais.equals(other.digitoPais))
-            return false;
-        if (numeroTelefone == null) {
-            if (other.numeroTelefone != null)
-                return false;
-        } else if (!numeroTelefone.equals(other.numeroTelefone))
-            return false;
-        return true;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Telefone telefone = (Telefone) o;
+        return Objects.equals(digitoPais, telefone.digitoPais) && ddd == telefone.ddd && Objects.equals(numeroTelefone, telefone.numeroTelefone);
     }
 
     @Override

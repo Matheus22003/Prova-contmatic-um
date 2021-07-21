@@ -6,6 +6,16 @@ import static java.lang.Integer.parseInt;
 
 public final class ValidacaoCpf {
     private static final int CARACTERES_CPF = 11;
+    private static final int NUM_CALCULAR_DIGITO_CPF_PRIMEIRO = 2;
+    private static final int NUM_CALCULAR_DIGITO_CPF_SEGUNDO = 3;
+    private static final int NUM_CALCULAR_DIGITO_CPF_TERCEIRO = 4;
+    private static final int NUM_CALCULAR_DIGITO_CPF_QUARTO = 5;
+    private static final int NUM_CALCULAR_DIGITO_CPF_QUINTO = 6;
+    private static final int NUM_CALCULAR_DIGITO_CPF_SEXTO = 7;
+    private static final int NUM_CALCULAR_DIGITO_CPF_SETIMO = 8;
+    private static final int NUM_CALCULAR_DIGITO_CPF_OITAVO = 9;
+    private static final int NUM_CALCULAR_DIGITO_CPF_NONO = 10;
+    private static final int NUM_CALCULAR_DIGITO_CPF_DECIMO = 11;
 
 
     private ValidacaoCpf() {
@@ -43,8 +53,8 @@ public final class ValidacaoCpf {
     }
 
     private static int calculosParaDigitoDois(int[] digitos, int digitoUm) {
-        int digitoDois = (digitos[0] * 11) + (digitos[1] * 10) + (digitos[2] * 9) + (digitos[3] * 8) + (digitos[4] * 7)
-                + (digitos[5] * 6) + (digitos[6] * 5) + (digitos[7] * 4) + (digitos[8] * 3) + (digitoUm * 2);
+        int digitoDois = (digitos[0] * NUM_CALCULAR_DIGITO_CPF_DECIMO) + (digitos[1] * NUM_CALCULAR_DIGITO_CPF_NONO) + (digitos[2] * NUM_CALCULAR_DIGITO_CPF_OITAVO) + (digitos[3] * NUM_CALCULAR_DIGITO_CPF_SETIMO) + (digitos[4] * NUM_CALCULAR_DIGITO_CPF_SEXTO)
+                + (digitos[5] * NUM_CALCULAR_DIGITO_CPF_QUINTO) + (digitos[6] * NUM_CALCULAR_DIGITO_CPF_QUARTO) + (digitos[7] * NUM_CALCULAR_DIGITO_CPF_TERCEIRO) + (digitos[8] * NUM_CALCULAR_DIGITO_CPF_SEGUNDO) + (digitoUm * NUM_CALCULAR_DIGITO_CPF_PRIMEIRO);
         if (digitoDois % CARACTERES_CPF < 2) {
             digitoDois = 0;
         } else {
@@ -59,8 +69,8 @@ public final class ValidacaoCpf {
     }
 
     private static int calculoParaDigitoUm(int[] digitos) {
-        int digitoUm = (digitos[0] * 10) + (digitos[1] * 9) + (digitos[2] * 8) + (digitos[3] * 7) + (digitos[4] * 6)
-                + (digitos[5] * 5) + (digitos[6] * 4) + (digitos[7] * 3) + (digitos[8] * 2);
+        int digitoUm = (digitos[0] * NUM_CALCULAR_DIGITO_CPF_NONO) + (digitos[1] * NUM_CALCULAR_DIGITO_CPF_OITAVO) + (digitos[2] * NUM_CALCULAR_DIGITO_CPF_SETIMO) + (digitos[3] * NUM_CALCULAR_DIGITO_CPF_SEXTO) + (digitos[4] * NUM_CALCULAR_DIGITO_CPF_QUINTO)
+                + (digitos[5] * NUM_CALCULAR_DIGITO_CPF_QUARTO) + (digitos[6] * NUM_CALCULAR_DIGITO_CPF_TERCEIRO) + (digitos[7] * NUM_CALCULAR_DIGITO_CPF_SEGUNDO) + (digitos[8] * NUM_CALCULAR_DIGITO_CPF_PRIMEIRO);
         if (digitoUm % 11 < 2) {
             digitoUm = 0;
         } else {

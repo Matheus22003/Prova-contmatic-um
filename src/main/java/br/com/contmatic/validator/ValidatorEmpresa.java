@@ -8,6 +8,15 @@ import br.com.contmatic.exception.CnpjInvalidoException;
 public final class ValidatorEmpresa {
 
     private static final int CARACTERES_CNPJ = 14;
+    private static final int NUM_CALCULAR_DIGITO_CNPJ_PRIMEIRO = 2;
+    private static final int NUM_CALCULAR_DIGITO_CNPJ_SEGUNDO = 3;
+    private static final int NUM_CALCULAR_DIGITO_CNPJ_TERCEIRO = 4;
+    private static final int NUM_CALCULAR_DIGITO_CNPJ_QUARTO = 5;
+    private static final int NUM_CALCULAR_DIGITO_CNPJ_QUINTO = 6;
+    private static final int NUM_CALCULAR_DIGITO_CNPJ_SEXTO = 7;
+    private static final int NUM_CALCULAR_DIGITO_CNPJ_SETIMO = 8;
+    private static final int NUM_CALCULAR_DIGITO_CNPJ_OITAVO = 9;
+
 
     private ValidatorEmpresa() {
     }
@@ -40,9 +49,9 @@ public final class ValidatorEmpresa {
     }
 
     private static int calcularDigitoDois(int digitoUm, int[] digitos) {
-        int digitoDois = digitoUm * 2 + digitos[11] * 3 + digitos[10] * 4 + digitos[9] * 5 + digitos[8] * 6
-                + digitos[7] * 7 + digitos[6] * 8 + digitos[5] * 9 + digitos[4] * 2 + digitos[3] * 3 + digitos[2] * 4
-                + digitos[1] * 5 + digitos[0] * 6;
+        int digitoDois = digitoUm * NUM_CALCULAR_DIGITO_CNPJ_PRIMEIRO + digitos[11] * NUM_CALCULAR_DIGITO_CNPJ_SEGUNDO + digitos[10] * NUM_CALCULAR_DIGITO_CNPJ_TERCEIRO + digitos[9] * NUM_CALCULAR_DIGITO_CNPJ_QUARTO + digitos[8] * NUM_CALCULAR_DIGITO_CNPJ_QUINTO
+                + digitos[7] * NUM_CALCULAR_DIGITO_CNPJ_SEXTO + digitos[6] * NUM_CALCULAR_DIGITO_CNPJ_SETIMO + digitos[5] * NUM_CALCULAR_DIGITO_CNPJ_OITAVO + digitos[4] * NUM_CALCULAR_DIGITO_CNPJ_PRIMEIRO + digitos[3] * NUM_CALCULAR_DIGITO_CNPJ_SEGUNDO + digitos[2] * NUM_CALCULAR_DIGITO_CNPJ_TERCEIRO
+                + digitos[1] * NUM_CALCULAR_DIGITO_CNPJ_QUARTO + digitos[0] * NUM_CALCULAR_DIGITO_CNPJ_QUINTO;
         digitoDois = 11 - (div(digitoDois, 11));
         return digitoDois;
     }

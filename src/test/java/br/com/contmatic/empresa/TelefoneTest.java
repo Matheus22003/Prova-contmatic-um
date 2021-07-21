@@ -51,12 +51,28 @@ class TelefoneTest {
 
     @Test
     void testeHashCode() {
-        assertThat("Erro ao adcionar Telefone", telefone.hashCode(), equalTo(-75461354));
+        telefone = new Telefone(DDD.SAO_PAULO, "987704670");
+        assertThat("Erro ao adcionar Telefone", telefone.hashCode(), equalTo(-1867161073));
     }
 
     @Test
     void testeEquals() {
-        assertThat("Erro ao adcionar Telefone", telefone.hashCode(), equalTo(-75461354));
+        Telefone telefoneDois = new Telefone(DDD.SAO_PAULO, "987704670");
+        telefone = new Telefone(DDD.SAO_PAULO, "987704670");
+        assertThat("Erro ao adcionar Telefone", telefone.equals(telefoneDois), equalTo(true));
+    }
+
+    @Test
+    void testeEqualsEntreTelefonesDiferentes() {
+        Telefone telefoneDois = new Telefone(DDD.RIO_DE_JANEIRO, "987704670");
+        telefone = new Telefone(DDD.SAO_PAULO, "987704670");
+        assertThat("Erro ao adcionar Telefone", telefone.equals(telefoneDois), equalTo(false));
+    }
+
+    @Test
+    void testeToString() {
+        assertThat("Erro ao adcionar Telefone", telefone.toString(), equalTo("Telefone [digitoPais=55, ddd=SAO_PAULO, numeroTelefone=987704670]"));
+
     }
 
 }
