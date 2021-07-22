@@ -97,4 +97,17 @@ public class Empresa {
         return Objects.hash(cnpj);
     }
 
+    @Override
+    public String toString() {
+        if (funcionarios.isEmpty()) {
+
+            return "CNPJ: " + this.cnpj + "\n" + "Endereço: " + this.endereco + "\n" + "Area de Atuação: "
+                    + areaDeAtuacao + "\n" + "Ainda não possui nenhum funcionario!";
+        } else {
+            return "CNPJ: " + this.cnpj + "\n" + "Endereço: " + this.endereco + "\n" + "Quantidade de Funcionarios: "
+                    + funcionarios.size() + "\n" + "Area de Atuação: " + areaDeAtuacao;
+
+        }
+    }
+
 }
