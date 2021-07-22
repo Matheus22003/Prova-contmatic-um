@@ -102,7 +102,7 @@ public class Empresa {
         if (funcionarios.isEmpty()) {
 
             return "CNPJ: " + this.cnpj + "\n" + "Endereço: " + this.endereco + "\n" + "Area de Atuação: "
-                    + areaDeAtuacao + "\n" + "Ainda não possui nenhum funcionario!";
+                    + areaDeAtuacao + "\n" + "Ainda não possui nenhumm funcionario!";
         } else {
             return "CNPJ: " + this.cnpj + "\n" + "Endereço: " + this.endereco + "\n" + "Quantidade de Funcionarios: "
                     + funcionarios.size() + "\n" + "Area de Atuação: " + areaDeAtuacao;
