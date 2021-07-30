@@ -1,7 +1,10 @@
 package br.com.contmatic.validator;
 
 import static br.com.contmatic.validator.Validacoes.isNumeric;
-import static br.com.contmatic.validator.Validacoes.isStringNull;
+import static br.com.contmatic.validator.Validacoes.isStringEmpty;
+import static java.lang.Integer.parseInt;
+import static java.lang.Math.floor;
+import static java.lang.Math.round;
 
 import br.com.contmatic.exception.CnpjInvalidoException;
 
@@ -16,13 +19,18 @@ public final class ValidatorEmpresa {
     private static final int NUM_CALCULAR_DIGITO_CNPJ_SEXTO = 7;
     private static final int NUM_CALCULAR_DIGITO_CNPJ_SETIMO = 8;
     private static final int NUM_CALCULAR_DIGITO_CNPJ_OITAVO = 9;
-
+    private static final int NUM_CALCULAR_DIGITO_CNPJ_NONO = 2;
+    private static final int NUM_CALCULAR_DIGITO_CNPJ_DECIMO = 3;
+    private static final int NUM_CALCULAR_DIGITO_CNPJ_DECIMO_PRIMEIRO = 4;
+    private static final int NUM_CALCULAR_DIGITO_CNPJ_DECIMO_SEGUNDO = 5;
+    private static final int VERIFICADOR_PARA_DIGITO_UM_APOS_CALCULO = 10;
+    private static final int VALOR_ABAIXO_DOS_PRIMEIROS_CARACTERES_SEM_DIGITOS = 11;
 
     private ValidatorEmpresa() {
     }
 
     public static void validaCnpj(String eCnpj) {
-        isStringNull(eCnpj);
+        isStringEmpty(eCnpj);
         isNumeric(eCnpj);
         verificaErrosBasicos(eCnpj);
         int digitos[] = new int[CARACTERES_CNPJ];
@@ -52,7 +60,7 @@ public final class ValidatorEmpresa {
         int digitoDois = digitoUm * NUM_CALCULAR_DIGITO_CNPJ_PRIMEIRO + digitos[11] * NUM_CALCULAR_DIGITO_CNPJ_SEGUNDO + digitos[10] * NUM_CALCULAR_DIGITO_CNPJ_TERCEIRO + digitos[9] * NUM_CALCULAR_DIGITO_CNPJ_QUARTO + digitos[8] * NUM_CALCULAR_DIGITO_CNPJ_QUINTO
                 + digitos[7] * NUM_CALCULAR_DIGITO_CNPJ_SEXTO + digitos[6] * NUM_CALCULAR_DIGITO_CNPJ_SETIMO + digitos[5] * NUM_CALCULAR_DIGITO_CNPJ_OITAVO + digitos[4] * NUM_CALCULAR_DIGITO_CNPJ_PRIMEIRO + digitos[3] * NUM_CALCULAR_DIGITO_CNPJ_SEGUNDO + digitos[2] * NUM_CALCULAR_DIGITO_CNPJ_TERCEIRO
                 + digitos[1] * NUM_CALCULAR_DIGITO_CNPJ_QUARTO + digitos[0] * NUM_CALCULAR_DIGITO_CNPJ_QUINTO;
-        digitoDois = 11 - (div(digitoDois, 11));
+        digitoDois = VALOR_ABAIXO_DOS_PRIMEIROS_CARACTERES_SEM_DIGITOS - (div(digitoDois, VALOR_ABAIXO_DOS_PRIMEIROS_CARACTERES_SEM_DIGITOS));
         return digitoDois;
     }
 
@@ -64,7 +72,7 @@ public final class ValidatorEmpresa {
     }
 
     private static int verificarDigitoUmEmDuasOpcoesAposCalculo(int digitoUm) {
-        if (digitoUm >= 10) {
+        if (digitoUm >= VERIFICADOR_PARA_DIGITO_UM_APOS_CALCULO) {
             digitoUm = 0;
         }
         return digitoUm;
@@ -72,15 +80,15 @@ public final class ValidatorEmpresa {
 
     private static void separarDigitosDoCnpj(String cnpj, int[] digitos) {
         for (int i = 0; i < CARACTERES_CNPJ; i++) {
-            digitos[i] = Integer.parseInt(cnpj.split("")[i]);
+            digitos[i] = parseInt(cnpj.split("")[i]);
         }
     }
 
     private static int calclularDigitoUm(int[] digitos) {
-        int digitoUm = digitos[11] * 2 + digitos[10] * 3 + digitos[9] * 4 + digitos[8] * 5 + digitos[7] * 6
-                + digitos[6] * 7 + digitos[5] * 8 + digitos[4] * 9 + digitos[3] * 2 + digitos[2] * 3 + digitos[1] * 4
-                + digitos[0] * 5;
-        digitoUm = 11 - (div(digitoUm, 11));
+        int digitoUm = digitos[11] * NUM_CALCULAR_DIGITO_CNPJ_PRIMEIRO + digitos[10] * NUM_CALCULAR_DIGITO_CNPJ_SEGUNDO + digitos[9] * NUM_CALCULAR_DIGITO_CNPJ_TERCEIRO + digitos[8] * NUM_CALCULAR_DIGITO_CNPJ_QUARTO + digitos[7] * NUM_CALCULAR_DIGITO_CNPJ_QUINTO
+                + digitos[6] * NUM_CALCULAR_DIGITO_CNPJ_SEXTO + digitos[5] * NUM_CALCULAR_DIGITO_CNPJ_SETIMO + digitos[4] * NUM_CALCULAR_DIGITO_CNPJ_OITAVO + digitos[3] * NUM_CALCULAR_DIGITO_CNPJ_NONO + digitos[2] * NUM_CALCULAR_DIGITO_CNPJ_DECIMO + digitos[1] * NUM_CALCULAR_DIGITO_CNPJ_DECIMO_PRIMEIRO
+                + digitos[0] * NUM_CALCULAR_DIGITO_CNPJ_DECIMO_SEGUNDO;
+        digitoUm = VALOR_ABAIXO_DOS_PRIMEIROS_CARACTERES_SEM_DIGITOS - (div(digitoUm, VALOR_ABAIXO_DOS_PRIMEIROS_CARACTERES_SEM_DIGITOS));
         return digitoUm;
     }
 
@@ -92,6 +100,6 @@ public final class ValidatorEmpresa {
     }
 
     private static int div(int dividendo, int divisor) {
-        return (int) Math.round(dividendo - (Math.floor(dividendo / divisor) * divisor));
+        return (int) round(dividendo - (floor(dividendo / divisor) * divisor));
     }
 }
