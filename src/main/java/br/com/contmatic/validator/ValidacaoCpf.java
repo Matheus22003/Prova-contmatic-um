@@ -1,7 +1,7 @@
 package br.com.contmatic.validator;
 
 import static br.com.contmatic.validator.Validacoes.isNumeric;
-import static br.com.contmatic.validator.Validacoes.isStringNull;
+import static br.com.contmatic.validator.Validacoes.isStringEmpty;
 import static java.lang.Integer.parseInt;
 
 public final class ValidacaoCpf {
@@ -22,7 +22,7 @@ public final class ValidacaoCpf {
     }
 
     public static void validaCpf(String cpf) {
-        isStringNull(cpf);
+        isStringEmpty(cpf);
         isNumeric(cpf);
         basicErrosCpf(cpf);
         int[] digitos = separetorDigitos(cpf);
@@ -71,10 +71,10 @@ public final class ValidacaoCpf {
     private static int calculoParaDigitoUm(int[] digitos) {
         int digitoUm = (digitos[0] * NUM_CALCULAR_DIGITO_CPF_NONO) + (digitos[1] * NUM_CALCULAR_DIGITO_CPF_OITAVO) + (digitos[2] * NUM_CALCULAR_DIGITO_CPF_SETIMO) + (digitos[3] * NUM_CALCULAR_DIGITO_CPF_SEXTO) + (digitos[4] * NUM_CALCULAR_DIGITO_CPF_QUINTO)
                 + (digitos[5] * NUM_CALCULAR_DIGITO_CPF_QUARTO) + (digitos[6] * NUM_CALCULAR_DIGITO_CPF_TERCEIRO) + (digitos[7] * NUM_CALCULAR_DIGITO_CPF_SEGUNDO) + (digitos[8] * NUM_CALCULAR_DIGITO_CPF_PRIMEIRO);
-        if (digitoUm % 11 < 2) {
+        if (digitoUm % CARACTERES_CPF < 2) {
             digitoUm = 0;
         } else {
-            digitoUm = 11 - (digitoUm % 11);
+            digitoUm = CARACTERES_CPF - (digitoUm % CARACTERES_CPF);
         }
         return digitoUm;
     }

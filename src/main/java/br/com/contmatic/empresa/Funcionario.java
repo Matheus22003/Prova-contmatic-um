@@ -6,9 +6,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import static br.com.contmatic.validator.Validacoes.isNonNumeric;
 import static br.com.contmatic.validator.ValidacaoCpf.validaCpf;
-import static br.com.contmatic.validator.Validacoes.validarStringTamanhoMaximo;
+import static br.com.contmatic.validator.Validacoes.*;
 
 public class Funcionario {
 
@@ -23,8 +22,10 @@ public class Funcionario {
     }
 
     public void setNome(String nome) {
-        isNonNumeric(nome);
-        validarStringTamanhoMaximo(nome, 80);
+        isStringEmpty(nome, "br.com.contmatic.endereco");
+        isStringBlank(nome, "br.com.contmatic.endereco");
+        isNonNumeric(nome, "br.com.contmatic.endereco");
+        validarStringTamanhoMaximo(nome, 80, "br.com.contmatic.endereco");
         this.nome = nome;
     }
 
@@ -33,6 +34,7 @@ public class Funcionario {
     }
 
     public void setDataNascimento(Date dataNascimento) {
+        verifierObjectIsNull(dataNascimento);
         this.dataNascimento = dataNascimento;
     }
 
@@ -41,6 +43,8 @@ public class Funcionario {
     }
 
     public void setCpf(String cpf) {
+        isStringEmpty(cpf);
+        isStringBlank(cpf);
         validaCpf(cpf);
         this.cpf = cpf;
     }
@@ -50,8 +54,10 @@ public class Funcionario {
     }
 
     public void setCargo(String cargo) {
-        isNonNumeric(cargo);
-        validarStringTamanhoMaximo(cargo,90);
+        isStringEmpty(cargo, "br.com.contmatic.endereco");
+        isStringBlank(cargo, "br.com.contmatic.endereco");
+        isNonNumeric(cargo, "br.com.contmatic.endereco");
+        validarStringTamanhoMaximo(cargo, 90, "br.com.contmatic.endereco");
         this.cargo = cargo;
     }
 
@@ -59,15 +65,15 @@ public class Funcionario {
         return this.cargo;
     }
 
-    public void setSalario(double eSalario) {
-        validaSalario(eSalario);
+    public void setSalario(double salario) {
+        validaSalario(salario);
+        this.salario = salario;
     }
 
-    private void validaSalario(double eSalario) {
-        if (eSalario >= 1100.00) {
-            this.salario = eSalario;
-        } else
+    private void validaSalario(double salario) {
+        if (!(salario >= 1100.00)) {
             throw new IllegalArgumentException("Salário abaixo do mínimo");
+        }
     }
 
     public double getSalario() {

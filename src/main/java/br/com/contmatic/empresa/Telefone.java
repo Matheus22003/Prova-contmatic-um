@@ -7,7 +7,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import static br.com.contmatic.validator.ValidacaoTelefone.validarDDD;
-import static br.com.contmatic.validator.Validacoes.isNumeric;
+import static br.com.contmatic.validator.Validacoes.*;
 
 public class Telefone {
 
@@ -22,6 +22,8 @@ public class Telefone {
     }
 
     private void setDigitoPais(String digitoPais) {
+        isStringEmpty(digitoPais);
+        isStringBlank(digitoPais);
         isNumeric(digitoPais);
         this.digitoPais = digitoPais;
     }
@@ -31,6 +33,7 @@ public class Telefone {
     }
 
     public void setDDD(DDD ddd) {
+        verifierObjectIsNull(ddd);
         this.ddd = ddd;
     }
 
@@ -44,6 +47,8 @@ public class Telefone {
     }
 
     private void validacoesTelefone(String telefone) {
+        isStringEmpty(telefone);
+        isStringBlank(telefone);
         isNumeric(telefone);
         if (telefone.length() != 9 && telefone.length() != 8) {
             throw new IllegalArgumentException("Quatidade de caracteres inseridas de maneira incorreta");
