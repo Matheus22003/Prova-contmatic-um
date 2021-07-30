@@ -23,8 +23,8 @@ public class Endereco {
     }
 
     public void setRua(String rua) {
-        isNonNumeric(rua);
-        validarStringTamanhoMinimoEMaximo(rua, 5, 90);
+        isNonNumeric(rua, "br.com.contmatic.endereco");
+        validarStringTamanhoMinimoEMaximo(rua, 5, 90, "br.com.contmatic.endereco");
         this.rua = rua;
     }
 
@@ -41,6 +41,8 @@ public class Endereco {
     }
 
     public void setComplemento(String complemento) {
+        isStringEmpty(complemento);
+        isStringBlank(complemento);
         validarStringTamanhoMaximo(complemento, 50);
         this.complemento = complemento;
     }
@@ -50,8 +52,10 @@ public class Endereco {
     }
 
     public void setBairro(String bairro) {
-        isNonNumeric(bairro);
-        validarStringTamanhoMaximo(bairro, 50);
+        isStringEmpty(bairro, "br.com.contmatic.endereco");
+        isStringBlank(bairro, "br.com.contmatic.endereco");
+        isNonNumeric(bairro, "br.com.contmatic.endereco");
+        validarStringTamanhoMaximo(bairro, 50, "br.com.contmatic.endereco");
         this.bairro = bairro;
     }
 
@@ -60,7 +64,7 @@ public class Endereco {
     }
 
     public void setEstado(EstadosBrasil estado) {
-        estadoIsEmpty(estado);
+        verifierObjectIsNull(estado);
         this.estado = estado;
     }
 
@@ -68,15 +72,11 @@ public class Endereco {
         return this.estado;
     }
 
-    private void estadoIsEmpty(EstadosBrasil estado) {
-        if (estado == null) {
-            throw new NullPointerException("O estado esta vazio");
-        }
-    }
-
     public void setCidade(String cidade) {
-        isNonNumeric(cidade);
-        Validacoes.validarStringTamanhoMaximo(cidade, 50);
+        isStringEmpty(cidade, "br.com.contmatic.endereco");
+        isStringBlank(cidade, "br.com.contmatic.endereco");
+        isNonNumeric(cidade, "br.com.contmatic.endereco");
+        validarStringTamanhoMaximo(cidade, 50, "br.com.contmatic.endereco");
         this.cidade = cidade;
     }
 
@@ -85,6 +85,8 @@ public class Endereco {
     }
 
     public void setCep(String cep) {
+        isStringBlank(cep);
+        isStringEmpty(cep);
         isNumeric(cep);
         validarStringTamanhoExatoCaracteres(cep, 8);
         this.cep = cep;

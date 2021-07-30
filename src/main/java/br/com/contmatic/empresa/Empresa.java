@@ -27,6 +27,8 @@ public class Empresa {
     }
 
     public void setNome(String nome) {
+        isStringEmpty(nome);
+        isStringBlank(nome);
         validarStringTamanhoMinimoEMaximo(nome, 2, 100);
         this.nome = nome;
     }
@@ -36,6 +38,8 @@ public class Empresa {
     }
 
     public void setNomeFantasia(String nomeFantasia) {
+        isStringEmpty(nomeFantasia);
+        isStringBlank(nomeFantasia);
         validarStringTamanhoMinimoEMaximo(nomeFantasia, 2, 70);
         this.nomeFantasia = nomeFantasia;
     }
@@ -54,6 +58,8 @@ public class Empresa {
     }
 
     public void setRazaoSocial(String razaoSocial) {
+        isStringBlank(razaoSocial);
+        isStringEmpty(razaoSocial);
         validarStringTamanhoMinimoEMaximo(razaoSocial, 5, 60);
         this.razaoSocial = razaoSocial;
     }
@@ -63,7 +69,9 @@ public class Empresa {
     }
 
     public void setAreaDeAtuacao(String areaDeAtuacao) {
-        isStringNull(areaDeAtuacao);
+        isStringEmpty(areaDeAtuacao);
+        isStringBlank(areaDeAtuacao);
+        validarStringTamanhoMaximo(areaDeAtuacao, 90);
         this.areaDeAtuacao = areaDeAtuacao;
     }
 
@@ -72,6 +80,7 @@ public class Empresa {
     }
 
     public void setEndereco(Endereco endereco) {
+        verifierObjectIsNull(endereco);
         this.endereco = endereco;
     }
 
