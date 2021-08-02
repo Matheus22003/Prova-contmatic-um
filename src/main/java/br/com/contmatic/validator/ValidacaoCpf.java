@@ -1,7 +1,6 @@
 package br.com.contmatic.validator;
 
-import static br.com.contmatic.validator.Validacoes.isNumeric;
-import static br.com.contmatic.validator.Validacoes.isStringEmpty;
+import static br.com.contmatic.validator.Validacoes.*;
 import static java.lang.Integer.parseInt;
 
 public final class ValidacaoCpf {
@@ -21,9 +20,10 @@ public final class ValidacaoCpf {
     private ValidacaoCpf() {
     }
 
-    public static void validaCpf(String cpf) {
-        isStringEmpty(cpf);
-        isNumeric(cpf);
+    public static void validaCpf(String cpf, String localizacaoClasse) {
+        isStringBlank(cpf, localizacaoClasse);
+        isStringEmpty(cpf, localizacaoClasse);
+        isNumeric(cpf, localizacaoClasse);
         basicErrosCpf(cpf);
         int[] digitos = separetorDigitos(cpf);
         int digitoUm = getDigitoUm(digitos);

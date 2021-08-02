@@ -27,9 +27,9 @@ public class Empresa {
     }
 
     public void setNome(String nome) {
-        isStringEmpty(nome);
-        isStringBlank(nome);
-        validarStringTamanhoMinimoEMaximo(nome, 2, 100);
+        isStringEmpty(nome, "br.com.contmatic.empresa.Empresa.setNome()");
+        isStringBlank(nome, "br.com.contmatic.empresa.Empresa.setNome()");
+        validarStringTamanhoMinimoEMaximo(nome, 2, 100, "br.com.contmatic.empresa.Empresa.setNome()");
         this.nome = nome;
     }
 
@@ -38,9 +38,9 @@ public class Empresa {
     }
 
     public void setNomeFantasia(String nomeFantasia) {
-        isStringEmpty(nomeFantasia);
-        isStringBlank(nomeFantasia);
-        validarStringTamanhoMinimoEMaximo(nomeFantasia, 2, 70);
+        isStringEmpty(nomeFantasia, "br.com.contmatic.empresa.Empresa.setNomeFantasia()");
+        isStringBlank(nomeFantasia, "br.com.contmatic.empresa.Empresa.setNomeFantasia()");
+        validarStringTamanhoMinimoEMaximo(nomeFantasia, 2, 70, "br.com.contmatic.empresa.Empresa.setNomeFantasia()");
         this.nomeFantasia = nomeFantasia;
     }
 
@@ -49,7 +49,7 @@ public class Empresa {
     }
 
     public void setCnpj(String cnpj) {
-        validaCnpj(cnpj);
+        validaCnpj(cnpj, "br.com.contmatic.empresa.Empresa.setCnpj()");
         this.cnpj = cnpj;
     }
 
@@ -58,9 +58,9 @@ public class Empresa {
     }
 
     public void setRazaoSocial(String razaoSocial) {
-        isStringBlank(razaoSocial);
-        isStringEmpty(razaoSocial);
-        validarStringTamanhoMinimoEMaximo(razaoSocial, 5, 60);
+        isStringBlank(razaoSocial, "br.com.contmatic.empresa.Empresa.setRazaoSocial()");
+        isStringEmpty(razaoSocial, "br.com.contmatic.empresa.Empresa.setRazaoSocial()");
+        validarStringTamanhoMinimoEMaximo(razaoSocial, 5, 60, "br.com.contmatic.empresa.Empresa.setRazaoSocial()");
         this.razaoSocial = razaoSocial;
     }
 
@@ -69,9 +69,9 @@ public class Empresa {
     }
 
     public void setAreaDeAtuacao(String areaDeAtuacao) {
-        isStringEmpty(areaDeAtuacao);
-        isStringBlank(areaDeAtuacao);
-        validarStringTamanhoMaximo(areaDeAtuacao, 90);
+        isStringEmpty(areaDeAtuacao, "br.com.contmatic.empresa.Empresa.setAreaDeAtuacao()");
+        isStringBlank(areaDeAtuacao, "br.com.contmatic.empresa.Empresa.setAreaDeAtuacao()");
+        validarStringTamanhoMaximo(areaDeAtuacao, 90, "br.com.contmatic.empresa.Empresa.setAreaDeAtuacao()");
         this.areaDeAtuacao = areaDeAtuacao;
     }
 
@@ -80,7 +80,7 @@ public class Empresa {
     }
 
     public void setEndereco(Endereco endereco) {
-        verifierObjectIsNull(endereco);
+        verifierObjectIsNull(endereco, "br.com.contmatic.empresa.Empresa.setEndereco()");
         this.endereco = endereco;
     }
 
@@ -89,7 +89,7 @@ public class Empresa {
     }
 
     public void setFuncionarios(List<Funcionario> funcionarios) {
-        verifierObjectIsNull(funcionarios);
+        verifierObjectIsNull(funcionarios, "br.com.contmatic.empresa.Empresa.setFuncionarios()");
         this.funcionarios = funcionarios;
     }
 

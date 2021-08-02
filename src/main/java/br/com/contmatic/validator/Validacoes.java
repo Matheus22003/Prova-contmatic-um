@@ -30,9 +30,9 @@ public final class Validacoes {
     }
 
     public static void validarStringTamanhoMinimoEMaximo(String str, Integer minimo, Integer maximo, String localizacaoClasse) {
-        verifierValueMinimoAndMaximo(minimo, maximo);
-        validarStringTamanhoMaximo(str, maximo);
-        validarStringTamanhoMinimo(str, minimo);
+        verifierValueMinimoAndMaximo(minimo, maximo, localizacaoClasse);
+        validarStringTamanhoMaximo(str, maximo, localizacaoClasse);
+        validarStringTamanhoMinimo(str, minimo, localizacaoClasse);
     }
 
     public static void validarStringTamanhoExatoCaracteres(String str, Integer tamaho, String localizacaoClasse) {

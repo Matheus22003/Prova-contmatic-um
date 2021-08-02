@@ -1,8 +1,5 @@
 package br.com.contmatic.empresa;
 
-import br.com.contmatic.validator.Validacoes;
-
-import javax.xml.validation.Validator;
 import java.util.Objects;
 
 import static br.com.contmatic.validator.Validacoes.*;
@@ -23,8 +20,8 @@ public class Endereco {
     }
 
     public void setRua(String rua) {
-        isNonNumeric(rua, "br.com.contmatic.endereco");
-        validarStringTamanhoMinimoEMaximo(rua, 5, 90, "br.com.contmatic.endereco");
+        isNonNumeric(rua, "br.com.contmatic.Endereco.setRua()");
+        validarStringTamanhoMinimoEMaximo(rua, 5, 90, "br.com.contmatic.Endereco.setRua()");
         this.rua = rua;
     }
 
@@ -41,9 +38,9 @@ public class Endereco {
     }
 
     public void setComplemento(String complemento) {
-        isStringEmpty(complemento);
-        isStringBlank(complemento);
-        validarStringTamanhoMaximo(complemento, 50);
+        isStringEmpty(complemento, "br.com.contmatic.Endereco.setComplemento()");
+        isStringBlank(complemento, "br.com.contmatic.Endereco.setComplemento()");
+        validarStringTamanhoMaximo(complemento, 50, "br.com.contmatic.Endereco.setComplemento()");
         this.complemento = complemento;
     }
 
@@ -52,10 +49,10 @@ public class Endereco {
     }
 
     public void setBairro(String bairro) {
-        isStringEmpty(bairro, "br.com.contmatic.endereco");
-        isStringBlank(bairro, "br.com.contmatic.endereco");
-        isNonNumeric(bairro, "br.com.contmatic.endereco");
-        validarStringTamanhoMaximo(bairro, 50, "br.com.contmatic.endereco");
+        isStringEmpty(bairro, "br.com.contmatic.Endereco.setBairro()");
+        isStringBlank(bairro, "br.com.contmatic.Endereco.setBairro()");
+        isNonNumeric(bairro, "br.com.contmatic.Endereco.setBairro()");
+        validarStringTamanhoMaximo(bairro, 50, "br.com.contmatic.Endereco.setBairro()");
         this.bairro = bairro;
     }
 
@@ -64,7 +61,7 @@ public class Endereco {
     }
 
     public void setEstado(EstadosBrasil estado) {
-        verifierObjectIsNull(estado);
+        verifierObjectIsNull(estado, "br.com.contmatic.Endereco.setEstado()");
         this.estado = estado;
     }
 
@@ -73,10 +70,10 @@ public class Endereco {
     }
 
     public void setCidade(String cidade) {
-        isStringEmpty(cidade, "br.com.contmatic.endereco");
-        isStringBlank(cidade, "br.com.contmatic.endereco");
-        isNonNumeric(cidade, "br.com.contmatic.endereco");
-        validarStringTamanhoMaximo(cidade, 50, "br.com.contmatic.endereco");
+        isStringEmpty(cidade, "br.com.contmatic.Endereco.setCidade()");
+        isStringBlank(cidade, "br.com.contmatic.Endereco.setCidade()");
+        isNonNumeric(cidade, "br.com.contmatic.Endereco.setCidade()");
+        validarStringTamanhoMaximo(cidade, 80, "br.com.contmatic.Endereco.setCidade()");
         this.cidade = cidade;
     }
 
@@ -85,10 +82,10 @@ public class Endereco {
     }
 
     public void setCep(String cep) {
-        isStringBlank(cep);
-        isStringEmpty(cep);
-        isNumeric(cep);
-        validarStringTamanhoExatoCaracteres(cep, 8);
+        isStringBlank(cep, "br.com.contmatic.Endereco.setCep()");
+        isStringEmpty(cep, "br.com.contmatic.Endereco.setCep()");
+        isNumeric(cep, "br.com.contmatic.Endereco.setCep()");
+        validarStringTamanhoExatoCaracteres(cep, 8, "br.com.contmatic.Endereco.setCep()");
         this.cep = cep;
     }
 

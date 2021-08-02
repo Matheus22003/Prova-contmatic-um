@@ -1,12 +1,7 @@
 package br.com.contmatic.empresa;
 
-import br.com.contmatic.validator.ValidacaoTelefone;
-
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
 
-import static br.com.contmatic.validator.ValidacaoTelefone.validarDDD;
 import static br.com.contmatic.validator.Validacoes.*;
 
 public class Telefone {
@@ -22,9 +17,9 @@ public class Telefone {
     }
 
     private void setDigitoPais(String digitoPais) {
-        isStringEmpty(digitoPais);
-        isStringBlank(digitoPais);
-        isNumeric(digitoPais);
+        isStringEmpty(digitoPais, "br.com.contmatic.Telefone.setDigitoPais()");
+        isStringBlank(digitoPais, "br.com.contmatic.Telefone.setDigitoPais()");
+        isNumeric(digitoPais, "br.com.contmatic.Telefone.setDigitoPais()");
         this.digitoPais = digitoPais;
     }
 
@@ -33,7 +28,7 @@ public class Telefone {
     }
 
     public void setDDD(DDD ddd) {
-        verifierObjectIsNull(ddd);
+        verifierObjectIsNull(ddd, "br.com.contmatic.Telefone.setDDD()");
         this.ddd = ddd;
     }
 
@@ -42,16 +37,16 @@ public class Telefone {
     }
 
     public void setTelefone(String telefone) {
-        validacoesTelefone(telefone);
+        validacoesTelefone(telefone, "br.com.contmatic.Telefone.setTelefone.validacoesTelefone()");
         this.numeroTelefone = telefone;
     }
 
-    private void validacoesTelefone(String telefone) {
-        isStringEmpty(telefone);
-        isStringBlank(telefone);
-        isNumeric(telefone);
+    private void validacoesTelefone(String telefone, String localizacaoClasse) {
+        isStringEmpty(telefone, localizacaoClasse);
+        isStringBlank(telefone, localizacaoClasse);
+        isNumeric(telefone, localizacaoClasse);
         if (telefone.length() != 9 && telefone.length() != 8) {
-            throw new IllegalArgumentException("Quatidade de caracteres inseridas de maneira incorreta");
+            throw new IllegalArgumentException("Quatidade de caracteres inseridas(" + telefone + ") de maneira incorreta no: " + localizacaoClasse);
         }
     }
 
@@ -61,12 +56,7 @@ public class Telefone {
 
     @Override
     public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((ddd == null) ? 0 : ddd.hashCode());
-        result = prime * result + ((digitoPais == null) ? 0 : digitoPais.hashCode());
-        result = prime * result + ((numeroTelefone == null) ? 0 : numeroTelefone.hashCode());
-        return result;
+        return Objects.hash(digitoPais, ddd, numeroTelefone);
     }
 
     @Override

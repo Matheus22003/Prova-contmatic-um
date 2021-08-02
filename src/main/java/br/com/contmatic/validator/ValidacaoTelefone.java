@@ -8,14 +8,6 @@ public final class ValidacaoTelefone {
     private ValidacaoTelefone() {
     }
 
-    public static void validarDDD(String dddEnviado) {
-        isNumeric(dddEnviado);
-        Boolean existente = verificarDDDExistente(dddEnviado);
-        if (!existente) {
-            throw new IllegalArgumentException("DDD enviado inexistente");
-        }
-    }
-
     private static Boolean verificarDDDExistente(String dddEnviado) {
         boolean existente = false;
         for (DDD ddd : DDD.values()) {
