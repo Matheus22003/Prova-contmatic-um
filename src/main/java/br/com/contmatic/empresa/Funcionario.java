@@ -1,9 +1,5 @@
 package br.com.contmatic.empresa;
 
-import br.com.contmatic.validator.Validacoes;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import static br.com.contmatic.validator.ValidacaoCpf.validaCpf;
@@ -22,10 +18,10 @@ public class Funcionario {
     }
 
     public void setNome(String nome) {
-        isStringEmpty(nome, "br.com.contmatic.endereco");
-        isStringBlank(nome, "br.com.contmatic.endereco");
-        isNonNumeric(nome, "br.com.contmatic.endereco");
-        validarStringTamanhoMaximo(nome, 80, "br.com.contmatic.endereco");
+        isStringEmpty(nome, "br.com.contmatic.empresa.Funcionario.setNome()");
+        isStringBlank(nome, "br.com.contmatic.empresa.Funcionario.setNome()");
+        isNonNumeric(nome, "br.com.contmatic.empresa.Funcionario.setNome()");
+        validarStringTamanhoMaximo(nome, 80, "br.com.contmatic.empresa.Funcionario.setNome()");
         this.nome = nome;
     }
 
@@ -34,7 +30,7 @@ public class Funcionario {
     }
 
     public void setDataNascimento(Date dataNascimento) {
-        verifierObjectIsNull(dataNascimento);
+        verifierObjectIsNull(dataNascimento, "br.com.contmatic.empresa.Funcionario.setDataNascimento()");
         this.dataNascimento = dataNascimento;
     }
 
@@ -43,9 +39,7 @@ public class Funcionario {
     }
 
     public void setCpf(String cpf) {
-        isStringEmpty(cpf);
-        isStringBlank(cpf);
-        validaCpf(cpf);
+        validaCpf(cpf, "br.com.contmatic.empresa.Funcionario.setCpf()");
         this.cpf = cpf;
     }
 
@@ -54,10 +48,10 @@ public class Funcionario {
     }
 
     public void setCargo(String cargo) {
-        isStringEmpty(cargo, "br.com.contmatic.endereco");
-        isStringBlank(cargo, "br.com.contmatic.endereco");
-        isNonNumeric(cargo, "br.com.contmatic.endereco");
-        validarStringTamanhoMaximo(cargo, 90, "br.com.contmatic.endereco");
+        isStringEmpty(cargo, "br.com.contmatic.empresa.Funcionario.setCargo()");
+        isStringBlank(cargo, "br.com.contmatic.empresa.Funcionario.setCargo()");
+        isNonNumeric(cargo, "br.com.contmatic.empresa.Funcionario.setCargo()");
+        validarStringTamanhoMaximo(cargo, 90, "br.com.contmatic.empresa.Funcionario.setCargo()");
         this.cargo = cargo;
     }
 
@@ -72,7 +66,7 @@ public class Funcionario {
 
     private void validaSalario(double salario) {
         if (!(salario >= 1100.00)) {
-            throw new IllegalArgumentException("Salário abaixo do mínimo");
+            throw new IllegalArgumentException("Salário abaixo do mínimo(1100.00): " + salario);
         }
     }
 

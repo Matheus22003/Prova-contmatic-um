@@ -51,8 +51,8 @@ class TelefoneTest {
 
     @Test
     void testeHashCode() {
-        telefone = new Telefone(DDD.SAO_PAULO, "987704670");
-        assertThat("Erro ao adcionar Telefone", telefone.hashCode(), equalTo(-1867161073));
+        Telefone telefoneHashCode = new Telefone(DDD.SAO_PAULO, "987704670");
+        assertThat("Erro ao adcionar Telefone", telefoneHashCode.hashCode(), equalTo(-1671089529));
     }
 
     @Test
