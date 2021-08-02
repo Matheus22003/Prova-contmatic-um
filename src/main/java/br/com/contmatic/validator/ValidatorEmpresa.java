@@ -29,12 +29,12 @@ public final class ValidatorEmpresa {
     private ValidatorEmpresa() {
     }
 
-    public static void validaCnpj(String eCnpj) {
-        isStringEmpty(eCnpj);
-        isNumeric(eCnpj);
-        verificaErrosBasicos(eCnpj);
+    public static void validaCnpj(String cnpj, String localizacaoClasse) {
+        isStringEmpty(cnpj, localizacaoClasse);
+        isNumeric(cnpj, localizacaoClasse);
+        verificaErrosBasicos(cnpj);
         int digitos[] = new int[CARACTERES_CNPJ];
-        int digitoUm = getDigitoUm(eCnpj, digitos);
+        int digitoUm = getDigitoUm(cnpj, digitos);
         int digitoDois = getDigitoDois(digitos, digitoUm);
         verificaDigitosCnpj(digitos, digitoUm, digitoDois);
     }
