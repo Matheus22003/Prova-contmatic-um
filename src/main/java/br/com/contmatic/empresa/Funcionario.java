@@ -18,10 +18,10 @@ public class Funcionario {
     }
 
     public void setNome(String nome) {
-        isStringEmpty(nome, "br.com.contmatic.empresa.Funcionario.setNome()");
-        isStringBlank(nome, "br.com.contmatic.empresa.Funcionario.setNome()");
-        isNonNumeric(nome, "br.com.contmatic.empresa.Funcionario.setNome()");
-        validarStringTamanhoMaximo(nome, 80, "br.com.contmatic.empresa.Funcionario.setNome()");
+        isStringEmpty(nome, "nome", "Funcionario");
+        isStringBlank(nome, "nome", "Funcionario");
+        isNonNumeric(nome, "nome", "Funcionario");
+        validarStringTamanhoMaximo(nome, 80, "nome", "Funcionario");
         this.nome = nome;
     }
 
@@ -30,7 +30,7 @@ public class Funcionario {
     }
 
     public void setDataNascimento(Date dataNascimento) {
-        verifierObjectIsNull(dataNascimento, "br.com.contmatic.empresa.Funcionario.setDataNascimento()");
+        verifierObjectIsNull(dataNascimento, "dataNascimento", "Funcionario");
         this.dataNascimento = dataNascimento;
     }
 
@@ -39,7 +39,7 @@ public class Funcionario {
     }
 
     public void setCpf(String cpf) {
-        validaCpf(cpf, "br.com.contmatic.empresa.Funcionario.setCpf()");
+        validaCpf(cpf, "cpf", "Funcionario");
         this.cpf = cpf;
     }
 
@@ -48,10 +48,10 @@ public class Funcionario {
     }
 
     public void setCargo(String cargo) {
-        isStringEmpty(cargo, "br.com.contmatic.empresa.Funcionario.setCargo()");
-        isStringBlank(cargo, "br.com.contmatic.empresa.Funcionario.setCargo()");
-        isNonNumeric(cargo, "br.com.contmatic.empresa.Funcionario.setCargo()");
-        validarStringTamanhoMaximo(cargo, 90, "br.com.contmatic.empresa.Funcionario.setCargo()");
+        isStringEmpty(cargo, "cargo", "Funcionario");
+        isStringBlank(cargo, "cargo", "Funcionario");
+        isNonNumeric(cargo, "cargo", "Funcionario");
+        validarStringTamanhoMaximo(cargo, 90, "cargo", "Funcionario");
         this.cargo = cargo;
     }
 

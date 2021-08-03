@@ -29,9 +29,9 @@ public final class ValidatorEmpresa {
     private ValidatorEmpresa() {
     }
 
-    public static void validaCnpj(String cnpj, String localizacaoClasse) {
-        isStringEmpty(cnpj, localizacaoClasse);
-        isNumeric(cnpj, localizacaoClasse);
+    public static void validaCnpj(String cnpj, String nomeDoCampo, String classe) {
+        isStringEmpty(cnpj, nomeDoCampo, classe);
+        isNumeric(cnpj, nomeDoCampo, classe);
         verificaErrosBasicos(cnpj);
         int digitos[] = new int[CARACTERES_CNPJ];
         int digitoUm = getDigitoUm(cnpj, digitos);

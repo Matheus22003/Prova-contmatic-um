@@ -152,4 +152,9 @@ class EmpresaTest {
                 "Area de Atuação: null"));
     }
 
+    @Test
+    void teste() {
+        System.out.println("ewrwer");
+    }
+
 }
