@@ -10,13 +10,18 @@ import static br.com.contmatic.validator.ValidatorEmpresa.validaCnpj;
 public class Empresa {
 
     private String nome;
-    private String nomeFantasia;
-    private String cnpj;
-    private String razaoSocial;
-    private String areaDeAtuacao;
-    private Endereco endereco;
-    private List<Funcionario> funcionarios = new ArrayList<>();
 
+    private String nomeFantasia;
+
+    private String cnpj;
+
+    private String razaoSocial;
+
+    private String areaDeAtuacao;
+
+    private Endereco endereco;
+
+    private List<Funcionario> funcionarios = new ArrayList<>();
 
     public Empresa(String cnpj) {
         this.setCnpj(cnpj);

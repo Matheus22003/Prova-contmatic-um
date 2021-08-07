@@ -1,5 +1,7 @@
 package br.com.contmatic.empresa;
 
+import br.com.contmatic.validator.Validacoes;
+
 import java.util.Date;
 
 import static br.com.contmatic.validator.ValidacaoCpf.validaCpf;
@@ -8,9 +10,13 @@ import static br.com.contmatic.validator.Validacoes.*;
 public class Funcionario {
 
     private String nome;
+
     private Date dataNascimento;
+
     private String cpf;
+
     private String cargo;
+
     private double salario;
 
     public Funcionario(String cpf) {
@@ -31,6 +37,7 @@ public class Funcionario {
 
     public void setDataNascimento(Date dataNascimento) {
         verifierObjectIsNull(dataNascimento, "dataNascimento", "Funcionario");
+        validarDate(dataNascimento, "dataNascimento", "Funcionario");
         this.dataNascimento = dataNascimento;
     }
 

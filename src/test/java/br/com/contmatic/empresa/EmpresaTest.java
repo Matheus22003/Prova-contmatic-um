@@ -22,62 +22,62 @@ class EmpresaTest {
     }
 
     @Test
-    void testeAdicionarNome() {
+    void deve_aceitar_nome_valido() {
         rivals.setNome("Rivals");
         assertThat("Erro ao adicionar ou retornar nome de Empresa", rivals.getNome(),
                 equalTo("Rivals"));
     }
 
     @Test
-    void testeAdicionarNomeComErro() {
+    void nao_deve_aceitar_um_nome_menor_que_2() {
         assertThrows(IllegalArgumentException.class, () -> rivals.setNome("R"));
     }
 
     @Test
-    void testeNomeFantasia() {
+    void deve_aceitar_nomeFantasia_valido() {
         rivals.setNomeFantasia("Rivals Tournament");
         assertThat("Erro ao adicionar ou retornar Nome Fantasia", rivals.getNomeFantasia(),
                 equalTo("Rivals Tournament"));
     }
 
     @Test
-    void testeNomeFantasiaComErro() {
+    void nao_deve_aceitar_um_nomeFantasia_menor_que_2() {
         assertThrows(IllegalArgumentException.class, () -> rivals.setNomeFantasia("R"));
     }
 
     @Test
-    void testeSetDeCNPJ() {
+    void deve_aceitar_cnpj_valido() {
         rivals.setCnpj("73487481000185");
         assertThat("Erro ao adiconar valor em CNPJ", rivals.getCnpj(), equalTo("73487481000185"));
     }
 
     @Test
-    void testeSetDeCNPJComErro() {
+    void nao_deve_aceitar_um_cnoj_invalido() {
         rivals.setCnpj("73487481000185");
         assertThrows(CnpjInvalidoException.class, () -> rivals.setCnpj("7348748100018500"));
     }
 
     @Test
-    void testeRazaoSocial() {
+    void deve_aceitar_razaoSocial_valido() {
         rivals.setRazaoSocial("Campeonatos E-Sports");
         assertThat("Erro ao adicionar ou retornar Razão Social", rivals.getRazaoSocial(),
                 equalTo("Campeonatos E-Sports"));
     }
 
     @Test
-    void testeRazaoSocialComErro() {
+    void nao_deve_aceitar_um_razaoSocial_menor_que_2() {
         assertThrows(IllegalArgumentException.class, () -> rivals.setRazaoSocial("R"));
     }
 
     @Test
-    void testeAdicionarAreaDeAtuacao() {
+    void deve_aceitar_areaDeAtuacao_valido() {
         rivals.setAreaDeAtuacao("Desenvolvimento");
         assertThat("Erro ao adicionar ou retornar area de atuação", rivals.getAreaDeAtuacao(),
                 equalTo("Desenvolvimento"));
     }
 
     @Test
-    void testeAdicionarAreaDeAtuacaoComErro() {
+    void nao_deve_aceitar_um_razaoSocial_menor_ou_igual_0() {
         assertThrows(IllegalArgumentException.class, () -> rivals.setAreaDeAtuacao(""));
     }
 

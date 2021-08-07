@@ -1,5 +1,7 @@
 package br.com.contmatic.empresa;
 
+import br.com.contmatic.validator.Validacoes;
+
 import java.util.Objects;
 
 import static br.com.contmatic.validator.Validacoes.*;
@@ -7,11 +9,17 @@ import static br.com.contmatic.validator.Validacoes.*;
 public class Endereco {
 
     private String rua;
+
     private Integer numero;
+
     private String complemento;
+
     private String bairro;
+
     private EstadosBrasil estado;
+
     private String cidade;
+
     private String cep;
 
     public Endereco(String cep, int numero) {
@@ -30,6 +38,7 @@ public class Endereco {
     }
 
     public void setNumero(int numero) {
+        validarIntMinimoEmaximo(numero, 1, 99999, "numero", "Endereco");
         this.numero = numero;
     }
 

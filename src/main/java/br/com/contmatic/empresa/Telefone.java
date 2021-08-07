@@ -6,9 +6,11 @@ import static br.com.contmatic.validator.Validacoes.*;
 
 public class Telefone {
 
-    String digitoPais;
-    DDD ddd;
-    String numeroTelefone;
+    private String digitoPais;
+
+    private DDD ddd;
+
+    private String numero;
 
     public Telefone(DDD ddd, String telefone) {
         this.setDigitoPais("55");
@@ -38,7 +40,7 @@ public class Telefone {
 
     public void setTelefone(String telefone) {
         validacoesTelefone(telefone, "digitoPais", "Telefone");
-        this.numeroTelefone = telefone;
+        this.numero = telefone;
     }
 
     private void validacoesTelefone(String telefone, String nomeDoCampo, String classe) {
@@ -51,12 +53,12 @@ public class Telefone {
     }
 
     public String getTelefone() {
-        return this.numeroTelefone;
+        return this.numero;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(digitoPais, ddd, numeroTelefone);
+        return Objects.hash(digitoPais, ddd, numero);
     }
 
     @Override
@@ -64,12 +66,12 @@ public class Telefone {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Telefone telefone = (Telefone) o;
-        return Objects.equals(digitoPais, telefone.digitoPais) && ddd == telefone.ddd && Objects.equals(numeroTelefone, telefone.numeroTelefone);
+        return Objects.equals(digitoPais, telefone.digitoPais) && ddd == telefone.ddd && Objects.equals(numero, telefone.numero);
     }
 
     @Override
     public String toString() {
-        return "Telefone [digitoPais=" + digitoPais + ", ddd=" + ddd + ", numeroTelefone=" + numeroTelefone + "]";
+        return "Telefone [digitoPais=" + digitoPais + ", ddd=" + ddd + ", numeroTelefone=" + numero + "]";
     }
 
 }

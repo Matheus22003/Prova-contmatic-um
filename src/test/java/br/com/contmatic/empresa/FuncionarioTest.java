@@ -43,6 +43,12 @@ class FuncionarioTest {
     }
 
     @Test
+    void testeAdicionarDataDeNascimentoComErroDeNulo() throws ParseException {
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        assertThrows(IllegalArgumentException.class, () -> funcionario.setDataNascimento(formato.parse("22/03/2022")));
+    }
+
+    @Test
     void testeAdicionarCpf() {
         funcionario.setCpf("42793727806");
         assertThat("Erro ao adicionar CPF", funcionario.getCpf(), equalTo("42793727806"));
