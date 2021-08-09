@@ -82,7 +82,7 @@ class EmpresaTest {
     }
 
     @Test
-    void testeAdicionarEndereco() {
+    void deve_aceitar_endereco_valido() {
         rivals.setEndereco(new Endereco("01504001", 819));
 
         assertThat("Endereco retornando errado", rivals.getEndereco(),
@@ -90,12 +90,12 @@ class EmpresaTest {
     }
 
     @Test
-    void testeAdicionarEnderecoComErro() {
+    void nao_deve_aceitar_um_endereco_com_erro_de_cep() {
         assertThrows(IllegalArgumentException.class, () -> rivals.setEndereco(new Endereco("015040011", 819)));
     }
 
     @Test
-    void testeAdicionarListaDeFuncionarioNaEmpresa() {
+    void deve_aceitar_lista_de_funcionarios_valido() {
         List<Funcionario> funcionarios = new ArrayList<>();
         funcionarios.add(new Funcionario("42793727806"));
         rivals.setFuncionarios(funcionarios);
@@ -103,36 +103,36 @@ class EmpresaTest {
     }
 
     @Test
-    void testeAdicionarListaDeFuncionarioNaEmpresaComErroDeFuncionario() {
+    void nao_deve_aceitar_uma_lista_de_funcionarios_com_erro_de_funcionario() {
         List<Funcionario> funcionarios = new ArrayList<>();
         assertThrows(IllegalArgumentException.class, () -> funcionarios.add(new Funcionario("42793727806000")));
         rivals.setFuncionarios(funcionarios);
     }
 
     @Test
-    void testeCriarEmpresaComErro() {
+    void nao_deve_aceitar_uma_cnoj_com_cnpj_invalido() {
         assertThrows(RuntimeException.class, () -> new Empresa("1111111100015"));
     }
 
     @Test
-    void testeEqualsEntreDuasEmpresasIguais() {
+    void deve_mostrar_que_as_duas_empresas_de_cnoj_iguais_sao_as_mesmas() {
         Empresa empresaCloneRivals = new Empresa("11319526000155");
         assertThat("Equals comparando valores errados", rivals.equals(empresaCloneRivals), equalTo(true));
     }
 
     @Test
-    void testeEqualsEntreDuasEmpresasDiferentes() {
+    void deve_mostrar_que_as_duas_empresas_de_cnoj_diferentes_sao_diferentes() {
         Empresa empresaCloneRivals = new Empresa("25905179000157");
         assertThat("Equals comparando valores errados", rivals.equals(empresaCloneRivals), equalTo(false));
     }
 
     @Test
-    void testeHashCode() {
+    void deve_mostrar_esse_exato_hashcode() {
         assertThat("Erro ao calcular HashCode", rivals.hashCode(), equalTo(-932838434));
     }
 
     @Test
-    void testeToStringSemFuncionario() {
+    void deve_retornar_string_sem_funcionario() {
         assertThat("Erro ao fazer ToString Sem funcionario", rivals.toString(), equalTo("CNPJ: 11319526000155\n" +
                 "Endereço: null\n" +
                 "Area de Atuação: null\n" +
@@ -141,7 +141,7 @@ class EmpresaTest {
     }
 
     @Test
-    void testeToStringComFuncionario() {
+    void deve_retornar_string_com_funcionario() {
         List<Funcionario> funcionarios = new ArrayList<Funcionario>();
         funcionarios.add(new Funcionario("42793727806"));
         rivals.setFuncionarios(funcionarios);
@@ -150,11 +150,6 @@ class EmpresaTest {
                 "Endereço: null\n" +
                 "Quantidade de Funcionarios: 1\n" +
                 "Area de Atuação: null"));
-    }
-
-    @Test
-    void teste() {
-        System.out.println("ewrwer");
     }
 
 }
