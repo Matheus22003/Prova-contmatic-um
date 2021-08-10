@@ -20,10 +20,10 @@ public final class ValidacaoCpf {
     private ValidacaoCpf() {
     }
 
-    public static void validaCpf(String cpf, String localizacaoClasse) {
-        isStringBlank(cpf, localizacaoClasse);
-        isStringEmpty(cpf, localizacaoClasse);
-        isNumeric(cpf, localizacaoClasse);
+    public static void validaCpf(String cpf, String nomeDoCampo, String classe) {
+        isStringBlank(cpf, nomeDoCampo, classe);
+        isStringEmpty(cpf, nomeDoCampo, classe);
+        isNumeric(cpf, nomeDoCampo, classe);
         basicErrosCpf(cpf);
         int[] digitos = separetorDigitos(cpf);
         int digitoUm = getDigitoUm(digitos);

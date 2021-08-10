@@ -6,9 +6,11 @@ import static br.com.contmatic.validator.Validacoes.*;
 
 public class Telefone {
 
-    String digitoPais;
-    DDD ddd;
-    String numeroTelefone;
+    private String digitoPais;
+
+    private DDD ddd;
+
+    private String numero;
 
     public Telefone(DDD ddd, String telefone) {
         this.setDigitoPais("55");
@@ -17,9 +19,9 @@ public class Telefone {
     }
 
     private void setDigitoPais(String digitoPais) {
-        isStringEmpty(digitoPais, "br.com.contmatic.Telefone.setDigitoPais()");
-        isStringBlank(digitoPais, "br.com.contmatic.Telefone.setDigitoPais()");
-        isNumeric(digitoPais, "br.com.contmatic.Telefone.setDigitoPais()");
+        isStringEmpty(digitoPais, "digitoPais", "Telefone");
+        isStringBlank(digitoPais, "digitoPais", "Telefone");
+        isNumeric(digitoPais, "digitoPais", "Telefone");
         this.digitoPais = digitoPais;
     }
 
@@ -28,7 +30,7 @@ public class Telefone {
     }
 
     public void setDDD(DDD ddd) {
-        verifierObjectIsNull(ddd, "br.com.contmatic.Telefone.setDDD()");
+        verifierObjectIsNull(ddd, "ddd", "Telefone");
         this.ddd = ddd;
     }
 
@@ -37,26 +39,26 @@ public class Telefone {
     }
 
     public void setTelefone(String telefone) {
-        validacoesTelefone(telefone, "br.com.contmatic.Telefone.setTelefone.validacoesTelefone()");
-        this.numeroTelefone = telefone;
+        validacoesTelefone(telefone, "digitoPais", "Telefone");
+        this.numero = telefone;
     }
 
-    private void validacoesTelefone(String telefone, String localizacaoClasse) {
-        isStringEmpty(telefone, localizacaoClasse);
-        isStringBlank(telefone, localizacaoClasse);
-        isNumeric(telefone, localizacaoClasse);
+    private void validacoesTelefone(String telefone, String nomeDoCampo, String classe) {
+        isStringEmpty(telefone, nomeDoCampo, classe);
+        isStringBlank(telefone, nomeDoCampo, classe);
+        isNumeric(telefone, nomeDoCampo, classe);
         if (telefone.length() != 9 && telefone.length() != 8) {
-            throw new IllegalArgumentException("Quatidade de caracteres inseridas(" + telefone + ") de maneira incorreta no: " + localizacaoClasse);
+            throw new IllegalArgumentException("Quatidade de caracteres inseridas(" + telefone + ") de maneira incorreta no campo:  " + nomeDoCampo + " na classe " + classe);
         }
     }
 
     public String getTelefone() {
-        return this.numeroTelefone;
+        return this.numero;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(digitoPais, ddd, numeroTelefone);
+        return Objects.hash(digitoPais, ddd, numero);
     }
 
     @Override
@@ -64,12 +66,12 @@ public class Telefone {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Telefone telefone = (Telefone) o;
-        return Objects.equals(digitoPais, telefone.digitoPais) && ddd == telefone.ddd && Objects.equals(numeroTelefone, telefone.numeroTelefone);
+        return Objects.equals(digitoPais, telefone.digitoPais) && ddd == telefone.ddd && Objects.equals(numero, telefone.numero);
     }
 
     @Override
     public String toString() {
-        return "Telefone [digitoPais=" + digitoPais + ", ddd=" + ddd + ", numeroTelefone=" + numeroTelefone + "]";
+        return "Telefone [digitoPais=" + digitoPais + ", ddd=" + ddd + ", numeroTelefone=" + numero + "]";
     }
 
 }

@@ -10,13 +10,18 @@ import static br.com.contmatic.validator.ValidatorEmpresa.validaCnpj;
 public class Empresa {
 
     private String nome;
-    private String nomeFantasia;
-    private String cnpj;
-    private String razaoSocial;
-    private String areaDeAtuacao;
-    private Endereco endereco;
-    private List<Funcionario> funcionarios = new ArrayList<>();
 
+    private String nomeFantasia;
+
+    private String cnpj;
+
+    private String razaoSocial;
+
+    private String areaDeAtuacao;
+
+    private Endereco endereco;
+
+    private List<Funcionario> funcionarios = new ArrayList<>();
 
     public Empresa(String cnpj) {
         this.setCnpj(cnpj);
@@ -27,9 +32,9 @@ public class Empresa {
     }
 
     public void setNome(String nome) {
-        isStringEmpty(nome, "br.com.contmatic.empresa.Empresa.setNome()");
-        isStringBlank(nome, "br.com.contmatic.empresa.Empresa.setNome()");
-        validarStringTamanhoMinimoEMaximo(nome, 2, 100, "br.com.contmatic.empresa.Empresa.setNome()");
+        isStringEmpty(nome, "nome", "Empresa");
+        isStringBlank(nome, "nome", "Empresa");
+        validarStringTamanhoMinimoEMaximo(nome, 2, 100, "nome", "Empresa");
         this.nome = nome;
     }
 
@@ -38,9 +43,9 @@ public class Empresa {
     }
 
     public void setNomeFantasia(String nomeFantasia) {
-        isStringEmpty(nomeFantasia, "br.com.contmatic.empresa.Empresa.setNomeFantasia()");
-        isStringBlank(nomeFantasia, "br.com.contmatic.empresa.Empresa.setNomeFantasia()");
-        validarStringTamanhoMinimoEMaximo(nomeFantasia, 2, 70, "br.com.contmatic.empresa.Empresa.setNomeFantasia()");
+        isStringEmpty(nomeFantasia, "nomeFantasia", "Empresa");
+        isStringBlank(nomeFantasia, "nomeFantasia", "Empresa");
+        validarStringTamanhoMinimoEMaximo(nomeFantasia, 2, 70, "nomeFantasia", "Empresa");
         this.nomeFantasia = nomeFantasia;
     }
 
@@ -49,7 +54,7 @@ public class Empresa {
     }
 
     public void setCnpj(String cnpj) {
-        validaCnpj(cnpj, "br.com.contmatic.empresa.Empresa.setCnpj()");
+        validaCnpj(cnpj, "cnpj", "Empresa");
         this.cnpj = cnpj;
     }
 
@@ -58,9 +63,9 @@ public class Empresa {
     }
 
     public void setRazaoSocial(String razaoSocial) {
-        isStringBlank(razaoSocial, "br.com.contmatic.empresa.Empresa.setRazaoSocial()");
-        isStringEmpty(razaoSocial, "br.com.contmatic.empresa.Empresa.setRazaoSocial()");
-        validarStringTamanhoMinimoEMaximo(razaoSocial, 5, 60, "br.com.contmatic.empresa.Empresa.setRazaoSocial()");
+        isStringBlank(razaoSocial, "razaoSocial", "Empresa");
+        isStringEmpty(razaoSocial, "razaoSocial", "Empresa");
+        validarStringTamanhoMinimoEMaximo(razaoSocial, 5, 60, "razaoSocial", "Empresa");
         this.razaoSocial = razaoSocial;
     }
 
@@ -69,9 +74,9 @@ public class Empresa {
     }
 
     public void setAreaDeAtuacao(String areaDeAtuacao) {
-        isStringEmpty(areaDeAtuacao, "br.com.contmatic.empresa.Empresa.setAreaDeAtuacao()");
-        isStringBlank(areaDeAtuacao, "br.com.contmatic.empresa.Empresa.setAreaDeAtuacao()");
-        validarStringTamanhoMaximo(areaDeAtuacao, 90, "br.com.contmatic.empresa.Empresa.setAreaDeAtuacao()");
+        isStringEmpty(areaDeAtuacao, "areaDeAtuacao", "Empresa");
+        isStringBlank(areaDeAtuacao, "areaDeAtuacao", "Empresa");
+        validarStringTamanhoMaximo(areaDeAtuacao, 90, "areaDeAtuacao", "Empresa");
         this.areaDeAtuacao = areaDeAtuacao;
     }
 
@@ -80,7 +85,7 @@ public class Empresa {
     }
 
     public void setEndereco(Endereco endereco) {
-        verifierObjectIsNull(endereco, "br.com.contmatic.empresa.Empresa.setEndereco()");
+        verifierObjectIsNull(endereco, "endereco", "Endereco");
         this.endereco = endereco;
     }
 
@@ -89,7 +94,7 @@ public class Empresa {
     }
 
     public void setFuncionarios(List<Funcionario> funcionarios) {
-        verifierObjectIsNull(funcionarios, "br.com.contmatic.empresa.Empresa.setFuncionarios()");
+        verifierObjectIsNull(funcionarios, "funcionarios", "Empresa");
         this.funcionarios = funcionarios;
     }
 

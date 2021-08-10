@@ -1,5 +1,7 @@
 package br.com.contmatic.empresa;
 
+import br.com.contmatic.validator.Validacoes;
+
 import java.util.Date;
 
 import static br.com.contmatic.validator.ValidacaoCpf.validaCpf;
@@ -8,9 +10,13 @@ import static br.com.contmatic.validator.Validacoes.*;
 public class Funcionario {
 
     private String nome;
+
     private Date dataNascimento;
+
     private String cpf;
+
     private String cargo;
+
     private double salario;
 
     public Funcionario(String cpf) {
@@ -18,10 +24,10 @@ public class Funcionario {
     }
 
     public void setNome(String nome) {
-        isStringEmpty(nome, "br.com.contmatic.empresa.Funcionario.setNome()");
-        isStringBlank(nome, "br.com.contmatic.empresa.Funcionario.setNome()");
-        isNonNumeric(nome, "br.com.contmatic.empresa.Funcionario.setNome()");
-        validarStringTamanhoMaximo(nome, 80, "br.com.contmatic.empresa.Funcionario.setNome()");
+        isStringEmpty(nome, "nome", "Funcionario");
+        isStringBlank(nome, "nome", "Funcionario");
+        isNonNumeric(nome, "nome", "Funcionario");
+        validarStringTamanhoMaximo(nome, 80, "nome", "Funcionario");
         this.nome = nome;
     }
 
@@ -30,7 +36,8 @@ public class Funcionario {
     }
 
     public void setDataNascimento(Date dataNascimento) {
-        verifierObjectIsNull(dataNascimento, "br.com.contmatic.empresa.Funcionario.setDataNascimento()");
+        verifierObjectIsNull(dataNascimento, "dataNascimento", "Funcionario");
+        validarDate(dataNascimento, "dataNascimento", "Funcionario");
         this.dataNascimento = dataNascimento;
     }
 
@@ -39,7 +46,7 @@ public class Funcionario {
     }
 
     public void setCpf(String cpf) {
-        validaCpf(cpf, "br.com.contmatic.empresa.Funcionario.setCpf()");
+        validaCpf(cpf, "cpf", "Funcionario");
         this.cpf = cpf;
     }
 
@@ -48,10 +55,10 @@ public class Funcionario {
     }
 
     public void setCargo(String cargo) {
-        isStringEmpty(cargo, "br.com.contmatic.empresa.Funcionario.setCargo()");
-        isStringBlank(cargo, "br.com.contmatic.empresa.Funcionario.setCargo()");
-        isNonNumeric(cargo, "br.com.contmatic.empresa.Funcionario.setCargo()");
-        validarStringTamanhoMaximo(cargo, 90, "br.com.contmatic.empresa.Funcionario.setCargo()");
+        isStringEmpty(cargo, "cargo", "Funcionario");
+        isStringBlank(cargo, "cargo", "Funcionario");
+        isNonNumeric(cargo, "cargo", "Funcionario");
+        validarStringTamanhoMaximo(cargo, 90, "cargo", "Funcionario");
         this.cargo = cargo;
     }
 
