@@ -4,6 +4,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 public final class Validacoes {
 
@@ -88,13 +89,24 @@ public final class Validacoes {
     public static void validarDate(Date data, String nomeDoCampo, String classe) {
         Date dataAtual = new Date(System.currentTimeMillis());
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-
         if (dataAtual.compareTo(data) < 0) {
-            throw new IllegalArgumentException("A data do " + nomeDoCampo + " na classe " + classe + " está no futuro: " + sdf.format(data));
+            throw new IllegalStateException("A data do " + nomeDoCampo + " na classe " + classe + " está no futuro: " + sdf.format(data));
         }
     }
 
+    public static void validarListIsEmpty(List<?> lista, String nomeDoCampo, String classe) {
+        if (lista.isEmpty()) {
+            throw new IllegalStateException("A list do " + nomeDoCampo + " na classe " + classe + " está no vazia: " + lista);
+        }
+    }
+
+    public static void validarListIsZero(List<?> lista, String nomeDoCampo, String classe) {
+        if (lista.size() <= 0) {
+            throw new IllegalStateException("A list do " + nomeDoCampo + " na classe " + classe + " está no vazia: " + lista);
+        }
+    }
 
 }
+
 
 

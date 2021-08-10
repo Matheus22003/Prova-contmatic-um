@@ -81,7 +81,6 @@ public class Funcionario {
         return this.salario;
     }
 
-
     @Override
     public int hashCode() {
         final int prime = 31;

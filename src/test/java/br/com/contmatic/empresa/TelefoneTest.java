@@ -25,7 +25,7 @@ class TelefoneTest {
     @Test
     void deve_aceitar_ddd_valido() {
         telefone.setDDD(DDD.RIO_DE_JANEIRO);
-        assertThat("Erro ao adcionar DDD", telefone.getDdd(), equalTo(DDD.RIO_DE_JANEIRO));
+        assertThat("Erro ao adicionar DDD", telefone.getDdd(), equalTo(DDD.RIO_DE_JANEIRO));
     }
 
     @Test

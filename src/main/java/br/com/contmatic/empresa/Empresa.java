@@ -1,5 +1,7 @@
 package br.com.contmatic.empresa;
 
+import br.com.contmatic.validator.Validacoes;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -95,6 +97,8 @@ public class Empresa {
 
     public void setFuncionarios(List<Funcionario> funcionarios) {
         verifierObjectIsNull(funcionarios, "funcionarios", "Empresa");
+        validarListIsEmpty(funcionarios, "funcionarios", "Empresa");
+        validarListIsZero(funcionarios, "funcionarios", "Empresa")
         this.funcionarios = funcionarios;
     }
 
