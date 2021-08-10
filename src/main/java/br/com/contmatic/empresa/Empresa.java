@@ -98,7 +98,7 @@ public class Empresa {
     public void setFuncionarios(List<Funcionario> funcionarios) {
         verifierObjectIsNull(funcionarios, "funcionarios", "Empresa");
         validarListIsEmpty(funcionarios, "funcionarios", "Empresa");
-        validarListIsZero(funcionarios, "funcionarios", "Empresa")
+        validarListIsZero(funcionarios, "funcionarios", "Empresa");
         this.funcionarios = funcionarios;
     }
 
