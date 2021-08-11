@@ -1,10 +1,9 @@
 package br.com.contmatic.empresa;
 
-import br.com.contmatic.validator.Validacoes;
-
-import java.util.Objects;
-
 import static br.com.contmatic.validator.Validacoes.*;
+import static org.apache.commons.lang3.builder.EqualsBuilder.reflectionEquals;
+import static org.apache.commons.lang3.builder.HashCodeBuilder.reflectionHashCode;
+import static org.apache.commons.lang3.builder.ToStringBuilder.reflectionToString;
 
 public class Endereco {
 
@@ -104,27 +103,16 @@ public class Endereco {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Endereco endereco = (Endereco) o;
-        return Objects.equals(numero, endereco.numero) && Objects.equals(cep, endereco.cep);
+        return reflectionEquals(this, o);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(numero, cep);
+        return reflectionHashCode(this);
     }
 
     @Override
     public String toString() {
-        return "Endereco{" +
-                "rua='" + rua + '\'' +
-                ", numero=" + numero +
-                ", complemento='" + complemento + '\'' +
-                ", bairro='" + bairro + '\'' +
-                ", estado=" + estado +
-                ", cidade='" + cidade + '\'' +
-                ", cep='" + cep + '\'' +
-                '}';
+        return reflectionToString(this);
     }
 }

@@ -3,6 +3,9 @@ package br.com.contmatic.empresa;
 import java.util.Objects;
 
 import static br.com.contmatic.validator.Validacoes.*;
+import static org.apache.commons.lang3.builder.EqualsBuilder.reflectionEquals;
+import static org.apache.commons.lang3.builder.HashCodeBuilder.reflectionHashCode;
+import static org.apache.commons.lang3.builder.ToStringBuilder.reflectionToString;
 
 public class Telefone {
 
@@ -57,21 +60,18 @@ public class Telefone {
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(digitoPais, ddd, numero);
+    public boolean equals(Object o) {
+        return reflectionEquals(this, o);
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Telefone telefone = (Telefone) o;
-        return Objects.equals(digitoPais, telefone.digitoPais) && ddd == telefone.ddd && Objects.equals(numero, telefone.numero);
+    public int hashCode() {
+        return reflectionHashCode(this);
     }
 
     @Override
     public String toString() {
-        return "Telefone [digitoPais=" + digitoPais + ", ddd=" + ddd + ", numeroTelefone=" + numero + "]";
+        return reflectionToString(this);
     }
 
 }

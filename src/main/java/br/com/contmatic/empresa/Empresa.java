@@ -1,13 +1,13 @@
 package br.com.contmatic.empresa;
 
-import br.com.contmatic.validator.Validacoes;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 import static br.com.contmatic.validator.Validacoes.*;
 import static br.com.contmatic.validator.ValidatorEmpresa.validaCnpj;
+import static org.apache.commons.lang3.builder.EqualsBuilder.reflectionEquals;
+import static org.apache.commons.lang3.builder.HashCodeBuilder.reflectionHashCode;
+import static org.apache.commons.lang3.builder.ToStringBuilder.reflectionToString;
 
 public class Empresa {
 
@@ -98,34 +98,23 @@ public class Empresa {
     public void setFuncionarios(List<Funcionario> funcionarios) {
         verifierObjectIsNull(funcionarios, "funcionarios", "Empresa");
         validarListIsEmpty(funcionarios, "funcionarios", "Empresa");
-        validarListIsZero(funcionarios, "funcionarios", "Empresa")
+        validarListIsZero(funcionarios, "funcionarios", "Empresa");
         this.funcionarios = funcionarios;
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Empresa empresa = (Empresa) o;
-        return Objects.equals(cnpj, empresa.cnpj);
+        return reflectionEquals(this, o);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(cnpj);
+        return reflectionHashCode(this);
     }
 
     @Override
     public String toString() {
-        if (funcionarios.isEmpty()) {
-
-            return "CNPJ: " + this.cnpj + "\n" + "Endereço: " + this.endereco + "\n" + "Area de Atuação: "
-                    + areaDeAtuacao + "\n" + "Ainda não possui nenhum funcionario!";
-        } else {
-            return "CNPJ: " + this.cnpj + "\n" + "Endereço: " + this.endereco + "\n" + "Quantidade de Funcionarios: "
-                    + funcionarios.size() + "\n" + "Area de Atuação: " + areaDeAtuacao;
-
-        }
+        return reflectionToString(this);
     }
 
 }

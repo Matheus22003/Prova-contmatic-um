@@ -6,6 +6,9 @@ import java.util.Date;
 
 import static br.com.contmatic.validator.ValidacaoCpf.validaCpf;
 import static br.com.contmatic.validator.Validacoes.*;
+import static org.apache.commons.lang3.builder.EqualsBuilder.reflectionEquals;
+import static org.apache.commons.lang3.builder.HashCodeBuilder.reflectionHashCode;
+import static org.apache.commons.lang3.builder.ToStringBuilder.reflectionToString;
 
 public class Funcionario {
 
@@ -82,25 +85,18 @@ public class Funcionario {
     }
 
     @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((cpf == null) ? 0 : cpf.hashCode());
-        return result;
+    public boolean equals(Object o) {
+        return reflectionEquals(this, o);
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Funcionario that = (Funcionario) o;
-        return cpf.equals(that.cpf);
+    public int hashCode() {
+        return reflectionHashCode(this);
     }
 
     @Override
     public String toString() {
-        return "Funcionario [nome=" + nome + ", dataNascimento=" + dataNascimento + ", cpf=" + cpf + ", cargo=" + cargo
-                + ", salario=" + salario + "]";
+        return reflectionToString(this);
     }
 
 }

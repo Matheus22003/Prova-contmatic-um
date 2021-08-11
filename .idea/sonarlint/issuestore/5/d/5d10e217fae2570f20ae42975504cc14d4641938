@@ -1,0 +1,9 @@
+
+[
+java:S2184"BCast one of the operands of this division operation to a "double".(þ¶Ç½ýÿÿÿÿ
+{
+java:S1488"bImmediately return this expression instead of assigning it to the temporary variable "digitoDois".(´ªŒ³ûÿÿÿÿ
+L
+java:S1197"8Move the array designator from the variable to the type.(þÝòâ
+?
+java:S2185"&Remove this silly call to "Math.floor"(þ¶Ç½ýÿÿÿÿ
