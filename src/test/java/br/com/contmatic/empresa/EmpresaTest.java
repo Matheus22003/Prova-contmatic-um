@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
+import static br.com.six2six.fixturefactory.Fixture.*;
 import static br.com.six2six.fixturefactory.Fixture.from;
 import static br.com.six2six.fixturefactory.loader.FixtureFactoryLoader.loadTemplates;
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -87,7 +88,7 @@ class EmpresaTest {
     @Test
     void deve_aceitar_endereco_valido() {
         assertThat("Endereco retornando errado", rivals.getEndereco(),
-                equalTo(Fixture.from(Endereco.class).gimme("valido")));
+                equalTo(from(Endereco.class).gimme("valido")));
     }
 
     @Test
@@ -98,7 +99,7 @@ class EmpresaTest {
     @Test
     void deve_aceitar_lista_de_funcionarios_valido() {
         List<Funcionario> funcionarios = new ArrayList<>();
-        funcionarios.add(new Funcionario("42793727806"));
+        funcionarios.add(from(Endereco.class).gimme("valido"));
         rivals.setFuncionarios(funcionarios);
         assertThat("Erro ao adicionar Funcionario", rivals.getFuncionarios(), equalTo(funcionarios));
     }
@@ -116,25 +117,24 @@ class EmpresaTest {
 
     @Test
     void deve_mostrar_que_as_duas_empresas_de_cnoj_iguais_sao_as_mesmas() {
-        Empresa empresaCloneRivals = Fixture.from(Empresa.class).gimme("valido");
+        Empresa empresaCloneRivals = from(Empresa.class).gimme("valido");
         assertThat("Equals comparando valores errados", rivals.equals(empresaCloneRivals), equalTo(true));
     }
 
     @Test
     void deve_mostrar_que_as_duas_empresas_de_cnoj_diferentes_sao_diferentes() {
-        Empresa empresaCloneRivals = new Empresa("25905179000157");
+        Empresa empresaCloneRivals = from(Empresa.class).gimme("validoAleatorio");
         assertThat("Equals comparando valores errados", rivals.equals(empresaCloneRivals), equalTo(false));
     }
 
     @Test
     void deve_mostrar_esse_exato_hashcode() {
-        assertThat("Erro ao calcular HashCode", rivals.hashCode(), equalTo(-2078572566));
+        assertThat("Erro ao calcular HashCode", rivals.hashCode(), equalTo(1924614313));
     }
 
     @Test
     void deve_retornar_esse_exato_padrao_string() {
-
-        assertThat("Erro ao fazer ToString com funcionario", rivals.toString(), equalTo("br.com.contmatic.empresa.Empresa@1301423[areaDeAtuacao=Desenvolvimento,cnpj=11319526000155,endereco=br.com.contmatic.empresa.Endereco@1112965[bairro=Liberdade,cep=01504001,cidade=São Paulo,complemento=apto29,estado=SAOPAULO,numero=819,rua=Rua Vergueiro],funcionarios=[],nome=Rivals,nomeFantasia=Rivals Tournament,razaoSocial=Campeonatos E-Sports]"));
+        assertThat("Erro ao fazer ToString com funcionario", rivals.toString(), equalTo("br.com.contmatic.empresa.Empresa@1e5fc98[areaDeAtuacao=Desenvolvimento,cnpj=11319526000155,endereco=br.com.contmatic.empresa.Endereco@469c48[bairro=Liberdade,cep=01504001,cidade=São Paulo,complemento=apto29,estado=SAOPAULO,numero=819,rua=Rua Vergueiro],funcionarios=[],nome=Rivals,nomeFantasia=Rivals Tournament,razaoSocial=Campeonatos E-Sports]"));
     }
 
 }

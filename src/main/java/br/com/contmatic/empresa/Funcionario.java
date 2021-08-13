@@ -1,7 +1,5 @@
 package br.com.contmatic.empresa;
 
-import br.com.contmatic.validator.Validacoes;
-
 import java.util.Date;
 
 import static br.com.contmatic.validator.ValidacaoCpf.validaCpf;
