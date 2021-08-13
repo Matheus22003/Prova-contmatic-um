@@ -136,5 +136,5 @@ class EmpresaTest {
     void deve_retornar_esse_exato_padrao_string() {
         assertThat("Erro ao fazer ToString com funcionario", rivals.toString(), equalTo("br.com.contmatic.empresa.Empresa@1e5fc98[areaDeAtuacao=Desenvolvimento,cnpj=11319526000155,endereco=br.com.contmatic.empresa.Endereco@469c48[bairro=Liberdade,cep=01504001,cidade=São Paulo,complemento=apto29,estado=SAOPAULO,numero=819,rua=Rua Vergueiro],funcionarios=[],nome=Rivals,nomeFantasia=Rivals Tournament,razaoSocial=Campeonatos E-Sports]"));
     }
-
+    
 }
