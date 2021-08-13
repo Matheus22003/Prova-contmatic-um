@@ -21,7 +21,7 @@ public class Endereco {
 
     private String cep;
 
-    public Endereco(String cep, int numero) {
+    public Endereco(String cep, Integer numero) {
         this.setCep(cep);
         this.setNumero(numero);
     }

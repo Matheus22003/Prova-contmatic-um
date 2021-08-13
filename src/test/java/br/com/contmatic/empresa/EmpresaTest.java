@@ -1,13 +1,16 @@
 package br.com.contmatic.empresa;
 
 import br.com.contmatic.exception.CnpjInvalidoException;
-import br.com.contmatic.exception.CpfInvalidoException;
+import br.com.six2six.fixturefactory.Fixture;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static br.com.six2six.fixturefactory.Fixture.from;
+import static br.com.six2six.fixturefactory.loader.FixtureFactoryLoader.loadTemplates;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -16,14 +19,19 @@ class EmpresaTest {
 
     Empresa rivals;
 
+    @BeforeAll
+    public static void setupTest() {
+        loadTemplates("br.com.contmatic.fixture.factory");
+
+    }
+
     @BeforeEach
     void setup() {
-        rivals = new Empresa("11319526000155");
+        rivals = from(Empresa.class).gimme("valido");
     }
 
     @Test
     void deve_aceitar_nome_valido() {
-        rivals.setNome("Rivals");
         assertThat("Erro ao adicionar ou retornar nome de Empresa", rivals.getNome(),
                 equalTo("Rivals"));
     }
@@ -35,7 +43,6 @@ class EmpresaTest {
 
     @Test
     void deve_aceitar_nomeFantasia_valido() {
-        rivals.setNomeFantasia("Rivals Tournament");
         assertThat("Erro ao adicionar ou retornar Nome Fantasia", rivals.getNomeFantasia(),
                 equalTo("Rivals Tournament"));
     }
@@ -47,19 +54,16 @@ class EmpresaTest {
 
     @Test
     void deve_aceitar_cnpj_valido() {
-        rivals.setCnpj("73487481000185");
-        assertThat("Erro ao adiconar valor em CNPJ", rivals.getCnpj(), equalTo("73487481000185"));
+        assertThat("Erro ao adiconar valor em CNPJ", rivals.getCnpj(), equalTo("11319526000155"));
     }
 
     @Test
     void nao_deve_aceitar_um_cnoj_invalido() {
-        rivals.setCnpj("73487481000185");
         assertThrows(CnpjInvalidoException.class, () -> rivals.setCnpj("7348748100018500"));
     }
 
     @Test
     void deve_aceitar_razaoSocial_valido() {
-        rivals.setRazaoSocial("Campeonatos E-Sports");
         assertThat("Erro ao adicionar ou retornar Razão Social", rivals.getRazaoSocial(),
                 equalTo("Campeonatos E-Sports"));
     }
@@ -71,7 +75,6 @@ class EmpresaTest {
 
     @Test
     void deve_aceitar_areaDeAtuacao_valido() {
-        rivals.setAreaDeAtuacao("Desenvolvimento");
         assertThat("Erro ao adicionar ou retornar area de atuação", rivals.getAreaDeAtuacao(),
                 equalTo("Desenvolvimento"));
     }
@@ -83,10 +86,8 @@ class EmpresaTest {
 
     @Test
     void deve_aceitar_endereco_valido() {
-        rivals.setEndereco(new Endereco("01504001", 819));
-
         assertThat("Endereco retornando errado", rivals.getEndereco(),
-                equalTo(new Endereco("01504001", 819)));
+                equalTo(Fixture.from(Endereco.class).gimme("valido")));
     }
 
     @Test
@@ -106,7 +107,6 @@ class EmpresaTest {
     void nao_deve_aceitar_uma_lista_de_funcionarios_com_erro_de_funcionario() {
         List<Funcionario> funcionarios = new ArrayList<>();
         assertThrows(IllegalArgumentException.class, () -> funcionarios.add(new Funcionario("42793727806000")));
-        rivals.setFuncionarios(funcionarios);
     }
 
     @Test
@@ -116,7 +116,7 @@ class EmpresaTest {
 
     @Test
     void deve_mostrar_que_as_duas_empresas_de_cnoj_iguais_sao_as_mesmas() {
-        Empresa empresaCloneRivals = new Empresa("11319526000155");
+        Empresa empresaCloneRivals = Fixture.from(Empresa.class).gimme("valido");
         assertThat("Equals comparando valores errados", rivals.equals(empresaCloneRivals), equalTo(true));
     }
 
@@ -128,28 +128,13 @@ class EmpresaTest {
 
     @Test
     void deve_mostrar_esse_exato_hashcode() {
-        assertThat("Erro ao calcular HashCode", rivals.hashCode(), equalTo(-932838434));
+        assertThat("Erro ao calcular HashCode", rivals.hashCode(), equalTo(-2078572566));
     }
 
     @Test
-    void deve_retornar_string_sem_funcionario() {
-        assertThat("Erro ao fazer ToString Sem funcionario", rivals.toString(), equalTo("CNPJ: 11319526000155\n" +
-                "Endereço: null\n" +
-                "Area de Atuação: null\n" +
-                "Ainda não possui nenhum funcionario!"));
+    void deve_retornar_esse_exato_padrao_string() {
 
-    }
-
-    @Test
-    void deve_retornar_string_com_funcionario() {
-        List<Funcionario> funcionarios = new ArrayList<Funcionario>();
-        funcionarios.add(new Funcionario("42793727806"));
-        rivals.setFuncionarios(funcionarios);
-
-        assertThat("Erro ao fazer ToString com funcionario", rivals.toString(), equalTo("CNPJ: 11319526000155\n" +
-                "Endereço: null\n" +
-                "Quantidade de Funcionarios: 1\n" +
-                "Area de Atuação: null"));
+        assertThat("Erro ao fazer ToString com funcionario", rivals.toString(), equalTo("br.com.contmatic.empresa.Empresa@1301423[areaDeAtuacao=Desenvolvimento,cnpj=11319526000155,endereco=br.com.contmatic.empresa.Endereco@1112965[bairro=Liberdade,cep=01504001,cidade=São Paulo,complemento=apto29,estado=SAOPAULO,numero=819,rua=Rua Vergueiro],funcionarios=[],nome=Rivals,nomeFantasia=Rivals Tournament,razaoSocial=Campeonatos E-Sports]"));
     }
 
 }
