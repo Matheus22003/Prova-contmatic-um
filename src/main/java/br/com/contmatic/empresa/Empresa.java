@@ -1,10 +1,12 @@
 package br.com.contmatic.empresa;
 
+import org.hibernate.validator.constraints.br.CNPJ;
+
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
 import static br.com.contmatic.validator.Validacoes.*;
-import static br.com.contmatic.validator.ValidatorEmpresa.validaCnpj;
 import static org.apache.commons.lang3.builder.EqualsBuilder.reflectionEquals;
 import static org.apache.commons.lang3.builder.HashCodeBuilder.reflectionHashCode;
 import static org.apache.commons.lang3.builder.ToStringBuilder.reflectionToString;
@@ -15,6 +17,8 @@ public class Empresa {
 
     private String nomeFantasia;
 
+    @NotNull(message = "Funciona")
+    @CNPJ(message = "Funciona")
     private String cnpj;
 
     private String razaoSocial;
@@ -56,7 +60,7 @@ public class Empresa {
     }
 
     public void setCnpj(String cnpj) {
-        validaCnpj(cnpj, "cnpj", "Empresa");
+//        validaCnpj(cnpj, "cnpj", "Empresa");
         this.cnpj = cnpj;
     }
 
@@ -109,7 +113,7 @@ public class Empresa {
 
     @Override
     public int hashCode() {
-        return reflectionHashCode(this);
+        return reflectionHashCode(this.cnpj);
     }
 
     @Override

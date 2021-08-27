@@ -1,9 +1,14 @@
 package br.com.contmatic.empresa;
 
+import static br.com.contmatic.fixture.factory.TiposFixtureFactory.VALIDO;
+import static br.com.six2six.fixturefactory.Fixture.from;
+import static br.com.six2six.fixturefactory.loader.FixtureFactoryLoader.loadTemplates;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
+import br.com.contmatic.fixture.factory.TiposFixtureFactory;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -11,9 +16,15 @@ class EnderecoTest {
 
     Endereco enderecoRivals;
 
+    @BeforeAll
+    public static void setupTest() {
+        loadTemplates("br.com.contmatic.fixture.factory");
+    }
+
     @BeforeEach
     void setup() {
-        enderecoRivals = new Endereco("01504001", 819);
+        enderecoRivals = from(Endereco.class).gimme(VALIDO);
+        ;
     }
 
     @Test
@@ -120,7 +131,7 @@ class EnderecoTest {
 
     @Test
     void deve_mostrar_que_os_dois_enderecos_de_mesmo_valores_sao_iguais() {
-        Endereco endereco = new Endereco("01504001", 819);
+        Endereco endereco = from(Endereco.class).gimme(VALIDO);
         assertThat("falha ao calcular Equals", enderecoRivals.equals(endereco), equalTo(true));
     }
 
@@ -132,12 +143,12 @@ class EnderecoTest {
 
     @Test
     void deve_mostrar_exato_hashcode() {
-        assertThat("falha ao calcular HashCode", enderecoRivals.hashCode(), equalTo(-143145273));
+        assertThat("falha ao calcular HashCode", enderecoRivals.hashCode(), equalTo(-1002358663));
     }
 
     @Test
     void deve_retornar_string() {
-        assertThat("falha ao pegat toString", enderecoRivals.toString(), equalTo("Endereco{rua='null', numero=819, complemento='null', bairro='null', estado=null, cidade='null', cep='01504001'}"));
+        assertThat("falha ao pegat toString", enderecoRivals.toString(), equalTo("br.com.contmatic.empresa.Endereco@126e945[bairro=Liberdade,cep=01504001,cidade=São Paulo,complemento=apto29,estado=SAOPAULO,numero=819,rua=Rua Vergueiro]"));
     }
 
 }

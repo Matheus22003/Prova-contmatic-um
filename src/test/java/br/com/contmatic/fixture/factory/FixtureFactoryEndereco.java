@@ -6,12 +6,13 @@ import br.com.six2six.fixturefactory.Fixture;
 import br.com.six2six.fixturefactory.Rule;
 import br.com.six2six.fixturefactory.loader.TemplateLoader;
 
+import static br.com.contmatic.fixture.factory.TiposFixtureFactory.VALIDO;
 import static br.com.six2six.fixturefactory.Fixture.of;
 
 public class FixtureFactoryEndereco implements TemplateLoader {
     @Override
     public void load() {
-        of(Endereco.class).addTemplate("valido", new Rule() {
+        of(Endereco.class).addTemplate(VALIDO, new Rule() {
             {
                 add("rua", "Rua Vergueiro");
                 add("numero", 819);

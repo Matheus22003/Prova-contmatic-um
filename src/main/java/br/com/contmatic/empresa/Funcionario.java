@@ -1,18 +1,20 @@
 package br.com.contmatic.empresa;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.joda.time.DateTime;
+
 import java.util.Date;
 
 import static br.com.contmatic.validator.ValidacaoCpf.validaCpf;
 import static br.com.contmatic.validator.Validacoes.*;
-import static org.apache.commons.lang3.builder.EqualsBuilder.reflectionEquals;
-import static org.apache.commons.lang3.builder.HashCodeBuilder.reflectionHashCode;
 import static org.apache.commons.lang3.builder.ToStringBuilder.reflectionToString;
 
 public class Funcionario {
 
     private String nome;
 
-    private Date dataNascimento;
+    private DateTime dataNascimento;
 
     private String cpf;
 
@@ -36,13 +38,12 @@ public class Funcionario {
         return this.nome;
     }
 
-    public void setDataNascimento(Date dataNascimento) {
+    public void setDataNascimento(DateTime dataNascimento) {
         verifierObjectIsNull(dataNascimento, "dataNascimento", "Funcionario");
-        validarDate(dataNascimento, "dataNascimento", "Funcionario");
         this.dataNascimento = dataNascimento;
     }
 
-    public Date getDataNascimento() {
+    public DateTime getDataNascimento() {
         return this.dataNascimento;
     }
 
@@ -83,13 +84,23 @@ public class Funcionario {
     }
 
     @Override
-    public boolean equals(Object o) {
-        return reflectionEquals(this, o);
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (obj == this) {
+            return true;
+        }
+        if (obj.getClass() != getClass()) {
+            return false;
+        }
+        Funcionario other = (Funcionario) obj;
+        return new EqualsBuilder().append(cpf, other.cpf).isEquals();
     }
 
     @Override
     public int hashCode() {
-        return reflectionHashCode(this);
+        return new HashCodeBuilder().append(this.cpf).toHashCode();
     }
 
     @Override

@@ -1,8 +1,9 @@
 package br.com.contmatic.empresa;
 
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+
 import static br.com.contmatic.validator.Validacoes.*;
 import static org.apache.commons.lang3.builder.EqualsBuilder.reflectionEquals;
-import static org.apache.commons.lang3.builder.HashCodeBuilder.reflectionHashCode;
 import static org.apache.commons.lang3.builder.ToStringBuilder.reflectionToString;
 
 public class Endereco {
@@ -108,7 +109,7 @@ public class Endereco {
 
     @Override
     public int hashCode() {
-        return reflectionHashCode(this);
+        return new HashCodeBuilder().append(cep).append(numero).toHashCode();
     }
 
     @Override

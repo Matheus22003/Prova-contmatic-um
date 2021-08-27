@@ -1,9 +1,14 @@
 package br.com.contmatic.empresa;
 
+import static br.com.contmatic.fixture.factory.TiposFixtureFactory.VALIDO;
+import static br.com.six2six.fixturefactory.Fixture.from;
+import static br.com.six2six.fixturefactory.loader.FixtureFactoryLoader.loadTemplates;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import org.joda.time.DateTime;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -14,9 +19,14 @@ import java.util.Date;
 class FuncionarioTest {
     Funcionario funcionario;
 
+    @BeforeAll
+    public static void setupTest() {
+        loadTemplates("br.com.contmatic.fixture.factory");
+    }
+
     @BeforeEach
     void setup() {
-        funcionario = new Funcionario("42793727806");
+        funcionario = from(Funcionario.class).gimme(VALIDO);
     }
 
     @Test
@@ -38,15 +48,8 @@ class FuncionarioTest {
 
     @Test
     void deve_aceitar_dataNascimento_valido() throws ParseException {
-        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-        funcionario.setDataNascimento(formato.parse("22/03/2003"));
-        assertThat("Erro ao adicionar data de nascimento", formato.format(funcionario.getDataNascimento()), equalTo("22/03/2003"));
-    }
-
-    @Test
-    void nao_deve_aceitar_dataNascimento_nulo() throws ParseException {
-        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-        assertThrows(IllegalArgumentException.class, () -> funcionario.setDataNascimento(formato.parse("22/03/2022")));
+        funcionario.setDataNascimento(new DateTime(2003, 3, 22, 11, 30));
+        assertThat("Erro ao adicionar data de nascimento", funcionario.getDataNascimento(), equalTo(new DateTime(2003, 3, 22, 11, 30)));
     }
 
     @Test
@@ -94,13 +97,13 @@ class FuncionarioTest {
 
     @Test
     void deve_mostrar_esse_exato_hashcode() {
-        assertThat("Erro ao calcular HashCode", funcionario.hashCode(), equalTo(-617216460));
+        assertThat("Erro ao calcular HashCode", funcionario.hashCode(), equalTo(-617215862));
     }
 
     @Test
     void deve_mostrar_que_os_dois_funcionarios_de_cpf_iguais_sao_as_mesmas() {
-        Funcionario funcionarioTeste = new Funcionario("42793727806");
-        assertThat("Erro ao calcular Equal", funcionario.equals(funcionarioTeste), equalTo(true));
+        Funcionario funcionarioTeste = from(Funcionario.class).gimme(VALIDO);
+        assertThat("Erro ao calcular Equal", funcionarioTeste.equals(funcionario), equalTo(true));
     }
 
     @Test
@@ -111,7 +114,7 @@ class FuncionarioTest {
 
     @Test
     void deve_retornar_string() {
-        assertThat("Erro ao exibir toString", funcionario.toString(), equalTo("Funcionario [nome=null, dataNascimento=null, cpf=42793727806, cargo=null, salario=0.0]"));
+        assertThat("Erro ao exibir toString", funcionario.toString(), equalTo("br.com.contmatic.empresa.Funcionario@1c88ec8[cargo=Estagiario,cpf=42793727806,dataNascimento=2003-03-22T11:30:00.000-03:00,nome=Matheus,salario=2000.0]"));
     }
 
 }

@@ -1,9 +1,15 @@
 package br.com.contmatic.empresa;
 
+import static br.com.contmatic.empresa.DDD.RIO_DE_JANEIRO;
+import static br.com.contmatic.empresa.DDD.SAO_PAULO;
+import static br.com.contmatic.fixture.factory.TiposFixtureFactory.VALIDO;
+import static br.com.six2six.fixturefactory.Fixture.from;
+import static br.com.six2six.fixturefactory.loader.FixtureFactoryLoader.loadTemplates;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -11,10 +17,14 @@ class TelefoneTest {
 
     Telefone telefone;
 
+    @BeforeAll
+    public static void setupTest() {
+        loadTemplates("br.com.contmatic.fixture.factory");
+    }
+
     @BeforeEach
     void setup() {
-        telefone = new Telefone(DDD.SAO_PAULO, "987704670");
-
+        telefone = from(Telefone.class).gimme(VALIDO);
     }
 
     @Test
@@ -24,8 +34,8 @@ class TelefoneTest {
 
     @Test
     void deve_aceitar_ddd_valido() {
-        telefone.setDDD(DDD.RIO_DE_JANEIRO);
-        assertThat("Erro ao adicionar DDD", telefone.getDdd(), equalTo(DDD.RIO_DE_JANEIRO));
+        telefone.setDDD(RIO_DE_JANEIRO);
+        assertThat("Erro ao adicionar DDD", telefone.getDdd(), equalTo(RIO_DE_JANEIRO));
     }
 
     @Test
@@ -51,28 +61,27 @@ class TelefoneTest {
 
     @Test
     void deve_mostrar_esse_exato_hashcode() {
-        Telefone telefoneHashCode = new Telefone(DDD.SAO_PAULO, "987704670");
-        assertThat("Erro ao adcionar Telefone", telefoneHashCode.hashCode(), equalTo(-1904239072));
+        Telefone telefoneHashCode = new Telefone(SAO_PAULO, "987704670");
+        assertThat("Erro ao adcionar Telefone", telefoneHashCode.hashCode(), equalTo(-1750465255));
     }
 
     @Test
     void deve_mostrar_que_os_dois_telefones_de_numero_ddd_iguais_sao_os_mesmas() {
-        Telefone telefoneDois = new Telefone(DDD.SAO_PAULO, "987704670");
-        telefone = new Telefone(DDD.SAO_PAULO, "987704670");
+        Telefone telefoneDois = new Telefone(SAO_PAULO, "987704670");
+        telefone = new Telefone(SAO_PAULO, "987704670");
         assertThat("Erro ao adcionar Telefone", telefone.equals(telefoneDois), equalTo(true));
     }
 
     @Test
     void deve_mostrar_que_os_dois_telefones_de_numero_ddd_diferentes_nao_sao_os_mesmos() {
-        Telefone telefoneDois = new Telefone(DDD.RIO_DE_JANEIRO, "987704670");
-        telefone = new Telefone(DDD.SAO_PAULO, "987704670");
+        Telefone telefoneDois = new Telefone(RIO_DE_JANEIRO, "987704670");
+        telefone = new Telefone(SAO_PAULO, "987704670");
         assertThat("Erro ao adcionar Telefone", telefone.equals(telefoneDois), equalTo(false));
     }
 
     @Test
     void deve_retornar_string() {
-        assertThat("Erro ao adcionar Telefone", telefone.toString(), equalTo("Telefone [digitoPais=55, ddd=SAO_PAULO, numeroTelefone=987704670]"));
-
+        assertThat("Erro ao adcionar Telefone", telefone.toString(), equalTo("br.com.contmatic.empresa.Telefone@15eaaf1[ddd=SAO_PAULO,digitoPais=55,numero=987704670]"));
     }
 
 }

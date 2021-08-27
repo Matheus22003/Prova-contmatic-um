@@ -1,6 +1,7 @@
 package br.com.contmatic.validator;
 
 import org.apache.commons.lang3.StringUtils;
+import org.joda.time.DateTime;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -29,8 +30,7 @@ public final class Validacoes {
     }
 
     public static void isStringBlank(String srt, String nomeDoCampo, String classe) {
-        if (StringUtils.isAllBlank(srt))
-            throw new IllegalArgumentException("O " + nomeDoCampo + " do " + classe + " não deve estar em branco.");
+
     }
 
     public static void validarStringTamanhoMinimoEMaximo(String str, Integer minimo, Integer maximo, String nomeDoCampo, String classe) {
@@ -83,14 +83,6 @@ public final class Validacoes {
     public static void validarIntMaximo(int numero, int maximo, String nomeDoCampo, String classe) {
         if (numero > maximo) {
             throw new IllegalArgumentException("Valor do " + nomeDoCampo + " na classe " + classe + " está acima de " + maximo);
-        }
-    }
-
-    public static void validarDate(Date data, String nomeDoCampo, String classe) {
-        Date dataAtual = new Date(System.currentTimeMillis());
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        if (dataAtual.compareTo(data) < 0) {
-            throw new IllegalStateException("A data do " + nomeDoCampo + " na classe " + classe + " está no futuro: " + sdf.format(data));
         }
     }
 

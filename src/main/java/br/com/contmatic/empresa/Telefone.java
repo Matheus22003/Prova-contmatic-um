@@ -15,10 +15,10 @@ public class Telefone {
 
     private String numero;
 
-    public Telefone(DDD ddd, String telefone) {
+    public Telefone(DDD ddd, String numero) {
         this.setDigitoPais("55");
         this.setDDD(ddd);
-        this.setTelefone(telefone);
+        this.setTelefone(numero);
     }
 
     private void setDigitoPais(String digitoPais) {

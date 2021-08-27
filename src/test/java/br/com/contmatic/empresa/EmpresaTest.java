@@ -1,7 +1,8 @@
 package br.com.contmatic.empresa;
 
 import br.com.contmatic.exception.CnpjInvalidoException;
-import br.com.six2six.fixturefactory.Fixture;
+import br.com.contmatic.fixture.factory.TiposFixtureFactory;
+import com.github.javafaker.Faker;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -9,7 +10,9 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static br.com.six2six.fixturefactory.Fixture.*;
+import static br.com.contmatic.empresa.ValidaAnnotations.returnAnnotationMsgError;
+import static br.com.contmatic.fixture.factory.TiposFixtureFactory.VALIDO;
+import static br.com.contmatic.fixture.factory.TiposFixtureFactory.VALIDO_ALEATORIO;
 import static br.com.six2six.fixturefactory.Fixture.from;
 import static br.com.six2six.fixturefactory.loader.FixtureFactoryLoader.loadTemplates;
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -23,12 +26,11 @@ class EmpresaTest {
     @BeforeAll
     public static void setupTest() {
         loadTemplates("br.com.contmatic.fixture.factory");
-
     }
 
     @BeforeEach
     void setup() {
-        rivals = from(Empresa.class).gimme("valido");
+        rivals = from(Empresa.class).gimme(VALIDO);
     }
 
     @Test
@@ -60,7 +62,9 @@ class EmpresaTest {
 
     @Test
     void nao_deve_aceitar_um_cnoj_invalido() {
-        assertThrows(CnpjInvalidoException.class, () -> rivals.setCnpj("7348748100018500"));
+        rivals.setCnpj(null);
+        returnAnnotationMsgError(rivals, "Funciona");
+//        assertThrows(IllegalArgumentException.class, () -> rivals.setCnpj("          "));
     }
 
     @Test
@@ -88,7 +92,7 @@ class EmpresaTest {
     @Test
     void deve_aceitar_endereco_valido() {
         assertThat("Endereco retornando errado", rivals.getEndereco(),
-                equalTo(from(Endereco.class).gimme("valido")));
+                equalTo(from(Endereco.class).gimme(VALIDO)));
     }
 
     @Test
@@ -99,7 +103,7 @@ class EmpresaTest {
     @Test
     void deve_aceitar_lista_de_funcionarios_valido() {
         List<Funcionario> funcionarios = new ArrayList<>();
-        funcionarios.add(from(Endereco.class).gimme("valido"));
+        funcionarios.add(from(Endereco.class).gimme(VALIDO));
         rivals.setFuncionarios(funcionarios);
         assertThat("Erro ao adicionar Funcionario", rivals.getFuncionarios(), equalTo(funcionarios));
     }
@@ -117,24 +121,24 @@ class EmpresaTest {
 
     @Test
     void deve_mostrar_que_as_duas_empresas_de_cnoj_iguais_sao_as_mesmas() {
-        Empresa empresaCloneRivals = from(Empresa.class).gimme("valido");
+        Empresa empresaCloneRivals = from(Empresa.class).gimme(VALIDO);
         assertThat("Equals comparando valores errados", rivals.equals(empresaCloneRivals), equalTo(true));
     }
 
     @Test
     void deve_mostrar_que_as_duas_empresas_de_cnoj_diferentes_sao_diferentes() {
-        Empresa empresaCloneRivals = from(Empresa.class).gimme("validoAleatorio");
+        Empresa empresaCloneRivals = from(Empresa.class).gimme(VALIDO_ALEATORIO);
         assertThat("Equals comparando valores errados", rivals.equals(empresaCloneRivals), equalTo(false));
     }
 
     @Test
     void deve_mostrar_esse_exato_hashcode() {
-        assertThat("Erro ao calcular HashCode", rivals.hashCode(), equalTo(1924614313));
+        assertThat("Erro ao calcular HashCode", rivals.hashCode(), equalTo(558103052));
     }
 
     @Test
     void deve_retornar_esse_exato_padrao_string() {
-        assertThat("Erro ao fazer ToString com funcionario", rivals.toString(), equalTo("br.com.contmatic.empresa.Empresa@1e5fc98[areaDeAtuacao=Desenvolvimento,cnpj=11319526000155,endereco=br.com.contmatic.empresa.Endereco@469c48[bairro=Liberdade,cep=01504001,cidade=São Paulo,complemento=apto29,estado=SAOPAULO,numero=819,rua=Rua Vergueiro],funcionarios=[],nome=Rivals,nomeFantasia=Rivals Tournament,razaoSocial=Campeonatos E-Sports]"));
+        assertThat("Erro ao fazer ToString com funcionario", rivals.toString(), equalTo("br.com.contmatic.empresa.Empresa@113f5bc[areaDeAtuacao=Desenvolvimento,cnpj=11319526000155,endereco=br.com.contmatic.empresa.Endereco@10f1111[bairro=Liberdade,cep=01504001,cidade=São Paulo,complemento=apto29,estado=SAOPAULO,numero=819,rua=Rua Vergueiro],funcionarios=[],nome=Rivals,nomeFantasia=Rivals Tournament,razaoSocial=Campeonatos E-Sports]"));
     }
-    
+
 }
