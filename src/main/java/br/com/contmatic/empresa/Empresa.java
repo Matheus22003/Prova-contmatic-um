@@ -1,5 +1,6 @@
 package br.com.contmatic.empresa;
 
+import br.com.contmatic.constantes.EmpresaConstantes;
 import org.apache.logging.log4j.core.config.plugins.validation.constraints.Required;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.Range;
@@ -13,6 +14,7 @@ import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 
+import static br.com.contmatic.constantes.EmpresaConstantes.*;
 import static br.com.contmatic.validator.Validacoes.*;
 import static org.apache.commons.lang3.builder.EqualsBuilder.reflectionEquals;
 import static org.apache.commons.lang3.builder.HashCodeBuilder.reflectionHashCode;
@@ -20,34 +22,32 @@ import static org.apache.commons.lang3.builder.ToStringBuilder.reflectionToStrin
 
 public class Empresa {
 
-    @NotEmpty(message = "O nome não pode estar vazio.")
-    @NotBlank(message = "O nome não pode estar em branco.")
-    @Length(min = 2, max = 100, message = "Numero de caracteres de nome invalido.")
+    @NotEmpty(message = NOME_EMPTY_MESSAGE)
+    @NotBlank(message = NOME_BLANK_MESSAGE)
+    @Length(min = 2, max = 100, message = NOME_LENGTH_MESSAGE)
     private String nome;
 
-    @NotEmpty(message = "O nomeFantasia não pode estar vazio.")
-    @NotBlank(message = "O nomeFantasia não pode estar em branco.")
-    @Length(min = 2, max = 70, message = "Numero de caracteres de nomeFantasia invalido.")
+    @NotEmpty(message = NOME_FANTASIA_EMPTY_MESSAGE)
+    @NotBlank(message = NOME_FANTASIA_BLANK_MESSAGE)
+    @Length(min = 2, max = 70, message = NOME_FANTASIA_LENGTH_MESSAGE)
     private String nomeFantasia;
 
-    @NotEmpty(message = "O CNPJ não pode estar vazio.")
-    @NotNull(message = "O CNPJ não pode estar nulo.")
-    @NotBlank(message = "O CNPJ não pode estar em branco.")
-    @CNPJ(message = "CNPJ enviado invalido.")
+    @NotEmpty(message = CNPJ_EMPTY_MESSAGE)
+    @NotNull(message = CNPJ_NULL_MESSAGE)
+    @NotBlank(message = CNPJ_BLANK_MESSAGE)
+    @CNPJ(message = CNPJ_INVALID_MESSAGE)
     private String cnpj;
 
-    @NotEmpty(message = "O razaoSocial não pode estar vazio.")
-    @NotBlank(message = "O razaoSocial não pode estar em branco.")
-    @Length(min = 5, max = 60, message = "Numero de caracteres de razaoSocial invalido.")
+    @NotEmpty(message = RAZAO_SOCIAL_EMPTY_MESSAGE)
+    @NotBlank(message = RAZAO_SOCIAL_BLANK_MESSAGE)
+    @Length(min = 5, max = 60, message = RAZAO_SOCIAL_LENGTH_MESSAGE)
     private String razaoSocial;
 
-    @NotEmpty(message = "O razaoSocial não pode estar vazio.")
-    @NotBlank(message = "O razaoSocial não pode estar em branco.")
-    @Size(min = 5, max = 60, message = "Numero de caracteres de razaoSocial invalido.")
+    @NotEmpty(message = AREA_DE_ATUACAO_EMPTY_MESSAGE)
+    @NotBlank(message = AREA_DE_ATUACAO_BLANK_MESSAGE)
+    @Size(min = 5, max = 60, message = AREA_DE_ATUACAO_SIZE_MESSAGE)
     private String areaDeAtuacao;
 
-    @NotEmpty(message = "O endereco não pode estar vazio.")
-    @NotBlank(message = "O endereco não pode estar em branco.")
     @Valid
     private Endereco endereco;
 
@@ -87,9 +87,6 @@ public class Empresa {
     }
 
     public void setRazaoSocial(String razaoSocial) {
-//        isStringBlank(razaoSocial, "razaoSocial", "Empresa");
-//        isStringEmpty(razaoSocial, "razaoSocial", "Empresa");
-//        validarStringTamanhoMinimoEMaximo(razaoSocial, 5, 60, "razaoSocial", "Empresa");
         this.razaoSocial = razaoSocial;
     }
 
@@ -98,9 +95,6 @@ public class Empresa {
     }
 
     public void setAreaDeAtuacao(String areaDeAtuacao) {
-        isStringEmpty(areaDeAtuacao, "areaDeAtuacao", "Empresa");
-        isStringBlank(areaDeAtuacao, "areaDeAtuacao", "Empresa");
-        validarStringTamanhoMaximo(areaDeAtuacao, 90, "areaDeAtuacao", "Empresa");
         this.areaDeAtuacao = areaDeAtuacao;
     }
 
@@ -109,7 +103,6 @@ public class Empresa {
     }
 
     public void setEndereco(Endereco endereco) {
-        verifierObjectIsNull(endereco, "endereco", "Endereco");
         this.endereco = endereco;
     }
 

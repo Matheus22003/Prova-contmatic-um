@@ -9,13 +9,7 @@ n
 >src/main/java/br/com/contmatic/validator/ValidatorEmpresa.java,5\d\5d10e217fae2570f20ae42975504cc14d4641938
 o
 ?src/main/java/br/com/contmatic/validator/ValidacaoTelefone.java,2\1\2159bb035efa3425e9efc6feb800d4dc21f02d5e
-m
-=src/test/java/br/com/contmatic/empresa/ValidaAnnotations.java,3\7\37ce816d13cd298f716eb43927de3f5f93be6295
-7
-pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
 h
 8src/main/java/br/com/contmatic/validator/Validacoes.java,b\8\b850d3b327a4e1fdf207a35bc04db0a5ab6062e4
-g
-7src/test/java/br/com/contmatic/empresa/EmpresaTest.java,9\e\9e3d3bf3feb6c0e8a3ec23878a3e6a9259b7e5c1
-c
-3src/main/java/br/com/contmatic/empresa/Empresa.java,3\5\354a70c13b0e62d805222f4b635c4e02744afd62
+7
+pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec

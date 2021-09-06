@@ -10,9 +10,9 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
+import static br.com.contmatic.constantes.EmpresaConstantes.*;
 import static br.com.contmatic.empresa.ValidaAnnotations.returnAnnotationMsgError;
-import static br.com.contmatic.fixture.factory.TiposFixtureFactory.VALIDO;
-import static br.com.contmatic.fixture.factory.TiposFixtureFactory.VALIDO_ALEATORIO;
+import static br.com.contmatic.fixture.factory.TiposFixtureFactory.*;
 import static br.com.six2six.fixturefactory.Fixture.from;
 import static br.com.six2six.fixturefactory.loader.FixtureFactoryLoader.loadTemplates;
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -41,7 +41,10 @@ class EmpresaTest {
 
     @Test
     void nao_deve_aceitar_um_nome_menor_que_2() {
-        assertThrows(IllegalArgumentException.class, () -> rivals.setNome("R"));
+        rivals = from(Empresa.class).gimme(NOME_WITHOUT_MIN_CHARACTERS);
+        assertThat("Erro ao adiconar valor em Nome",
+                returnAnnotationMsgError(rivals, NOME_LENGTH_MESSAGE),
+                equalTo(true));
     }
 
     @Test
@@ -52,7 +55,10 @@ class EmpresaTest {
 
     @Test
     void nao_deve_aceitar_um_nomeFantasia_menor_que_2() {
-        assertThrows(IllegalArgumentException.class, () -> rivals.setNomeFantasia("R"));
+        rivals = from(Empresa.class).gimme(NOME_FANTASIA_WITHOUT_MIN_CHARACTERS);
+        assertThat("Erro ao adiconar valor em NomeFantasia",
+                returnAnnotationMsgError(rivals, NOME_FANTASIA_LENGTH_MESSAGE),
+                equalTo(true));
     }
 
     @Test
@@ -62,9 +68,10 @@ class EmpresaTest {
 
     @Test
     void nao_deve_aceitar_um_cnoj_invalido() {
-        rivals.setCnpj(null);
-        returnAnnotationMsgError(rivals, "Funciona");
-//        assertThrows(IllegalArgumentException.class, () -> rivals.setCnpj("          "));
+        rivals = from(Empresa.class).gimme(CNPJ_NULL);
+        assertThat("Erro ao adiconar valor em CNPJ",
+                returnAnnotationMsgError(rivals, CNPJ_NULL_MESSAGE),
+                equalTo(true));
     }
 
     @Test
@@ -75,7 +82,10 @@ class EmpresaTest {
 
     @Test
     void nao_deve_aceitar_um_razaoSocial_menor_que_2() {
-        assertThrows(IllegalArgumentException.class, () -> rivals.setRazaoSocial("R"));
+        rivals = from(Empresa.class).gimme(RAZAO_SOCIAL_WITHOUT_MIN_CHARACTERS);
+        assertThat("Erro ao adiconar valor em Razão Social",
+                returnAnnotationMsgError(rivals, RAZAO_SOCIAL_LENGTH_MESSAGE),
+                equalTo(true));
     }
 
     @Test
@@ -85,38 +95,24 @@ class EmpresaTest {
     }
 
     @Test
-    void nao_deve_aceitar_um_razaoSocial_menor_ou_igual_0() {
-        assertThrows(IllegalArgumentException.class, () -> rivals.setAreaDeAtuacao(""));
-    }
-
-    @Test
     void deve_aceitar_endereco_valido() {
         assertThat("Endereco retornando errado", rivals.getEndereco(),
                 equalTo(from(Endereco.class).gimme(VALIDO)));
     }
 
     @Test
-    void nao_deve_aceitar_um_endereco_com_erro_de_cep() {
-        assertThrows(IllegalArgumentException.class, () -> rivals.setEndereco(new Endereco("015040011", 819)));
-    }
-
-    @Test
     void deve_aceitar_lista_de_funcionarios_valido() {
-        List<Funcionario> funcionarios = new ArrayList<>();
-        funcionarios.add(from(Endereco.class).gimme(VALIDO));
+        List<Funcionario> funcionarios = from(Funcionario.class).gimme(2, VALIDO_ALEATORIO);
         rivals.setFuncionarios(funcionarios);
         assertThat("Erro ao adicionar Funcionario", rivals.getFuncionarios(), equalTo(funcionarios));
     }
 
     @Test
-    void nao_deve_aceitar_uma_lista_de_funcionarios_com_erro_de_funcionario() {
-        List<Funcionario> funcionarios = new ArrayList<>();
-        assertThrows(IllegalArgumentException.class, () -> funcionarios.add(new Funcionario("42793727806000")));
-    }
-
-    @Test
     void nao_deve_aceitar_uma_cnoj_com_cnpj_invalido() {
-        assertThrows(RuntimeException.class, () -> new Empresa("1111111100015"));
+        rivals = from(Empresa.class).gimme(CNPJ_INVALID_VALUE);
+        assertThat("Erro ao adiconar valor em CNOJ",
+                returnAnnotationMsgError(rivals, CNPJ_INVALID_MESSAGE),
+                equalTo(true));
     }
 
     @Test
@@ -133,12 +129,12 @@ class EmpresaTest {
 
     @Test
     void deve_mostrar_esse_exato_hashcode() {
-        assertThat("Erro ao calcular HashCode", rivals.hashCode(), equalTo(558103052));
+        assertThat("Erro ao calcular HashCode", rivals.hashCode(), equalTo(-1395910872));
     }
 
     @Test
     void deve_retornar_esse_exato_padrao_string() {
-        assertThat("Erro ao fazer ToString com funcionario", rivals.toString(), equalTo("br.com.contmatic.empresa.Empresa@113f5bc[areaDeAtuacao=Desenvolvimento,cnpj=11319526000155,endereco=br.com.contmatic.empresa.Endereco@10f1111[bairro=Liberdade,cep=01504001,cidade=São Paulo,complemento=apto29,estado=SAOPAULO,numero=819,rua=Rua Vergueiro],funcionarios=[],nome=Rivals,nomeFantasia=Rivals Tournament,razaoSocial=Campeonatos E-Sports]"));
+        assertThat("Erro ao fazer ToString com funcionario", rivals.toString(), equalTo("br.com.contmatic.empresa.Empresa@8c00d9[nome=Rivals,nomeFantasia=Rivals Tournament,cnpj=11319526000155,razaoSocial=Campeonatos E-Sports,areaDeAtuacao=Desenvolvimento,endereco=br.com.contmatic.empresa.Endereco@1a38f07[rua=Rua Vergueiro,numero=819,complemento=apto29,bairro=Liberdade,estado=SAOPAULO,cidade=São Paulo,cep=01504001],funcionarios=[]]"));
     }
 
 }
