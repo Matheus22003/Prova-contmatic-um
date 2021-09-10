@@ -9,7 +9,5 @@ n
 >src/main/java/br/com/contmatic/validator/ValidatorEmpresa.java,5\d\5d10e217fae2570f20ae42975504cc14d4641938
 o
 ?src/main/java/br/com/contmatic/validator/ValidacaoTelefone.java,2\1\2159bb035efa3425e9efc6feb800d4dc21f02d5e
-h
-8src/main/java/br/com/contmatic/validator/Validacoes.java,b\8\b850d3b327a4e1fdf207a35bc04db0a5ab6062e4
 7
 pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec

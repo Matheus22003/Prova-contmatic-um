@@ -6,6 +6,8 @@ import br.com.six2six.fixturefactory.Rule;
 import br.com.six2six.fixturefactory.loader.TemplateLoader;
 import com.github.javafaker.Faker;
 
+import java.util.HashSet;
+
 import static br.com.contmatic.fixture.factory.TiposFixtureFactory.*;
 import static br.com.six2six.fixturefactory.Fixture.of;
 
@@ -18,7 +20,8 @@ public class FixtureFactoryEmpresa implements TemplateLoader {
     private static final String CNPJ = "cnpj";
     private static final String RAZAO_SOCIAL = "razaoSocial";
     private static final String AREA_DE_ATUACAO = "areaDeAtuacao";
-    private static final String ENDERECO = "endereco";
+    private static final String ENDERECOS = "enderecos";
+    private static final String FUNCIONARIOS = "funcionarios";
 
     @Override
     public void load() {
@@ -29,18 +32,19 @@ public class FixtureFactoryEmpresa implements TemplateLoader {
                 add(CNPJ, random("11319526000155"));
                 add(RAZAO_SOCIAL, random("Campeonatos E-Sports"));
                 add(AREA_DE_ATUACAO, random("Desenvolvimento"));
-                add(ENDERECO, one(Endereco.class, VALIDO));
+                add(ENDERECOS, new HashSet<Endereco>());
+                add(FUNCIONARIOS, new HashSet<>());
             }
         });
 
         of(Empresa.class).addTemplate(VALIDO_ALEATORIO, new Rule() {
             {
-                add("cnpj", cnpj());
-                add("nome", faker.name().name());
-                add("nomeFantasia", faker.pokemon().name());
-                add("razaoSocial", faker.book().genre());
-                add("areaDeAtuacao", random("Desenvolvimento", "Contabilidade"));
-                add("endereco", one(Endereco.class, VALIDO));
+                add(CNPJ, cnpj());
+                add(NOME, faker.name().name());
+                add(NOME_FANTASIA, faker.pokemon().name());
+                add(RAZAO_SOCIAL, faker.book().genre());
+                add(AREA_DE_ATUACAO, random("Desenvolvimento", "Contabilidade"));
+                add(ENDERECOS, one(Endereco.class, VALIDO));
             }
         });
 
@@ -49,6 +53,7 @@ public class FixtureFactoryEmpresa implements TemplateLoader {
                 add(CNPJ, null);
             }
         });
+
         of(Empresa.class).addTemplate(CNPJ_INVALID_VALUE).inherits(VALIDO, new Rule() {
             {
                 add(CNPJ, "1111111100015");
@@ -61,9 +66,27 @@ public class FixtureFactoryEmpresa implements TemplateLoader {
             }
         });
 
+        of(Empresa.class).addTemplate(NOME_WITH_MAX_CHARACTERS).inherits(VALIDO, new Rule() {
+            {
+                add(NOME, "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+            }
+        });
+
+        of(Empresa.class).addTemplate(NOME_WITH_NUMERICS_CHARACTERS).inherits(VALIDO, new Rule() {
+            {
+                add(NOME, "as323");
+            }
+        });
+
         of(Empresa.class).addTemplate(NOME_FANTASIA_WITHOUT_MIN_CHARACTERS).inherits(VALIDO, new Rule() {
             {
                 add(NOME_FANTASIA, "R");
+            }
+        });
+
+        of(Empresa.class).addTemplate(NOME_FANTASIA_WITH_MAX_CHARACTERS).inherits(VALIDO, new Rule() {
+            {
+                add(NOME_FANTASIA, "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
             }
         });
 
@@ -72,6 +95,37 @@ public class FixtureFactoryEmpresa implements TemplateLoader {
                 add(RAZAO_SOCIAL, "R");
             }
         });
+
+        of(Empresa.class).addTemplate(RAZAO_SOCIAL_WITH_MAX_CHARACTERS).inherits(VALIDO, new Rule() {
+            {
+                add(RAZAO_SOCIAL, "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+            }
+        });
+
+        of(Empresa.class).addTemplate(RAZAO_SOCIAL_WITH_NUMERICS_CHARACTERS).inherits(VALIDO, new Rule() {
+            {
+                add(RAZAO_SOCIAL, "asdas23123123");
+            }
+        });
+
+        of(Empresa.class).addTemplate(AREA_DE_ATUACAO_WITH_BLANK_VALUE).inherits(VALIDO, new Rule() {
+            {
+                add(AREA_DE_ATUACAO, "");
+            }
+        });
+
+        of(Empresa.class).addTemplate(AREA_DE_ATUACAO_WITHOUT_MIN_CHARACTERS).inherits(VALIDO, new Rule() {
+            {
+                add(AREA_DE_ATUACAO, "R");
+            }
+        });
+
+        of(Empresa.class).addTemplate(AREA_DE_ATUACAO_WITH_MAX_CHARACTERS).inherits(VALIDO, new Rule() {
+            {
+                add(AREA_DE_ATUACAO, "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+            }
+        });
+
 
     }
 

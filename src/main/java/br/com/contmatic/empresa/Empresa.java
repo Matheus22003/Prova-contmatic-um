@@ -1,58 +1,51 @@
 package br.com.contmatic.empresa;
 
-import br.com.contmatic.constantes.EmpresaConstantes;
-import org.apache.logging.log4j.core.config.plugins.validation.constraints.Required;
+import br.com.contmatic.constantes.Regex;
 import org.hibernate.validator.constraints.Length;
-import org.hibernate.validator.constraints.Range;
 import org.hibernate.validator.constraints.br.CNPJ;
 
 import javax.validation.Valid;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-import java.util.ArrayList;
-import java.util.List;
+import javax.validation.constraints.*;
+import java.util.Set;
 
 import static br.com.contmatic.constantes.EmpresaConstantes.*;
-import static br.com.contmatic.validator.Validacoes.*;
+import static br.com.contmatic.constantes.Regex.SOMENTE_LETRAS;
 import static org.apache.commons.lang3.builder.EqualsBuilder.reflectionEquals;
 import static org.apache.commons.lang3.builder.HashCodeBuilder.reflectionHashCode;
 import static org.apache.commons.lang3.builder.ToStringBuilder.reflectionToString;
 
 public class Empresa {
 
-    @NotEmpty(message = NOME_EMPTY_MESSAGE)
     @NotBlank(message = NOME_BLANK_MESSAGE)
     @Length(min = 2, max = 100, message = NOME_LENGTH_MESSAGE)
+    @Pattern(regexp = SOMENTE_LETRAS, message = NOME_REGEX_MESSAGE)
     private String nome;
 
     @NotEmpty(message = NOME_FANTASIA_EMPTY_MESSAGE)
-    @NotBlank(message = NOME_FANTASIA_BLANK_MESSAGE)
     @Length(min = 2, max = 70, message = NOME_FANTASIA_LENGTH_MESSAGE)
     private String nomeFantasia;
 
-    @NotEmpty(message = CNPJ_EMPTY_MESSAGE)
     @NotNull(message = CNPJ_NULL_MESSAGE)
-    @NotBlank(message = CNPJ_BLANK_MESSAGE)
     @CNPJ(message = CNPJ_INVALID_MESSAGE)
     private String cnpj;
 
-    @NotEmpty(message = RAZAO_SOCIAL_EMPTY_MESSAGE)
     @NotBlank(message = RAZAO_SOCIAL_BLANK_MESSAGE)
     @Length(min = 5, max = 60, message = RAZAO_SOCIAL_LENGTH_MESSAGE)
+    @Pattern(regexp = SOMENTE_LETRAS, message = RAZAO_SOCIAL_REGEX_MESSAGE)
     private String razaoSocial;
 
-    @NotEmpty(message = AREA_DE_ATUACAO_EMPTY_MESSAGE)
     @NotBlank(message = AREA_DE_ATUACAO_BLANK_MESSAGE)
     @Size(min = 5, max = 60, message = AREA_DE_ATUACAO_SIZE_MESSAGE)
+    @Pattern(regexp = SOMENTE_LETRAS, message = NOME_REGEX_MESSAGE)
     private String areaDeAtuacao;
 
+    @NotEmpty(message = ENDERECOS_EMPTY_MESSAGE)
     @Valid
-    private Endereco endereco;
+    private Set<Endereco> enderecos;
 
+    @NotEmpty(message = FUNCIONARIOS_EMPTY_MESSAGE)
     @Valid
-    private List<Funcionario> funcionarios = new ArrayList<>();
+    private Set<Funcionario> funcionarios;
 
     public Empresa(String cnpj) {
         this.setCnpj(cnpj);
@@ -98,22 +91,19 @@ public class Empresa {
         this.areaDeAtuacao = areaDeAtuacao;
     }
 
-    public Endereco getEndereco() {
-        return endereco;
+    public Set<Endereco> getEnderecos() {
+        return enderecos;
     }
 
-    public void setEndereco(Endereco endereco) {
-        this.endereco = endereco;
+    public void setEnderecos(Set<Endereco> enderecos) {
+        this.enderecos = enderecos;
     }
 
-    public List<Funcionario> getFuncionarios() {
+    public Set<Funcionario> getFuncionarios() {
         return funcionarios;
     }
 
-    public void setFuncionarios(List<Funcionario> funcionarios) {
-        verifierObjectIsNull(funcionarios, "funcionarios", "Empresa");
-        validarListIsEmpty(funcionarios, "funcionarios", "Empresa");
-        validarListIsZero(funcionarios, "funcionarios", "Empresa");
+    public void setFuncionarios(Set<Funcionario> funcionarios) {
         this.funcionarios = funcionarios;
     }
 

@@ -1,14 +1,11 @@
 package br.com.contmatic.empresa;
 
-import br.com.contmatic.exception.CnpjInvalidoException;
-import br.com.contmatic.fixture.factory.TiposFixtureFactory;
-import com.github.javafaker.Faker;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import static br.com.contmatic.constantes.EmpresaConstantes.*;
 import static br.com.contmatic.empresa.ValidaAnnotations.returnAnnotationMsgError;
@@ -17,7 +14,6 @@ import static br.com.six2six.fixturefactory.Fixture.from;
 import static br.com.six2six.fixturefactory.loader.FixtureFactoryLoader.loadTemplates;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class EmpresaTest {
 
@@ -33,6 +29,7 @@ class EmpresaTest {
         rivals = from(Empresa.class).gimme(VALIDO);
     }
 
+    // nome
     @Test
     void deve_aceitar_nome_valido() {
         assertThat("Erro ao adicionar ou retornar nome de Empresa", rivals.getNome(),
@@ -48,9 +45,34 @@ class EmpresaTest {
     }
 
     @Test
+    void nao_deve_aceitar_um_nome_maior_que_100() {
+        rivals = from(Empresa.class).gimme(NOME_WITH_MAX_CHARACTERS);
+        assertThat("Erro ao adiconar valor em Nome",
+                returnAnnotationMsgError(rivals, NOME_LENGTH_MESSAGE),
+                equalTo(true));
+    }
+
+    @Test
+    void nao_deve_aceitar_um_nome_com_valores_numericos() {
+        rivals = from(Empresa.class).gimme(NOME_WITH_NUMERICS_CHARACTERS);
+        assertThat("Erro ao adiconar valor em Nome",
+                returnAnnotationMsgError(rivals, NOME_REGEX_MESSAGE),
+                equalTo(true));
+    }
+
+    // Nome Fantasia
+    @Test
     void deve_aceitar_nomeFantasia_valido() {
         assertThat("Erro ao adicionar ou retornar Nome Fantasia", rivals.getNomeFantasia(),
                 equalTo("Rivals Tournament"));
+    }
+
+    @Test
+    void nao_deve_aceitar_um_nomeFantasia_maior_que_70() {
+        rivals = from(Empresa.class).gimme(NOME_FANTASIA_WITH_MAX_CHARACTERS);
+        assertThat("Erro ao adiconar valor em NomeFantasia",
+                returnAnnotationMsgError(rivals, NOME_FANTASIA_LENGTH_MESSAGE),
+                equalTo(true));
     }
 
     @Test
@@ -61,19 +83,29 @@ class EmpresaTest {
                 equalTo(true));
     }
 
+    // CNPJ
     @Test
     void deve_aceitar_cnpj_valido() {
         assertThat("Erro ao adiconar valor em CNPJ", rivals.getCnpj(), equalTo("11319526000155"));
     }
 
     @Test
-    void nao_deve_aceitar_um_cnoj_invalido() {
+    void nao_deve_aceitar_um_cnoj_nulo() {
         rivals = from(Empresa.class).gimme(CNPJ_NULL);
         assertThat("Erro ao adiconar valor em CNPJ",
                 returnAnnotationMsgError(rivals, CNPJ_NULL_MESSAGE),
                 equalTo(true));
     }
 
+    @Test
+    void nao_deve_aceitar_uma_cnoj_com_cnpj_invalido() {
+        rivals = from(Empresa.class).gimme(CNPJ_INVALID_VALUE);
+        assertThat("Erro ao adiconar valor em CNOJ",
+                returnAnnotationMsgError(rivals, CNPJ_INVALID_MESSAGE),
+                equalTo(true));
+    }
+
+    // Razao Social
     @Test
     void deve_aceitar_razaoSocial_valido() {
         assertThat("Erro ao adicionar ou retornar Razão Social", rivals.getRazaoSocial(),
@@ -89,30 +121,73 @@ class EmpresaTest {
     }
 
     @Test
+    void nao_deve_aceitar_um_razaoSocial_maior_que_60() {
+        rivals = from(Empresa.class).gimme(RAZAO_SOCIAL_WITH_MAX_CHARACTERS);
+        assertThat("Erro ao adiconar valor em Razão Social",
+                returnAnnotationMsgError(rivals, RAZAO_SOCIAL_LENGTH_MESSAGE),
+                equalTo(true));
+    }
+
+    @Test
+    void nao_deve_aceitar_um_razaoSocial_contendo_numeros() {
+        rivals = from(Empresa.class).gimme(RAZAO_SOCIAL_WITH_NUMERICS_CHARACTERS);
+        assertThat("Erro ao adiconar valor em Razão Social",
+                returnAnnotationMsgError(rivals, RAZAO_SOCIAL_REGEX_MESSAGE),
+                equalTo(true));
+    }
+
+    // Area de atuaçao
+    @Test
     void deve_aceitar_areaDeAtuacao_valido() {
         assertThat("Erro ao adicionar ou retornar area de atuação", rivals.getAreaDeAtuacao(),
                 equalTo("Desenvolvimento"));
     }
 
     @Test
+    void nao_deve_aceitar_areaDeAtuacao_em_branco() {
+        rivals = from(Empresa.class).gimme(AREA_DE_ATUACAO_WITH_BLANK_VALUE);
+        assertThat("Erro ao adiconar valor em areaDeAtuacao",
+                returnAnnotationMsgError(rivals, AREA_DE_ATUACAO_BLANK_MESSAGE),
+                equalTo(true));
+    }
+
+    @Test
+    void nao_deve_aceitar_areaDeAtuacao_menor_que_5() {
+        rivals = from(Empresa.class).gimme(AREA_DE_ATUACAO_WITHOUT_MIN_CHARACTERS);
+        assertThat("Erro ao adiconar valor em areaDeAtuacao",
+                returnAnnotationMsgError(rivals, AREA_DE_ATUACAO_SIZE_MESSAGE),
+                equalTo(true));
+    }
+
+    @Test
+    void nao_deve_aceitar_um_areaDeAtuacao_maior_que_60() {
+        rivals = from(Empresa.class).gimme(AREA_DE_ATUACAO_WITH_MAX_CHARACTERS);
+        assertThat("Erro ao adiconar valor em areaDeAtuacao",
+                returnAnnotationMsgError(rivals, AREA_DE_ATUACAO_SIZE_MESSAGE),
+                equalTo(true));
+    }
+
+    // Enderecos
+    @Test
     void deve_aceitar_endereco_valido() {
-        assertThat("Endereco retornando errado", rivals.getEndereco(),
+        assertThat("Endereco retornando errado", rivals.getEnderecos(),
                 equalTo(from(Endereco.class).gimme(VALIDO)));
     }
 
     @Test
-    void deve_aceitar_lista_de_funcionarios_valido() {
-        List<Funcionario> funcionarios = from(Funcionario.class).gimme(2, VALIDO_ALEATORIO);
-        rivals.setFuncionarios(funcionarios);
-        assertThat("Erro ao adicionar Funcionario", rivals.getFuncionarios(), equalTo(funcionarios));
+    void nao_deve_aceitar_enderecos_vazio() {
+        Set<Endereco> enderecos = new HashSet<>();
+        rivals.setEnderecos(enderecos);
+        assertThat("Erro ao adiconar valor em Enderecos",
+                returnAnnotationMsgError(rivals, ENDERECOS_EMPTY_MESSAGE),
+                equalTo(true));
     }
 
     @Test
-    void nao_deve_aceitar_uma_cnoj_com_cnpj_invalido() {
-        rivals = from(Empresa.class).gimme(CNPJ_INVALID_VALUE);
-        assertThat("Erro ao adiconar valor em CNOJ",
-                returnAnnotationMsgError(rivals, CNPJ_INVALID_MESSAGE),
-                equalTo(true));
+    void deve_aceitar_lista_de_funcionarios_valido() {
+        Set<Funcionario> funcionarios = new HashSet<>(from(Funcionario.class).gimme(2, VALIDO_ALEATORIO));
+        rivals.setFuncionarios(funcionarios);
+        assertThat("Erro ao adicionar Funcionario", rivals.getFuncionarios(), equalTo(funcionarios));
     }
 
     @Test
