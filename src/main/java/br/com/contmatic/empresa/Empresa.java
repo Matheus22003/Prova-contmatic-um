@@ -36,7 +36,7 @@ public class Empresa {
 
     @NotBlank(message = AREA_DE_ATUACAO_BLANK_MESSAGE)
     @Size(min = 5, max = 60, message = AREA_DE_ATUACAO_SIZE_MESSAGE)
-    @Pattern(regexp = SOMENTE_LETRAS, message = NOME_REGEX_MESSAGE)
+    @Pattern(regexp = SOMENTE_LETRAS, message = AREA_DE_ATUACAO_REGEX_MESSAGE)
     private String areaDeAtuacao;
 
     @NotEmpty(message = ENDERECOS_EMPTY_MESSAGE)

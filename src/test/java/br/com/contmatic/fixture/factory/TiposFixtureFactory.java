@@ -21,9 +21,11 @@ public final class TiposFixtureFactory {
     public static final String AREA_DE_ATUACAO_WITH_BLANK_VALUE = "areaDeAtuacaoIsBlank";
     public static final String AREA_DE_ATUACAO_WITHOUT_MIN_CHARACTERS = "areaDeAtuacaoWithoutMinCharacters";
     public static final String AREA_DE_ATUACAO_WITH_MAX_CHARACTERS = "areaDeAtuacaoWithtMaxCharacters";
+    public static final String AREA_DE_ATUACAO_WITH_NUMERICS_CHARACTERS = "areaDeAtuacaoWithtNumericsCharacters";
 
+    public static final String ENDERECO_EMPTY = "enderecoIsEmpty";
 
-
+    public static final String FUNCIONARIO_EMPTY = "funcionarioIsEmpty";
 
     private TiposFixtureFactory() {
     }

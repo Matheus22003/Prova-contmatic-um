@@ -15,8 +15,10 @@ public final class EmpresaConstantes {
     public static final String RAZAO_SOCIAL_LENGTH_MESSAGE = "Numero de caracteres de razaoSocial invalido";
     public static final String RAZAO_SOCIAL_REGEX_MESSAGE = "A razão social não pode conter caracteres numericos.";
 
-    public static final String AREA_DE_ATUACAO_BLANK_MESSAGE = "O areaDeAtuacao não pode estar em branco.";
+    public static final String AREA_DE_ATUACAO_BLANK_MESSAGE = "A areaDeAtuacao não pode estar em branco.";
     public static final String AREA_DE_ATUACAO_SIZE_MESSAGE = "Numero de caracteres de areaDeAtuacao invalido";
+    public static final String AREA_DE_ATUACAO_REGEX_MESSAGE = "A areaDeAtuacao não pode conter caracteres numericos.";
+
 
     public static final String ENDERECOS_EMPTY_MESSAGE = "Enderecos não pode estar vazio.";
 

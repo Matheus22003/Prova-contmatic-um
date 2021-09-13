@@ -2,13 +2,16 @@ package br.com.contmatic.fixture.factory;
 
 import br.com.contmatic.empresa.Empresa;
 import br.com.contmatic.empresa.Endereco;
+import br.com.contmatic.empresa.Funcionario;
 import br.com.six2six.fixturefactory.Rule;
+import br.com.six2six.fixturefactory.loader.FixtureFactoryLoader;
 import br.com.six2six.fixturefactory.loader.TemplateLoader;
 import com.github.javafaker.Faker;
 
 import java.util.HashSet;
 
 import static br.com.contmatic.fixture.factory.TiposFixtureFactory.*;
+import static br.com.six2six.fixturefactory.Fixture.from;
 import static br.com.six2six.fixturefactory.Fixture.of;
 
 public class FixtureFactoryEmpresa implements TemplateLoader {
@@ -25,6 +28,7 @@ public class FixtureFactoryEmpresa implements TemplateLoader {
 
     @Override
     public void load() {
+
         of(Empresa.class).addTemplate(VALIDO, new Rule() {
             {
                 add(NOME, random("Rivals"));
@@ -32,8 +36,8 @@ public class FixtureFactoryEmpresa implements TemplateLoader {
                 add(CNPJ, random("11319526000155"));
                 add(RAZAO_SOCIAL, random("Campeonatos E-Sports"));
                 add(AREA_DE_ATUACAO, random("Desenvolvimento"));
-                add(ENDERECOS, new HashSet<Endereco>());
-                add(FUNCIONARIOS, new HashSet<>());
+                add(ENDERECOS, has(2).of(Endereco.class, VALIDO));
+                add(FUNCIONARIOS, has(2).of(Funcionario.class, VALIDO));
             }
         });
 
@@ -44,7 +48,8 @@ public class FixtureFactoryEmpresa implements TemplateLoader {
                 add(NOME_FANTASIA, faker.pokemon().name());
                 add(RAZAO_SOCIAL, faker.book().genre());
                 add(AREA_DE_ATUACAO, random("Desenvolvimento", "Contabilidade"));
-                add(ENDERECOS, one(Endereco.class, VALIDO));
+                add(ENDERECOS, has(2).of(Endereco.class, VALIDO));
+                add(FUNCIONARIOS, has(2).of(Funcionario.class, VALIDO));
             }
         });
 
@@ -126,6 +131,23 @@ public class FixtureFactoryEmpresa implements TemplateLoader {
             }
         });
 
+        of(Empresa.class).addTemplate(AREA_DE_ATUACAO_WITH_NUMERICS_CHARACTERS).inherits(VALIDO, new Rule() {
+            {
+                add(AREA_DE_ATUACAO, "eqwe45454545");
+            }
+        });
+
+        of(Empresa.class).addTemplate(ENDERECO_EMPTY).inherits(VALIDO, new Rule() {
+            {
+                add(ENDERECOS, new HashSet<Endereco>());
+            }
+        });
+
+        of(Empresa.class).addTemplate(FUNCIONARIO_EMPTY).inherits(VALIDO, new Rule() {
+            {
+                add(FUNCIONARIOS, new HashSet<Endereco>());
+            }
+        });
 
     }
 

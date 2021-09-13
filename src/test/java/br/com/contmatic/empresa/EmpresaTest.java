@@ -167,27 +167,43 @@ class EmpresaTest {
                 equalTo(true));
     }
 
+    @Test
+    void nao_deve_aceitar_areaDeAtuacao_contendo_numeros() {
+        rivals = from(Empresa.class).gimme(AREA_DE_ATUACAO_WITH_NUMERICS_CHARACTERS);
+        assertThat("Erro ao adiconar valor em areaDeAtuacao",
+                returnAnnotationMsgError(rivals, AREA_DE_ATUACAO_REGEX_MESSAGE),
+                equalTo(true));
+    }
+
     // Enderecos
     @Test
-    void deve_aceitar_endereco_valido() {
+    void deve_aceitar_enderecos_valido() {
+        Set<Endereco> enderecos = new HashSet<>(from(Endereco.class).gimme(2, VALIDO));
         assertThat("Endereco retornando errado", rivals.getEnderecos(),
-                equalTo(from(Endereco.class).gimme(VALIDO)));
+                equalTo(enderecos));
     }
 
     @Test
     void nao_deve_aceitar_enderecos_vazio() {
-        Set<Endereco> enderecos = new HashSet<>();
-        rivals.setEnderecos(enderecos);
+        rivals = from(Empresa.class).gimme(ENDERECO_EMPTY);
         assertThat("Erro ao adiconar valor em Enderecos",
                 returnAnnotationMsgError(rivals, ENDERECOS_EMPTY_MESSAGE),
                 equalTo(true));
     }
 
+    //funcionarios
     @Test
     void deve_aceitar_lista_de_funcionarios_valido() {
         Set<Funcionario> funcionarios = new HashSet<>(from(Funcionario.class).gimme(2, VALIDO_ALEATORIO));
-        rivals.setFuncionarios(funcionarios);
         assertThat("Erro ao adicionar Funcionario", rivals.getFuncionarios(), equalTo(funcionarios));
+    }
+
+    @Test
+    void nao_deve_aceitar_funcionarios_vazio() {
+        rivals = from(Empresa.class).gimme(FUNCIONARIO_EMPTY);
+        assertThat("Erro ao adiconar valor em Enderecos",
+                returnAnnotationMsgError(rivals, FUNCIONARIOS_EMPTY_MESSAGE),
+                equalTo(true));
     }
 
     @Test
@@ -209,7 +225,7 @@ class EmpresaTest {
 
     @Test
     void deve_retornar_esse_exato_padrao_string() {
-        assertThat("Erro ao fazer ToString com funcionario", rivals.toString(), equalTo("br.com.contmatic.empresa.Empresa@8c00d9[nome=Rivals,nomeFantasia=Rivals Tournament,cnpj=11319526000155,razaoSocial=Campeonatos E-Sports,areaDeAtuacao=Desenvolvimento,endereco=br.com.contmatic.empresa.Endereco@1a38f07[rua=Rua Vergueiro,numero=819,complemento=apto29,bairro=Liberdade,estado=SAOPAULO,cidade=São Paulo,cep=01504001],funcionarios=[]]"));
+        assertThat("Erro ao fazer ToString com funcionario", rivals.toString(), equalTo("br.com.contmatic.empresa.Empresa@175fdd0[nome=Rivals,nomeFantasia=Rivals Tournament,cnpj=11319526000155,razaoSocial=Campeonatos E-Sports,areaDeAtuacao=Desenvolvimento,enderecos=[br.com.contmatic.empresa.Endereco@1465914[rua=Rua Vergueiro,numero=819,complemento=apto29,bairro=Liberdade,estado=SAOPAULO,cidade=São Paulo,cep=01504001]],funcionarios=[br.com.contmatic.empresa.Funcionario@652c15[nome=Matheus,dataNascimento=2003-03-22T11:30:00.000-03:00,cpf=42793727806,cargo=Estagiario,salario=2000.0]]]"));
     }
 
 }
