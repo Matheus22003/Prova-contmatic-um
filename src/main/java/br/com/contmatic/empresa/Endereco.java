@@ -1,13 +1,20 @@
 package br.com.contmatic.empresa;
 
 import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.hibernate.validator.constraints.Length;
 
+import javax.validation.constraints.NotBlank;
+
+import static br.com.contmatic.constantes.EmpresaConstantes.NOME_BLANK_MESSAGE;
+import static br.com.contmatic.constantes.EmpresaConstantes.NOME_LENGTH_MESSAGE;
 import static br.com.contmatic.validator.Validacoes.*;
 import static org.apache.commons.lang3.builder.EqualsBuilder.reflectionEquals;
 import static org.apache.commons.lang3.builder.ToStringBuilder.reflectionToString;
 
 public class Endereco {
 
+    @NotBlank(message = NOME_BLANK_MESSAGE)
+    @Length(min = 2, max = 100, message = NOME_LENGTH_MESSAGE)
     private String rua;
 
     private Integer numero;

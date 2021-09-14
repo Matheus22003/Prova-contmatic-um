@@ -24,12 +24,10 @@ class EnderecoTest {
     @BeforeEach
     void setup() {
         enderecoRivals = from(Endereco.class).gimme(VALIDO);
-        ;
     }
 
     @Test
     void deve_aceitar_rua_valida() {
-        enderecoRivals.setRua("Rua Vergueiro");
         assertThat("falha ao adicionar Rua", enderecoRivals.getRua(), equalTo("Rua Vergueiro"));
     }
 
