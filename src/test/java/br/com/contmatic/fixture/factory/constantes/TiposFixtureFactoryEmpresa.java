@@ -1,8 +1,6 @@
-package br.com.contmatic.fixture.factory;
+package br.com.contmatic.fixture.factory.constantes;
 
-public final class TiposFixtureFactory {
-    public static final String VALIDO = "valido";
-    public static final String VALIDO_ALEATORIO = "validoAleatorio";
+public final class TiposFixtureFactoryEmpresa extends TiposFixtureFactory{
 
     public static final String NOME_WITHOUT_MIN_CHARACTERS = "nomeWithoutMinCharacters";
     public static final String NOME_WITH_MAX_CHARACTERS = "nomeWithtMaxCharacters";
@@ -27,6 +25,6 @@ public final class TiposFixtureFactory {
 
     public static final String FUNCIONARIO_EMPTY = "funcionarioIsEmpty";
 
-    private TiposFixtureFactory() {
+    private TiposFixtureFactoryEmpresa() {
     }
 }

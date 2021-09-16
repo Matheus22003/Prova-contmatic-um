@@ -4,14 +4,12 @@ import br.com.contmatic.empresa.Empresa;
 import br.com.contmatic.empresa.Endereco;
 import br.com.contmatic.empresa.Funcionario;
 import br.com.six2six.fixturefactory.Rule;
-import br.com.six2six.fixturefactory.loader.FixtureFactoryLoader;
 import br.com.six2six.fixturefactory.loader.TemplateLoader;
 import com.github.javafaker.Faker;
 
 import java.util.HashSet;
 
-import static br.com.contmatic.fixture.factory.TiposFixtureFactory.*;
-import static br.com.six2six.fixturefactory.Fixture.from;
+import static br.com.contmatic.fixture.factory.constantes.TiposFixtureFactoryEmpresa.*;
 import static br.com.six2six.fixturefactory.Fixture.of;
 
 public class FixtureFactoryEmpresa implements TemplateLoader {

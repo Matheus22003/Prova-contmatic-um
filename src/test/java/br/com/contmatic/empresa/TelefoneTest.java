@@ -2,7 +2,7 @@ package br.com.contmatic.empresa;
 
 import static br.com.contmatic.empresa.DDD.RIO_DE_JANEIRO;
 import static br.com.contmatic.empresa.DDD.SAO_PAULO;
-import static br.com.contmatic.fixture.factory.TiposFixtureFactory.VALIDO;
+import static br.com.contmatic.fixture.factory.constantes.TiposFixtureFactoryEmpresa.VALIDO;
 import static br.com.six2six.fixturefactory.Fixture.from;
 import static br.com.six2six.fixturefactory.loader.FixtureFactoryLoader.loadTemplates;
 import static org.hamcrest.CoreMatchers.equalTo;

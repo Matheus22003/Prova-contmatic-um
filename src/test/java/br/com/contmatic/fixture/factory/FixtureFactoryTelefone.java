@@ -5,7 +5,7 @@ import br.com.six2six.fixturefactory.Rule;
 import br.com.six2six.fixturefactory.loader.TemplateLoader;
 
 import static br.com.contmatic.empresa.DDD.SAO_PAULO;
-import static br.com.contmatic.fixture.factory.TiposFixtureFactory.VALIDO;
+import static br.com.contmatic.fixture.factory.constantes.TiposFixtureFactoryEmpresa.VALIDO;
 import static br.com.six2six.fixturefactory.Fixture.of;
 
 public class FixtureFactoryTelefone implements TemplateLoader {

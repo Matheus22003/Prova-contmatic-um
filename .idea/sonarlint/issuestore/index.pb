@@ -13,5 +13,3 @@ o
 pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
 h
 8src/main/java/br/com/contmatic/validator/Validacoes.java,b\8\b850d3b327a4e1fdf207a35bc04db0a5ab6062e4
-d
-4src/main/java/br/com/contmatic/constantes/Regex.java,a\d\ad74fcc13145433f802185e4e1ae037ef27b3274

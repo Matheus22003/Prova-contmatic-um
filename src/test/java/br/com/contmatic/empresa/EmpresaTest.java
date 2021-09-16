@@ -9,7 +9,7 @@ import java.util.Set;
 
 import static br.com.contmatic.constantes.EmpresaConstantes.*;
 import static br.com.contmatic.empresa.ValidaAnnotations.returnAnnotationMsgError;
-import static br.com.contmatic.fixture.factory.TiposFixtureFactory.*;
+import static br.com.contmatic.fixture.factory.constantes.TiposFixtureFactoryEmpresa.*;
 import static br.com.six2six.fixturefactory.Fixture.from;
 import static br.com.six2six.fixturefactory.loader.FixtureFactoryLoader.loadTemplates;
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -225,7 +225,7 @@ class EmpresaTest {
 
     @Test
     void deve_retornar_esse_exato_padrao_string() {
-        assertThat("Erro ao fazer ToString com funcionario", rivals.toString(), equalTo("br.com.contmatic.empresa.Empresa@175fdd0[nome=Rivals,nomeFantasia=Rivals Tournament,cnpj=11319526000155,razaoSocial=Campeonatos E-Sports,areaDeAtuacao=Desenvolvimento,enderecos=[br.com.contmatic.empresa.Endereco@1465914[rua=Rua Vergueiro,numero=819,complemento=apto29,bairro=Liberdade,estado=SAOPAULO,cidade=São Paulo,cep=01504001]],funcionarios=[br.com.contmatic.empresa.Funcionario@652c15[nome=Matheus,dataNascimento=2003-03-22T11:30:00.000-03:00,cpf=42793727806,cargo=Estagiario,salario=2000.0]]]"));
+        assertThat("Erro ao fazer ToString com funcionario", rivals.toString(), equalTo("br.com.contmatic.empresa.Empresa@25f871[nome=Rivals,nomeFantasia=Rivals Tournament,cnpj=11319526000155,razaoSocial=Campeonatos E-Sports,areaDeAtuacao=Desenvolvimento,enderecos=[br.com.contmatic.empresa.Endereco@105a9b1[rua=Rua Vergueiro,numero=819,complemento=apto29,bairro=Liberdade,estado=SAOPAULO,cidade=São Paulo,cep=01504001]],funcionarios=[br.com.contmatic.empresa.Funcionario@1cfd353[nome=Matheus,dataNascimento=2003-03-22T11:30:00.000-03:00,cpf=42793727806,cargo=Estagiario,salario=2000.0]]]"));
     }
 
 }

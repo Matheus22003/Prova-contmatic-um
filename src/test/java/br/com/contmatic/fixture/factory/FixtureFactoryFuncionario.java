@@ -6,9 +6,7 @@ import br.com.six2six.fixturefactory.loader.TemplateLoader;
 import com.github.javafaker.Faker;
 import org.joda.time.DateTime;
 
-import java.text.SimpleDateFormat;
-
-import static br.com.contmatic.fixture.factory.TiposFixtureFactory.*;
+import static br.com.contmatic.fixture.factory.constantes.TiposFixtureFactoryEmpresa.*;
 import static br.com.six2six.fixturefactory.Fixture.of;
 
 public class FixtureFactoryFuncionario implements TemplateLoader {

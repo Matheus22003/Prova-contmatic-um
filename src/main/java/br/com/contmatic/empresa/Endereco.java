@@ -2,31 +2,48 @@ package br.com.contmatic.empresa;
 
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.Range;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
-import static br.com.contmatic.constantes.EmpresaConstantes.NOME_BLANK_MESSAGE;
-import static br.com.contmatic.constantes.EmpresaConstantes.NOME_LENGTH_MESSAGE;
-import static br.com.contmatic.validator.Validacoes.*;
+import static br.com.contmatic.constantes.EnderecoConstantes.*;
+import static br.com.contmatic.constantes.Regex.SOMENTE_LETRAS;
+import static br.com.contmatic.constantes.Regex.SOMENTE_NUMEROS;
 import static org.apache.commons.lang3.builder.EqualsBuilder.reflectionEquals;
 import static org.apache.commons.lang3.builder.ToStringBuilder.reflectionToString;
 
 public class Endereco {
 
-    @NotBlank(message = NOME_BLANK_MESSAGE)
-    @Length(min = 2, max = 100, message = NOME_LENGTH_MESSAGE)
+    @NotBlank(message = RUA_BLANK_MESSAGE)
+    @Length(min = 5, max = 90, message = RUA_LENGTH_MESSAGE)
+    @Pattern(regexp = SOMENTE_LETRAS, message = RUA_REGEX_MESSAGE)
     private String rua;
 
+    @Range(min = 1, max = 99999, message = NUMERO_RANGE_MESSAGE)
     private Integer numero;
 
+    @NotBlank(message = COMPLEMENTO_BLANK_MESSAGE)
+    @Length(min = 2, max = 50, message = COMPLEMENTO_LENGTH_MESSAGE)
     private String complemento;
 
+    @NotBlank(message = BAIRRO_BLANK_MESSAGE)
+    @Pattern(regexp = SOMENTE_LETRAS, message = BAIRRO_REGEX_MESSAGE)
+    @Length(max = 50, message = BAIRRO_LENGTH_MESSAGE)
     private String bairro;
 
+    @NotNull(message = ESTADO_NULL_MESSAGE)
     private EstadosBrasil estado;
 
+    @NotBlank(message = CIDADE_BLANK_MESSAGE)
+    @Pattern(regexp = SOMENTE_LETRAS, message = CIDADE_REGEX_MESSAGE)
+    @Length(max = 80, message = CIDADE_LENGTH_MESSAGE)
     private String cidade;
 
+    @NotBlank(message = CEP_BLANK_MESSAGE)
+    @Length(min = 8,max = 8, message = CEP_LENGTH_MESSAGE)
+    @Pattern(regexp = SOMENTE_NUMEROS, message = CEP_REGEX_MESSAGE)
     private String cep;
 
     public Endereco(String cep, Integer numero) {
@@ -35,8 +52,6 @@ public class Endereco {
     }
 
     public void setRua(String rua) {
-        isNonNumeric(rua, "rua", "Endereco");
-        validarStringTamanhoMinimoEMaximo(rua, 5, 90, "rua", "Endereco");
         this.rua = rua;
     }
 
@@ -45,7 +60,6 @@ public class Endereco {
     }
 
     public void setNumero(int numero) {
-        validarIntMinimoEmaximo(numero, 1, 99999, "numero", "Endereco");
         this.numero = numero;
     }
 
@@ -54,9 +68,6 @@ public class Endereco {
     }
 
     public void setComplemento(String complemento) {
-        isStringEmpty(complemento, "complemento", "Endereco");
-        isStringBlank(complemento, "complemento", "Endereco");
-        validarStringTamanhoMaximo(complemento, 50, "complemento", "Endereco");
         this.complemento = complemento;
     }
 
@@ -65,10 +76,6 @@ public class Endereco {
     }
 
     public void setBairro(String bairro) {
-        isStringEmpty(bairro, "bairro", "Endereco");
-        isStringBlank(bairro, "bairro", "Endereco");
-        isNonNumeric(bairro, "bairro", "Endereco");
-        validarStringTamanhoMaximo(bairro, 50, "bairro", "Endereco");
         this.bairro = bairro;
     }
 
@@ -77,7 +84,6 @@ public class Endereco {
     }
 
     public void setEstado(EstadosBrasil estado) {
-        verifierObjectIsNull(estado, "estado", "Endereco");
         this.estado = estado;
     }
 
@@ -86,10 +92,6 @@ public class Endereco {
     }
 
     public void setCidade(String cidade) {
-        isStringEmpty(cidade, "cidade", "Endereco");
-        isStringBlank(cidade, "cidade", "Endereco");
-        isNonNumeric(cidade, "cidade", "Endereco");
-        validarStringTamanhoMaximo(cidade, 80, "cidade", "Endereco");
         this.cidade = cidade;
     }
 
@@ -98,10 +100,6 @@ public class Endereco {
     }
 
     public void setCep(String cep) {
-        isStringBlank(cep, "cep", "Endereco");
-        isStringEmpty(cep, "cep", "Endereco");
-        isNumeric(cep, "cep", "Endereco");
-        validarStringTamanhoExatoCaracteres(cep, 8, "cep", "Endereco");
         this.cep = cep;
     }
 

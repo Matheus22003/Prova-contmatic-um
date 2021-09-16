@@ -1,6 +1,6 @@
 package br.com.contmatic.empresa;
 
-import static br.com.contmatic.fixture.factory.TiposFixtureFactory.VALIDO;
+import static br.com.contmatic.fixture.factory.constantes.TiposFixtureFactoryEmpresa.VALIDO;
 import static br.com.six2six.fixturefactory.Fixture.from;
 import static br.com.six2six.fixturefactory.loader.FixtureFactoryLoader.loadTemplates;
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -13,8 +13,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 class FuncionarioTest {
     Funcionario funcionario;
